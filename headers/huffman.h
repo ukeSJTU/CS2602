@@ -1,3 +1,9 @@
+#ifndef HUFFMAN_H_
+#define HUFFMAN_H_
+
+#include <iostream>
+#include "seqStack.h"
+
 template <class elemType>
 struct HuffmanNode
 {
@@ -65,3 +71,61 @@ HuffmanNode<elemType> *BestBinaryTree(elemType a[], double w[], int n)
 
     return BBTree;
 }
+
+template <class elemType>
+char **HuffmanCode(HuffmanNode<elemType> BBTree[], int n)
+{
+    SeqStack<char> s;
+    char **HFCode;
+    char zero = '0', one = '1';
+    int m, i, j, parent, child;
+
+    HFCode = new char *[n];
+    for (i = 0; i < n; i++)
+    {
+        HFCode[i] = new char[n + 1];
+    }
+
+    m = 2 * n;
+    if (n == 0)
+    {
+        return HFCode;
+    }
+    if (n == 1)
+    {
+        HFCode[0][0] = '\0';
+        HFCode[0][1] = '\0';
+        return HFCode;
+    }
+
+    for (i = m - 1; i >= n; i--)
+    {
+        child = i;
+        parent = BBTree[child].parent;
+        while (parent != 0)
+        {
+            if (BBTree[parent].left == child)
+            {
+                s.push(zero);
+            }
+            else
+            {
+                s.push(one);
+            }
+
+            child = parent;
+            parent = BBTree[child].parent;
+        }
+
+        j = 0;
+        while (!s.isEmpty())
+        {
+            HFCode[m - i - 1][j] = s.top();
+            s.pop();
+            j++;
+        }
+        HFCode[m - i - 1][j] = '\0';
+    }
+}
+
+#endif // HUFFMAN_H_
