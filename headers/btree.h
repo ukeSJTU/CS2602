@@ -64,6 +64,8 @@ public:
     Node<elemType> *threadMid();
     void threadMidVisit(Node<elemType> *first);
     void threadMidePreVisit();
+
+    Node<elemType> *BTree<elemType>::buildTree(elemType pre[], int pl, int pr, elemType mid[], int ml, int mr);
 };
 
 template <class elemType>
@@ -541,6 +543,51 @@ void BTree<elemType>::threadMidePreVisit()
     }
 
     std::cout << std::endl;
+}
+
+template <class elemType>
+Node<elemType> *BTree<elemType>::buildTree(elemType pre[], int pl, int pr, elemType mid[], int ml, int mr)
+{
+    Node<elemType> *p, *leftRoot, *rightRoot;
+    int i, pos, num;
+    int lpl, lpr, lml, lmr, rpl, rpr, rml, rmr; // [left/right-subtree] + [pre/mid] + [left/right-bound]
+
+    if (pl > pr)
+    {
+        return nullptr;
+    }
+    p = new Node<elemType>(pre[pl]);
+    if (!root)
+    {
+        root = p;
+    }
+
+    for (i = ml; i <= mr; i++)
+    {
+        if (mid[i] == pre[pl])
+        {
+            break;
+        }
+    }
+
+    pos = i;
+    num = pos - ml;
+
+    lpl = pl + 1;
+    lpr = pl + num;
+    lml = ml;
+    lmr = pos - 1;
+    leftRoot = buildTree(pre, lpl, lpr, mid, lml, lmr);
+
+    rpl = pl + num + 1;
+    rpr = pr;
+    rml = pos + 1;
+    rmr = mr;
+    rightRoot = buildTree(pre, rpl, rpr, mid, rml, rmr);
+
+    p->left = leftRoot;
+    p->right = rightRoot;
+    return p;
 }
 
 #endif /* BTREE_H_ */
