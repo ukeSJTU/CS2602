@@ -159,4 +159,231 @@ void BTree<elemType>::delTree(Node<elemType> *t)
     delTree(t->right);
     delete t;
 }
+
+template <class elemType>
+void BTree<elemType>::preOrder()
+{
+    preOrder(root);
+}
+
+template <class elemType>
+void BTree<elemType>::preOrder(Node<elemType> *t)
+{
+    if (t == nullptr)
+    {
+        return;
+    }
+    std::cout << t->data;
+
+    preOrder(t->left);
+    preOrder(t->right);
+}
+
+/* non-recursion version of preOrder */
+/*
+template <class elemType>
+void BTree<elemType>::preOrder()
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    Node<elemType> *p = root;
+    SeqStack<Node<elemType> *> stack;
+
+    while (!s.isEmpty())
+    {
+        p = s.top();
+        s.pop()
+                std::cout
+            << p->data;
+        if (p->right)
+        {
+            s.push(p->right)
+        }
+
+        if (p->left)
+        {
+            s.push(p->left)
+        }
+    }
+    std::cout << std::endl;
+}
+*/
+
+template <class elemType>
+void BTree<elemType>::inOrder()
+{
+    inOrder(root);
+}
+
+template <class elemType>
+void BTree<elemType>::inOrder(Node<elemType> *t)
+{
+    if (t == nullptr)
+    {
+        return;
+    }
+
+    inOrder(t->left);
+    std::cout << t->data;
+    inOrder(t->right);
+}
+
+/* non-recursion version of inOrder */
+/*
+template <class elemType>
+void BTree<elemType>::inOrder()
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    Node<elemType> *p = root;
+    SeqStack<Node<elemType> *> s1;
+    SeqStack<int> s2;
+    int flag, zero = 0, one = 1;
+
+    s1.push(p);
+    s2.push(zero);
+
+    while (!s1.isEmpty())
+    {
+        p = s1.top();
+        flag = s2.top();
+        // s1.pop(); do not pop here, pop after the left child is visited
+        s2.pop();
+
+        if (flag == one)
+        {
+            s1.pop();
+            std::cout << p->data;
+            if (p->right == nullptr)
+            {
+                continue; // if the right child is null, skip the following steps
+            }
+            s1.push(p->right);
+            s2.push(zero);
+        }
+        else
+        {
+            s2.push(one);
+            if (p->left)
+            {
+                s1.push(p->left);
+                s2.push(zero);
+            }
+        }
+    }
+
+    std::cout << std::endl;
+}
+*/
+
+template <class elemType>
+void BTree<elemType>::postOrder()
+{
+    postOrder(root);
+}
+
+template <class elemType>
+void BTree<elemType>::postOrder(Node<elemType> *t)
+{
+    if (t == nullptr)
+    {
+        return;
+    }
+
+    postOrder(t->left);
+    postOrder(t->right);
+    std::cout << t->data;
+}
+
+/* non-recursion version of postOrder */
+/*
+template <class elemType>
+void BTree<elemType>::postOrder()
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    Node<elemType> *p = root;
+    SeqStack<Node<elemType> *> s1;
+    SeqStack<int> s2;
+    int flag, zero = 0, one = 1, two = 2;
+
+    s1.push(p);
+    s2.push(zero);
+
+    while (!s1.isEmpty())
+    {
+        p = s1.top();
+        flag = s2.top();
+        s2.pop();
+
+        if (flag == two)
+        {
+            s1.pop();
+            std::cout << p->data;
+        }
+        else if (flag == one)
+        {
+            s2.push(two);
+            if (p->right == nullptr)
+            {
+                s1.push(p->right);
+                s2.push(zero);
+            }
+        }
+        else
+        {
+            s2.push(one);
+            if (p->left)
+            {
+                s1.push(p->left);
+                s2.push(zero);
+            }
+        }
+    }
+
+    std::cout << std::endl;
+}
+*/
+
+template <class elemType>
+void BTree<elemType>::levelOrder()
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    Node<elemType> *p = root;
+    SeqQueue<Node<elemType> *> que;
+
+    que.enQueue(p);
+    while (!que.isEmpty())
+    {
+        p = que.front();
+        que.deQueue();
+        std::cout << p->data;
+
+        if (p->left)
+        {
+            que.enQueue(p->left);
+        }
+
+        if (p->right)
+        {
+            que.enQueue(p->right);
+        }
+    }
+
+    std::cout << std::endl;
+}
+
 #endif /* BTREE_H_ */
