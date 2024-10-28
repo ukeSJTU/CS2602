@@ -6,7 +6,7 @@ class OutOfBound
 };
 
 template <class elemType>
-class seqStack
+class SeqStack
 {
 private:
     elemType *elem;
@@ -15,17 +15,17 @@ private:
     void doubleSpace();
 
 public:
-    seqStack(int initSize = 100);
+    SeqStack(int initSize = 100);
     bool isEmpty() { return (top_p == -1); };
     bool isFull() { return (top_p == maxSize - 1); };
     elemType top();
     void push(const elemType &e);
     void pop();
-    ~seqStack() { delete[] array };
+    ~SeqStack() { delete[] array };
 };
 
 template <class elemType>
-seqStack<elemType>::seqStack(int initSize)
+SeqStack<elemType>::SeqStack(int initSize)
 {
     elem = new elemType[initSize];
     if (!elem)
@@ -38,7 +38,7 @@ seqStack<elemType>::seqStack(int initSize)
 }
 
 template <class elemType>
-void seqStack<elemType>::doubleSpace()
+void SeqStack<elemType>::doubleSpace()
 {
     elemType *tmp = elem;
     elem = new elemType[2 * maxSize];
@@ -57,7 +57,7 @@ void seqStack<elemType>::doubleSpace()
 }
 
 template <class elemType>
-elemType seqStack<elemType>::top()
+elemType SeqStack<elemType>::top()
 {
     if (isEmpty())
     {
@@ -68,7 +68,7 @@ elemType seqStack<elemType>::top()
 }
 
 template <class elemType>
-void seqStack<elemType>::push(const elemType &e)
+void SeqStack<elemType>::push(const elemType &e)
 {
     if (isFull())
     {
@@ -79,7 +79,7 @@ void seqStack<elemType>::push(const elemType &e)
 }
 
 template <class elemType>
-void seqStack<elemType>::pop()
+void SeqStack<elemType>::pop()
 {
     if (isEmpty())
     {

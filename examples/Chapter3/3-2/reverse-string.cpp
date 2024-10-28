@@ -3,7 +3,7 @@
 
 int main()
 {
-    seqStack<char> s;
+    SeqStack<char> s;
     char ctemp;
 
     std::cout << "Input the elements, press enter to an end: ";
@@ -11,7 +11,7 @@ int main()
     while (ctemp != '\n')
     {
         s.push(ctemp);
-        ctemp = cin.get();
+        ctemp = std::cin.get();
     }
 
     std::cout << "Output the elements in the stack one by one: ";
