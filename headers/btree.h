@@ -62,6 +62,8 @@ public:
     void levelOrder();
 
     Node<elemType> *threadMid();
+    void threadMidVisit(Node<elemType> *first);
+    void threadMidePreVisit();
 };
 
 template <class elemType>
@@ -466,6 +468,79 @@ Node<elemType> *BTree<elemType>::threadMid()
 
     p->rightFlag = 1;
     // std::cout << p->data << " next: " << "NULL" << std::endl;
+}
+
+template <class elemType>
+void BTree<elemType>::threadMidVisit(Node<elemType> *first)
+{
+    if (!first)
+    {
+        return;
+    }
+
+    Node<elemType> *p = first;
+
+    while (p)
+    {
+        std::cout << p->data;
+        if (p->rightFlag == 0)
+        {
+            p = p->right;
+
+            while (p->left)
+            {
+                p = p->left;
+            }
+        }
+        else
+        {
+            p = p->right;
+        }
+    }
+
+    std::cout << std::endl;
+}
+
+template <class elemType>
+void BTree<elemType>::threadMidePreVisit()
+{
+    Node<elemType> *p = root;
+
+    while (p->left)
+    {
+        p = p->left;
+    }
+
+    while (p)
+    {
+        std::cout << p->data;
+        if (p->leftFlag == 0)
+        {
+            p = p->left;
+        }
+        else
+        {
+            if (p->rightFlag == 0)
+            {
+                p = p->right;
+            }
+            else
+            {
+                while (p && (p->rightFlag == 1))
+                {
+                    p = p->right;
+                }
+
+                if (!p)
+                {
+                    return;
+                }
+                p = p->right;
+            }
+        }
+    }
+
+    std::cout << std::endl;
 }
 
 #endif /* BTREE_H_ */
