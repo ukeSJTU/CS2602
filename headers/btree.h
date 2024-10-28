@@ -60,6 +60,8 @@ public:
     void inOrder();
     void postOrder();
     void levelOrder();
+
+    Node<elemType> *threadMid();
 };
 
 template <class elemType>
@@ -384,6 +386,86 @@ void BTree<elemType>::levelOrder()
     }
 
     std::cout << std::endl;
+}
+
+template <class elemType>
+Node<elemType> *BTree<elemType>::threadMid()
+{
+    if (root == nullptr)
+    {
+        return nullptr;
+    }
+
+    SeqStack<Node<elemType> *> s1;
+    SeqStack<int> s2;
+
+    Node<elemType> *p = root, *pre = nullptr;
+    Node<elemType> *first = nullptr;
+
+    int flag, zero = 0, one = 1;
+    s1.push(p);
+    s2.push(zero);
+
+    while (!s1.isEmpty())
+    {
+        p = s1.top();
+        flag = s2.top();
+        s2.pop();
+
+        if (flag == one)
+        {
+            s1.pop();
+            // std::cout << p->data;
+            if (first == nullptr)
+            {
+                first = p;
+            }
+
+            if (p->right)
+            {
+                s1.push(p->right);
+                s2.push(zero);
+            }
+
+            if (!p->left)
+            {
+                p->leftFlag = 1;
+                p->left = pre;
+
+                // std::cout << p->data << " pre: ";
+                // if (p->left)
+                // {
+                //     std::cout << p->left->data << std::endl;
+                // }
+                // else
+                // {
+                //     std::cout << "NULL" << std::endl;
+                // }
+            }
+
+            if (pre && (!pre->right))
+            {
+                pre->rightFlag = 1;
+                pre->right = p;
+
+                std::cout << pre->data << " next: " << p->data << std::endl;
+            }
+
+            pre = p;
+        }
+        else
+        {
+            s2.push(one);
+            if (p->left)
+            {
+                s1.push(p->left);
+                s2.push(zero);
+            }
+        }
+    }
+
+    p->rightFlag = 1;
+    // std::cout << p->data << " next: " << "NULL" << std::endl;
 }
 
 #endif /* BTREE_H_ */
