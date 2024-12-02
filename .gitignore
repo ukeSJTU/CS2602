@@ -1,5 +1,12 @@
-# Prerequisites
-*.d
+# Build directories
+/build/
+build/
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+CMakeScripts/
 
 # Compiled Object files
 *.slo
