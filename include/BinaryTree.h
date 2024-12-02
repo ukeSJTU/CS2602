@@ -37,13 +37,15 @@ template <class elemType> class Node {
 
 template <class elemType> class BTree {
   private:
-    Node<elemType> *root;
     int size(Node<elemType> *t);       // 求以t为根的二叉树的结点个数
     int height(Node<elemType> *t);     // 求以t为根的二叉树的高度
     void delTree(Node<elemType> *t);   // 删除以t为根的二叉树
     void preOrder(Node<elemType> *t);  // 前序遍历以t为根的二叉树
     void inOrder(Node<elemType> *t);   // 中序遍历以t为根的二叉树
     void postOrder(Node<elemType> *t); // 后序遍历以t为根的二叉树
+
+  protected:
+    Node<elemType> *root;
 
   public:
     BTree() { root = nullptr; }
