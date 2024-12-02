@@ -48,3 +48,6 @@ foreach(TEST_FILE ${TEST_SOURCES})
     # 启用测试
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endforeach()
+
+# 配置生成编译数据库
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

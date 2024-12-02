@@ -1,0 +1,15 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=build",  // Specify the directory where compile_commands.json is located
+        "--header-insertion=never",      // Control whether Clangd inserts headers
+        "--all-scopes-completion",       // Enable completion suggestions from all scopes
+        "--cross-file-rename",           // Allow rename functionality across files
+        "--use-index",                   // Enable index-based code completions and lookups
+        "--clang-tidy",                  // Enable Clang-Tidy for static analysis
+        "--enable-config",               // Allow Clangd to load settings from .clangd configuration file
+        "--format-style=file",            // Enable formatting based on the .clang-format file in your project
+        "-std=c++11"
+    ],
+    "C_Cpp.intelliSenseCacheSize": 100000,  // Increase the IntelliSense cache size if necessary
+    "editor.formatOnSave": true,  // Enable auto-formatting when saving files
+}
