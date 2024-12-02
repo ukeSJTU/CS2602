@@ -64,20 +64,24 @@ template <class elemType> void SeqQueue<elemType>::deQueue() {
 template <class elemType> SeqQueue<elemType>::~SeqQueue() { delete[] array; }
 
 template <class elemType> void SeqQueue<elemType>::doubleSpace() {
-    elemType *tmp = array;
-    array = new elemType[2 * maxSize];
-    if (!array) {
+    elemType *newArray;
+
+    newArray = new elemType[2 * maxSize];
+    if (!newArray) {
         throw IllegalSize();
     }
 
-    for (int i = 0, j = front_p; j != rear_p;; i++, j = (j + 1) % maxSize) {
-        array[i] = tmp[j];
+    int i, j;
+    for (i = 0, j = front_p; j != rear_p; j = (j + 1) % maxSize, i++) {
+        newArray[i] = array[j];
     }
 
+    delete[] array;
+
+    array = newArray;
     front_p = 0;
     rear_p = i;
     maxSize *= 2;
-    delete[] tmp;
 }
 } // namespace datastructures
 
