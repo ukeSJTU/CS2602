@@ -2,14 +2,7 @@
 #define SEQLIST_H
 
 #define INITSIZE 100
-
-// 异常类
-class IllegalSize
-{
-};
-class OutOfBound
-{
-};
+#include "Exceptions.h"
 
 // 定义数据结构命名空间
 namespace datastructures

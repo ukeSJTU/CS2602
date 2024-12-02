@@ -3,15 +3,11 @@
 
 #include <iostream>
 #include <stdexcept>
+#include "Exceptions.h"
 
 // 定义命名空间 datastructures
 namespace datastructures
 {
-
-    // 异常类：用于处理越界错误
-    class OutOfBound
-    {
-    };
 
     // LinkList 的前向声明
     template <class elemType>
