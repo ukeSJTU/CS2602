@@ -1,3 +1,7 @@
+# Ignore merged.cpp files because they automatically generated 
+merged.cpp
+
+
 # Build directories
 /build/
 build/
