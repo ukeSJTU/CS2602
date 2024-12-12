@@ -1,4 +1,11 @@
 ---
-BasedOnStyle: LLVM
-IndentWidth: 4
-ColumnLimit: 100
+BasedOnStyle: Google
+IndentWidth: 4           # 使用 4 个空格缩进（默认是 2 个空格）
+ColumnLimit: 100         # 设置每行的最大列数
+SortIncludes: true       # 按照字典顺序排序 include
+BreakBeforeBraces: Custom # 控制大括号的位置
+BraceWrapping:
+  AfterFunction: true    # 函数后换行
+  AfterClass: true       # 类后换行
+  AfterNamespace: true   # 命名空间后换行
+AlignTrailingComments: true # 对齐尾随注释
