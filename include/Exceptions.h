@@ -11,4 +11,9 @@ class OutOfBound
 {
 };
 
+// 异常类：内存不足
+class NoSpace
+{
+};
+
 #endif  // EXCEPTIONS_H
