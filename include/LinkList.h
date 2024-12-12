@@ -37,11 +37,15 @@ class LinkList
     Node<elemType> *head;  // 指向头节点的指针（哑节点）
 
    public:
-    LinkList();                             // 构造函数
-    bool isEmpty() const;                   // 检查链表是否为空
-    bool isFull() const { return false; }   // 检查链表是否已满（对于链表来说，默认是永远不满的）
-    int length() const;                     // 获取链表的长度
-    elemType get(int i) const;              // 获取链表中第 i 个元素
+    LinkList();                            // 构造函数
+    bool isEmpty() const;                  // 检查链表是否为空
+    bool isFull() const { return false; }  // 检查链表是否已满（对于链表来说，默认是永远不满的）
+    int length() const;                    // 获取链表的长度
+
+    // 获取链表中第 i 个元素
+    elemType &get(int i);              // 返回非 const 引用，允许修改
+    const elemType &get(int i) const;  // 返回 const 引用，只读
+
     int find(const elemType &e) const;      // 查找元素的索引
     void insert(int i, const elemType &e);  // 插入元素
     void remove(int i, elemType &e);        // 删除元素
@@ -98,13 +102,36 @@ int LinkList<elemType>::length() const
 }
 
 /**
- * 获取链表中第 i 个元素。
+ * 非 const 版本
+ * 获取链表中第 i 个元素的引用。
  * 如果索引无效，抛出 OutOfBound 异常。
  * @param i 索引值。
- * @return 第 i 个元素。
+ * @return 第 i 个元素的引用。
  */
 template <class elemType>
-elemType LinkList<elemType>::get(int i) const
+elemType &LinkList<elemType>::get(int i)
+{
+    if (i < 0) throw OutOfBound();
+
+    Node<elemType> *p = head->next;
+    int idx = 0;
+    while (p != nullptr && idx < i) {
+        p = p->next;
+        idx++;
+    }
+    if (p == nullptr) throw OutOfBound();
+    return p->data;
+}
+
+/**
+ * const 版本
+ * 获取链表中第 i 个元素的只读引用。
+ * 如果索引无效，抛出 OutOfBound 异常。
+ * @param i 索引值。
+ * @return 第 i 个元素的只读引用。
+ */
+template <class elemType>
+const elemType &LinkList<elemType>::get(int i) const
 {
     if (i < 0) throw OutOfBound();
 
