@@ -1,12 +1,14 @@
-#include "ExprTree.h"
 #include <iostream>
 #include <string>
 
+#include "ExprTree.h"
+
 using namespace datastructures;
 
-int main() {
+int main()
+{
     ExprTree<char> expression_tree;
-    std::string expr; // 用于存储用户输入的表达式
+    std::string expr;  // 用于存储用户输入的表达式
 
     std::cout << "欢迎使用表达式树计算器！" << std::endl;
 
@@ -17,7 +19,7 @@ int main() {
     // 输出计算示例表达式的结果
     expression_tree.buildExpTree(example_expr.c_str());
     std::cout << "示例表达式树的中序遍历结果: ";
-    expression_tree.inOrder(); // 这里假设你已经实现了中序遍历
+    expression_tree.inOrder();  // 这里假设你已经实现了中序遍历
     std::cout << std::endl;
 
     int result = expression_tree.calcExprTree();
@@ -27,7 +29,7 @@ int main() {
     while (true) {
         // 提示用户输入表达式
         std::cout << "\n请输入一个中缀表达式（或输入 'exit' 退出程序）：";
-        std::getline(std::cin, expr); // 获取用户输入的表达式
+        std::getline(std::cin, expr);  // 获取用户输入的表达式
 
         // 如果用户输入 "exit"，则退出程序
         if (expr == "exit") {
@@ -46,7 +48,7 @@ int main() {
 
         // 构建表达式树
         try {
-            expression_tree.buildExpTree(expr.c_str()); // 将字符串转换为 C 风格字符串
+            expression_tree.buildExpTree(expr.c_str());  // 将字符串转换为 C 风格字符串
         } catch (const std::exception &e) {
             std::cout << "错误：" << e.what() << std::endl;
             continue;
@@ -54,7 +56,7 @@ int main() {
 
         // 输出表达式树的中序遍历结果
         std::cout << "表达式树的中序遍历结果: ";
-        expression_tree.inOrder(); // 这里假设你已经实现了中序遍历
+        expression_tree.inOrder();  // 这里假设你已经实现了中序遍历
         std::cout << std::endl;
 
         // 计算并输出结果

@@ -7,19 +7,21 @@ using namespace std;
 
 // 定义帖子结构体，用于存储帖子ID和对应的浏览量
 struct Post {
-    int id;        // 帖子ID
-    int max_views; // 最近T天内的最大浏览量
+    int id;         // 帖子ID
+    int max_views;  // 最近T天内的最大浏览量
 
     // 优先队列按max_views降序排列，如果max_views相同，按id升序排列
-    bool operator<(const Post &other) const {
+    bool operator<(const Post &other) const
+    {
         if (max_views == other.max_views) {
-            return id < other.id; // 浏览量相同时ID较大的优先
+            return id < other.id;  // 浏览量相同时ID较大的优先
         }
-        return max_views < other.max_views; // 浏览量较大的优先
+        return max_views < other.max_views;  // 浏览量较大的优先
     }
 };
 
-int main() {
+int main()
+{
     int T, D, P;
     cin >> T >> D >> P;
 
@@ -52,7 +54,7 @@ int main() {
         // 对于每个帖子，计算其最近 T 天的最大浏览量
         for (int post_id = 0; post_id < P; post_id++) {
             int max_views = *max_element(post_views[post_id].begin(), post_views[post_id].end());
-            pq.push(Post{post_id + 1, max_views}); // 帖子ID从1开始
+            pq.push(Post{post_id + 1, max_views});  // 帖子ID从1开始
         }
 
         // 输出当前热门帖的ID

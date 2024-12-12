@@ -1,26 +1,26 @@
-#include "LinkStack.h"
 #include <cctype>
 #include <cstddef>
 #include <iostream>
 #include <string>
 
-int precedence(char op) {
-    if (op == '+' || op == '-')
-        return 1;
-    if (op == '*' || op == '/')
-        return 2;
+#include "LinkStack.h"
+
+int precedence(char op)
+{
+    if (op == '+' || op == '-') return 1;
+    if (op == '*' || op == '/') return 2;
     return 0;
 }
 
-std::string infixToPostfix(const std::string &infix) {
+std::string infixToPostfix(const std::string &infix)
+{
     datastructures::LinkStack<char> stack;
     std::string postfix;
-    std::string number; // 用于存储多位数字
+    std::string number;  // 用于存储多位数字
 
     for (size_t i = 0; i < infix.length() && infix[i] != '@'; ++i) {
         char ch = infix[i];
-        if (std::isspace(ch))
-            continue;
+        if (std::isspace(ch)) continue;
 
         if (std::isdigit(ch)) {
             number += ch;
@@ -35,8 +35,7 @@ std::string infixToPostfix(const std::string &infix) {
                 postfix += stack.top();
                 stack.pop();
             }
-            if (!stack.isEmpty())
-                stack.pop(); // 弹出 '('
+            if (!stack.isEmpty()) stack.pop();  // 弹出 '('
         } else {
             while (!stack.isEmpty() && precedence(stack.top()) >= precedence(ch)) {
                 postfix += stack.top();
@@ -54,7 +53,8 @@ std::string infixToPostfix(const std::string &infix) {
     return postfix + "@";
 }
 
-int main() {
+int main()
+{
     std::string infix;
     std::getline(std::cin, infix);
 

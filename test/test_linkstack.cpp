@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "LinkStack.h"
 
 using namespace datastructures;
@@ -33,7 +34,7 @@ TEST(LinkStackTest, PopTest)
 
     // 测试栈为空时的出栈操作
     stack.pop();
-    EXPECT_THROW(stack.pop(), OutOfBound); // 空栈抛出异常
+    EXPECT_THROW(stack.pop(), OutOfBound);  // 空栈抛出异常
 }
 
 TEST(LinkStackTest, TopTest)
@@ -50,7 +51,7 @@ TEST(LinkStackTest, TopTest)
     stack.pop();
     stack.pop();
     stack.pop();
-    EXPECT_THROW(stack.top(), OutOfBound); // 空栈抛出异常
+    EXPECT_THROW(stack.top(), OutOfBound);  // 空栈抛出异常
 }
 
 TEST(LinkStackTest, IsEmptyTest)

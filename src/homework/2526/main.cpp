@@ -1,6 +1,7 @@
-#include "SeqQueue.h"
 #include <iostream>
 #include <string>
+
+#include "SeqQueue.h"
 
 using namespace datastructures;
 
@@ -11,18 +12,17 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-TreeNode *buildTree() {
+TreeNode *buildTree()
+{
     int n;
     std::cin >> n;
-    if (n <= 0)
-        return nullptr;
+    if (n <= 0) return nullptr;
 
     datastructures::SeqQueue<TreeNode *> q;
     std::string value;
     std::cin >> value;
 
-    if (value == "null")
-        return nullptr;
+    if (value == "null") return nullptr;
 
     TreeNode *root = new TreeNode(std::stoi(value));
     q.enQueue(root);
@@ -56,21 +56,22 @@ TreeNode *buildTree() {
     return root;
 }
 
-int getDepth(TreeNode *root) {
-    if (root == nullptr)
-        return 0;
+int getDepth(TreeNode *root)
+{
+    if (root == nullptr) return 0;
     return std::max(getDepth(root->left), getDepth(root->right)) + 1;
 }
 
-void deleteTree(TreeNode *root) {
-    if (root == nullptr)
-        return;
+void deleteTree(TreeNode *root)
+{
+    if (root == nullptr) return;
     deleteTree(root->left);
     deleteTree(root->right);
     delete root;
 }
 
-int main() {
+int main()
+{
     TreeNode *root = buildTree();
     int depth = getDepth(root);
     std::cout << depth << std::endl;

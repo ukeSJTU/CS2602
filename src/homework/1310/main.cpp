@@ -5,11 +5,12 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     int n;
     cin >> n;
 
-    vector<pair<int, int>> meetings(n); // 存储会议的开始时间和结束时间
+    vector<pair<int, int>> meetings(n);  // 存储会议的开始时间和结束时间
 
     // 读入会议的开始和结束时间
     for (int i = 0; i < n; ++i) {
@@ -27,7 +28,7 @@ int main() {
         // 如果当前会议的开始时间大于或等于堆顶的结束时间
         // 说明可以复用一个会议室
         if (!pq.empty() && meetings[i].first >= pq.top()) {
-            pq.pop(); // 释放一个会议室
+            pq.pop();  // 释放一个会议室
         }
 
         // 将当前会议的结束时间加入堆中

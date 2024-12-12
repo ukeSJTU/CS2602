@@ -3,16 +3,19 @@
 
 #include "Exceptions.h"
 
-namespace datastructures {
+namespace datastructures
+{
 
-template <class elemType> class SeqQueue {
-  private:
+template <class elemType>
+class SeqQueue
+{
+   private:
     elemType *array;
     int maxSize;
     int front_p, rear_p;
     void doubleSpace();
 
-  public:
+   public:
     SeqQueue(int initSize = 10);
     bool isEmpty();
     bool isFull();
@@ -22,7 +25,9 @@ template <class elemType> class SeqQueue {
     ~SeqQueue();
 };
 
-template <class elemType> SeqQueue<elemType>::SeqQueue(int initSize) {
+template <class elemType>
+SeqQueue<elemType>::SeqQueue(int initSize)
+{
     array = new elemType[initSize];
     if (!array) {
         throw IllegalSize();
@@ -33,20 +38,30 @@ template <class elemType> SeqQueue<elemType>::SeqQueue(int initSize) {
     rear_p = 0;
 }
 
-template <class elemType> bool SeqQueue<elemType>::isEmpty() { return front_p == rear_p; }
+template <class elemType>
+bool SeqQueue<elemType>::isEmpty()
+{
+    return front_p == rear_p;
+}
 
-template <class elemType> bool SeqQueue<elemType>::isFull() {
+template <class elemType>
+bool SeqQueue<elemType>::isFull()
+{
     return (rear_p + 1) % maxSize == front_p;
 }
 
-template <class elemType> elemType SeqQueue<elemType>::front() {
+template <class elemType>
+elemType SeqQueue<elemType>::front()
+{
     if (isEmpty()) {
         throw OutOfBound();
     }
     return array[front_p];
 }
 
-template <class elemType> void SeqQueue<elemType>::enQueue(const elemType &e) {
+template <class elemType>
+void SeqQueue<elemType>::enQueue(const elemType &e)
+{
     if (isFull()) {
         doubleSpace();
     }
@@ -54,16 +69,24 @@ template <class elemType> void SeqQueue<elemType>::enQueue(const elemType &e) {
     rear_p = (rear_p + 1) % maxSize;
 }
 
-template <class elemType> void SeqQueue<elemType>::deQueue() {
+template <class elemType>
+void SeqQueue<elemType>::deQueue()
+{
     if (isEmpty()) {
         throw OutOfBound();
     }
     front_p = (front_p + 1) % maxSize;
 }
 
-template <class elemType> SeqQueue<elemType>::~SeqQueue() { delete[] array; }
+template <class elemType>
+SeqQueue<elemType>::~SeqQueue()
+{
+    delete[] array;
+}
 
-template <class elemType> void SeqQueue<elemType>::doubleSpace() {
+template <class elemType>
+void SeqQueue<elemType>::doubleSpace()
+{
     elemType *newArray;
 
     newArray = new elemType[2 * maxSize];
@@ -83,6 +106,6 @@ template <class elemType> void SeqQueue<elemType>::doubleSpace() {
     rear_p = i;
     maxSize *= 2;
 }
-} // namespace datastructures
+}  // namespace datastructures
 
-#endif // SEQQUEUE_H
+#endif  // SEQQUEUE_H

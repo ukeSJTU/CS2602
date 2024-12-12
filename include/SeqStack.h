@@ -3,16 +3,19 @@
 
 #include "Exceptions.h"
 
-namespace datastructures {
+namespace datastructures
+{
 
-template <class elemType> class SeqStack {
-  private:
+template <class elemType>
+class SeqStack
+{
+   private:
     elemType *elem;
-    int top_p; // index of the top element
+    int top_p;  // index of the top element
     int maxSize;
     void doubleSpace();
 
-  public:
+   public:
     SeqStack(int initSize = 100);
     bool isEmpty() { return (top_p == -1); };
     bool isFull() { return (top_p == maxSize - 1); };
@@ -22,7 +25,9 @@ template <class elemType> class SeqStack {
     ~SeqStack() { delete[] elem; };
 };
 
-template <class elemType> SeqStack<elemType>::SeqStack(int initSize) {
+template <class elemType>
+SeqStack<elemType>::SeqStack(int initSize)
+{
     elem = new elemType[initSize];
     if (!elem) {
         throw IllegalSize();
@@ -32,7 +37,9 @@ template <class elemType> SeqStack<elemType>::SeqStack(int initSize) {
     top_p = -1;
 }
 
-template <class elemType> void SeqStack<elemType>::doubleSpace() {
+template <class elemType>
+void SeqStack<elemType>::doubleSpace()
+{
     elemType *tmp = elem;
     elem = new elemType[2 * maxSize];
     if (!elem) {
@@ -47,7 +54,9 @@ template <class elemType> void SeqStack<elemType>::doubleSpace() {
     delete[] tmp;
 }
 
-template <class elemType> elemType SeqStack<elemType>::top() {
+template <class elemType>
+elemType SeqStack<elemType>::top()
+{
     if (isEmpty()) {
         throw OutOfBound();
     }
@@ -55,7 +64,9 @@ template <class elemType> elemType SeqStack<elemType>::top() {
     return elem[top_p];
 }
 
-template <class elemType> void SeqStack<elemType>::push(const elemType &e) {
+template <class elemType>
+void SeqStack<elemType>::push(const elemType &e)
+{
     if (isFull()) {
         doubleSpace();
     }
@@ -63,7 +74,9 @@ template <class elemType> void SeqStack<elemType>::push(const elemType &e) {
     elem[++top_p] = e;
 }
 
-template <class elemType> void SeqStack<elemType>::pop() {
+template <class elemType>
+void SeqStack<elemType>::pop()
+{
     if (isEmpty()) {
         throw OutOfBound();
     }
@@ -71,6 +84,6 @@ template <class elemType> void SeqStack<elemType>::pop() {
     top_p--;
 }
 
-} // namespace datastructures
+}  // namespace datastructures
 
-#endif // SEQSTACK_H
+#endif  // SEQSTACK_H

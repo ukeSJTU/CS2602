@@ -5,35 +5,42 @@
 
 #include "Exceptions.h"
 
-namespace datastructures {
+namespace datastructures
+{
 // 链栈的节点类定义
-template <class elemType> class LinkStack; // 前向声明 LinkStack 模板类
+template <class elemType>
+class LinkStack;  // 前向声明 LinkStack 模板类
 
 // 链栈的节点类定义
-template <class elemType> class Node {
+template <class elemType>
+class Node
+{
     friend class LinkStack<elemType>;
 
-  private:
-    elemType data;        // 存储数据
-    Node<elemType> *next; // 指向下一个节点
+   private:
+    elemType data;         // 存储数据
+    Node<elemType> *next;  // 指向下一个节点
 
-  public:
+   public:
     // 默认构造函数
     Node() { next = nullptr; }
 
     // 带参数构造函数
-    Node(const elemType &x, Node<elemType> *p = nullptr) {
+    Node(const elemType &x, Node<elemType> *p = nullptr)
+    {
         data = x;
         next = p;
     }
 };
 
 // 链栈类定义
-template <class elemType> class LinkStack {
-  private:
-    Node<elemType> *top_p; // 栈顶指针
+template <class elemType>
+class LinkStack
+{
+   private:
+    Node<elemType> *top_p;  // 栈顶指针
 
-  public:
+   public:
     // 默认构造函数，初始化栈为空
     LinkStack() { top_p = nullptr; }
 
@@ -57,8 +64,10 @@ template <class elemType> class LinkStack {
 };
 
 // 返回栈顶元素
-template <class elemType> elemType LinkStack<elemType>::top() {
-    if (isEmpty()) // 栈为空时抛出异常
+template <class elemType>
+elemType LinkStack<elemType>::top()
+{
+    if (isEmpty())  // 栈为空时抛出异常
     {
         throw OutOfBound();
     }
@@ -66,31 +75,37 @@ template <class elemType> elemType LinkStack<elemType>::top() {
 }
 
 // 出栈操作
-template <class elemType> void LinkStack<elemType>::pop() {
-    if (isEmpty()) // 栈为空时抛出异常
+template <class elemType>
+void LinkStack<elemType>::pop()
+{
+    if (isEmpty())  // 栈为空时抛出异常
     {
         throw OutOfBound();
     }
     Node<elemType> *tmp = top_p;
-    top_p = top_p->next; // 更新栈顶指针
-    delete tmp;          // 删除原栈顶节点
+    top_p = top_p->next;  // 更新栈顶指针
+    delete tmp;           // 删除原栈顶节点
 }
 
 // 入栈操作
-template <class elemType> void LinkStack<elemType>::push(const elemType &e) {
-    top_p = new Node<elemType>(e, top_p); // 新节点插入栈顶
+template <class elemType>
+void LinkStack<elemType>::push(const elemType &e)
+{
+    top_p = new Node<elemType>(e, top_p);  // 新节点插入栈顶
 }
 
 // 析构函数，清理栈内的所有节点
-template <class elemType> LinkStack<elemType>::~LinkStack() {
+template <class elemType>
+LinkStack<elemType>::~LinkStack()
+{
     Node<elemType> *tmp;
-    while (top_p) // 遍历栈，删除所有节点
+    while (top_p)  // 遍历栈，删除所有节点
     {
         tmp = top_p;
         top_p = top_p->next;
         delete tmp;
     }
 }
-} // namespace datastructures
+}  // namespace datastructures
 
 #endif

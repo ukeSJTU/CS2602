@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include "SeqList.h"
 
 // 使用 Google Test 的宏定义一个测试案例
@@ -41,7 +42,7 @@ TEST(SeqListTest, FindTest)
     // 验证查找功能
     EXPECT_EQ(list.find(10), 1);
     EXPECT_EQ(list.find(20), 2);
-    EXPECT_EQ(list.find(30), 0); // 未找到返回0
+    EXPECT_EQ(list.find(30), 0);  // 未找到返回0
 }
 
 TEST(SeqListTest, OutOfBoundsTest)
@@ -52,5 +53,5 @@ TEST(SeqListTest, OutOfBoundsTest)
     list.insert(1, 10);
 
     // 测试越界访问
-    EXPECT_THROW(list.get(2), OutOfBound); // 应该抛出异常
+    EXPECT_THROW(list.get(2), OutOfBound);  // 应该抛出异常
 }

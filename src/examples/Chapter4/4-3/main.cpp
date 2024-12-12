@@ -1,11 +1,14 @@
+#include <iostream>
+
 #include "BinaryTree.h"
 #include "SeqStack.h"
-#include <iostream>
 
 using namespace datastructures;
 
 // 这是一个独立的非递归前序遍历函数，接收二叉树作为参数
-template <class elemType> void nonRecursivePreOrder(BTree<elemType> &tree) {
+template <class elemType>
+void nonRecursivePreOrder(BTree<elemType> &tree)
+{
     if (tree.isEmpty()) {
         return;
     }
@@ -32,7 +35,8 @@ template <class elemType> void nonRecursivePreOrder(BTree<elemType> &tree) {
     std::cout << std::endl;
 }
 
-int main() {
+int main()
+{
     // 创建二叉树
     BTree<int> tree;
 

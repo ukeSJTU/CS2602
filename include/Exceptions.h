@@ -11,4 +11,4 @@ class OutOfBound
 {
 };
 
-#endif // EXCEPTIONS_H
+#endif  // EXCEPTIONS_H
