@@ -143,6 +143,8 @@ rm -rf build/
 - **批量处理**：支持一次性处理多个文件。
 - **代码格式化**：自动检测并使用 `clang-format` 格式化输出代码。
 - **覆盖控制**：可选择是否覆盖已有的 `merged.cpp` 文件。
+- **文件标记**：在生成的文件中添加特殊标记，包含原始文件路径和生成时间。
+- **清理功能**：支持安全地删除所有由脚本生成的文件。
 
 ---
 
@@ -156,7 +158,7 @@ python merge_to_oj.py --help
 
 输出示例：
 ```
-usage: merge_to_oj.py [-h] [-i [IDS ...]] [-f] [--no-format]
+usage: merge_to_oj.py [-h] [-i [IDS ...]] [-f] [--no-format] [--clean] [--force-clean]
 
 自动合并 C++ 源文件及其依赖的头文件
 
@@ -165,7 +167,9 @@ optional arguments:
   -i [IDS ...], --ids [IDS ...]
                         指定题目编号 ID（如 2498 2526），默认处理所有文件
   -f, --force           强制覆盖已存在的 merged.cpp 文件
-  --no-format           不格式化输出文件
+  --no-format          不格式化输出文件
+  --clean              删除所有由脚本生成的文件（需要确认）
+  --force-clean        删除所有由脚本生成的文件（不需确认）
 ```
 
 ---
@@ -205,8 +209,24 @@ python merge_to_oj.py --no-format
 
 ---
 
-### 4. 输出文件
-处理完成后，生成的文件将保存在与 `main.cpp` 文件同一目录下，文件名为 `merged.cpp`。
+### 4. 清理生成的文件
+
+#### 安全清理（需确认）
+删除所有由脚本生成的文件，会显示要删除的文件列表并要求确认：
+```bash
+python merge_to_oj.py --clean
+```
+
+#### 强制清理（不需确认）
+直接删除所有由脚本生成的文件，不需要确认：
+```bash
+python merge_to_oj.py --force-clean
+```
+
+---
+
+### 5. 输出文件
+处理完成后，生成的文件将保存在与 `main.cpp` 文件同一目录下，文件名为 `merged.cpp`。每个生成的文件都会包含特殊标记，标明其来源和生成时间。
 
 示例：
 ```
@@ -228,6 +248,11 @@ python merge_to_oj.py -i 2498 -f
 python merge_to_oj.py --no-format
 ```
 
+### 清理所有生成的文件
+```bash
+python merge_to_oj.py --clean
+```
+
 ---
 
 ## 注意事项
@@ -242,8 +267,11 @@ python merge_to_oj.py --no-format
    - 请确保 `clang-format` 已正确安装并可用。
    - 若未检测到格式化工具，脚本将跳过格式化步骤。
 
+4. **文件清理**：
+   - 清理功能只会删除由脚本生成的文件（包含特定标记）。
+   - 建议使用 `--clean` 而不是 `--force-clean`，以便在删除前确认。
+
 ---
 
 ## 开发与扩展
 - 如果有新的需求或改进建议，请直接修改脚本或提交反馈。
-
