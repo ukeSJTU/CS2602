@@ -148,5 +148,19 @@
       };
     </script>
     <script async type="text/javascript" src="examples_Chapter4_4-3_wasm.js"></script>
+    <script>
+      // 初始化模块
+      createModule(Module)
+        .then(function (instance) {
+          // 模块加载成功
+          logToOutput("Module initialized successfully");
+        })
+        .catch(function (error) {
+          // 模块加载失败
+          logToOutput("Failed to initialize module: " + error, true);
+          Module.setStatus("Failed to initialize module");
+          spinnerElement.style.display = "none";
+        });
+    </script>
   </body>
 </html>
