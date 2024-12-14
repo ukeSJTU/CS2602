@@ -35,7 +35,19 @@ jobs:
                   emcmake cmake ..
                   cmake --build .
 
-            # 4. 部署到 GitHub Pages
+            # 4. 设置 Python
+            - name: Setup Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "3.x"
+
+            # 5. 生成 index.html
+            - name: Generate Index
+              run: |
+                  chmod +x generate_index.py
+                  ./generate_index.py
+
+            # 6. 部署到 GitHub Pages
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               with:
