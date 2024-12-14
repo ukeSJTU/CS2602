@@ -139,7 +139,12 @@
                         Module.printErr("[post-exception status] " + text);
                 };
             };
+
+            // 动态加载 WebAssembly 脚本
+            const scriptName = window.location.pathname.replace(".html", ".js");
+            const script = document.createElement("script");
+            script.src = scriptName;
+            document.body.appendChild(script);
         </script>
-        {{{ SCRIPT }}}
     </body>
 </html>
