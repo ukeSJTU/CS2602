@@ -20,11 +20,12 @@ jobs:
                   cd emsdk
                   ./emsdk install latest
                   ./emsdk activate latest
-                  source ./emsdk_env.sh
+                  echo "source $PWD/emsdk_env.sh" >> $GITHUB_ENV
 
             # 3. 使用 Emscripten 编译所有 main.cpp 文件
             - name: Build WebAssembly
               run: |
+                  source $GITHUB_ENV
                   mkdir -p build
                   cd build
                   emcmake cmake ..
