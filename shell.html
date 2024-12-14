@@ -146,21 +146,7 @@
         };
         return false;
       };
-
-      // 动态加载 WebAssembly 脚本
-      const scriptName = window.location.pathname.replace(".html", ".js");
-      logToOutput("Loading script: " + scriptName);
-      const script = document.createElement("script");
-      script.src = scriptName;
-      script.onerror = function (error) {
-        logToOutput("Failed to load script: " + scriptName, true);
-        spinnerElement.style.display = "none";
-        statusElement.innerHTML = "Script loading failed!";
-      };
-      script.onload = function () {
-        logToOutput("Script loaded successfully: " + scriptName);
-      };
-      document.body.appendChild(script);
     </script>
+    {{{ SCRIPT }}}
   </body>
 </html>
