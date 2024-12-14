@@ -1,0 +1,38 @@
+name: Build and Deploy WebAssembly Programs
+
+on:
+    push:
+        branches:
+            - main # 在 push 到 main 分支时触发
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            # 1. 检出代码
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            # 2. 安装 Emscripten 环境
+            - name: Setup Emscripten
+              run: |
+                  git clone https://github.com/emscripten-core/emsdk.git
+                  cd emsdk
+                  ./emsdk install latest
+                  ./emsdk activate latest
+                  source ./emsdk_env.sh
+
+            # 3. 使用 Emscripten 编译所有 main.cpp 文件
+            - name: Build WebAssembly
+              run: |
+                  mkdir -p build
+                  cd build
+                  emcmake cmake ..
+                  cmake --build .
+
+            # 4. 部署到 GitHub Pages
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./build

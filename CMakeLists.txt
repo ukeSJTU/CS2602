@@ -20,7 +20,7 @@ add_subdirectory(third_party/gtest)
 # 查找所有 main.cpp 文件
 file(GLOB_RECURSE MAIN_SOURCES "src/**/main.cpp")
 
-# 为每个 main.cpp 创建独立的可执行文件
+# 为每个 main.cpp 创建独立的可执行文件（终端交互）
 foreach(MAIN_FILE ${MAIN_SOURCES})
     # 获取相对路径作为可执行文件名
     file(RELATIVE_PATH REL_PATH ${CMAKE_SOURCE_DIR}/src ${MAIN_FILE})
@@ -51,3 +51,25 @@ endforeach()
 
 # 配置生成编译数据库
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# 如果是 Emscripten 构建（WebAssembly）
+if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+    message(STATUS "Building for WebAssembly using Emscripten")
+
+    # 设置 HTML 作为输出
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+
+    # 添加 WebAssembly 编译选项
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s WASM=1")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ENVIRONMENT=web")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s MODULARIZE=1 -s EXPORT_NAME='createModule'")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']")
+
+    # 针对 main.cpp 文件单独编译为 WebAssembly
+    foreach(MAIN_FILE ${MAIN_SOURCES})
+        file(RELATIVE_PATH REL_PATH ${CMAKE_SOURCE_DIR}/src ${MAIN_FILE})
+        get_filename_component(PARENT_DIR ${REL_PATH} DIRECTORY)
+        string(REPLACE "/" "_" EXECUTABLE_NAME "${PARENT_DIR}")
+        add_executable(${EXECUTABLE_NAME}_wasm ${MAIN_FILE})
+    endforeach()
+endif()
