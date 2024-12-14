@@ -12,6 +12,8 @@ jobs:
             # 1. 检出代码
             - name: Checkout code
               uses: actions/checkout@v3
+              with:
+                  submodules: true # 初始化子模块
 
             # 2. 安装 Emscripten 环境
             - name: Setup Emscripten
