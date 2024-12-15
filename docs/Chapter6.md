@@ -63,3 +63,46 @@
 ### PPT
 
 ### ACM-OJ
+
+#### 11051
+
+TLE 方法：
+
+```cpp
+#include <iostream>
+
+#include "LinkList.h"
+
+int main()
+{
+    int n, m, t;
+    std::cin >> n;
+    datastructures::LinkList<int> list;
+    for (int i = 0; i < n; i++) {
+        std::cin >> t;
+        list.insert(i, t);
+    }
+
+    int step_cnt = 0;
+    std::cin >> m;
+    for (int i = 0; i < m; i++) {
+        std::cin >> t;
+        for (int j = 0; j < list.length(); j++) {
+            step_cnt++;
+            int elem = list.get(j);
+            if (elem == t) {
+                // 把找到的指定节点移动到链表的第一个位置
+                // 删除，然后在最一开始添加
+                int tmp;
+                list.remove(j, tmp);
+                list.insert(0, tmp);
+                break;
+            }
+        }
+        // std::cout << "Finding " << t << " costs " << step_cnt << " steps." << std::endl;
+    }
+
+    std::cout << step_cnt << std::endl;
+    return 0;
+}
+```
