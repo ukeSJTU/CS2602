@@ -79,6 +79,8 @@ all: CMakeFiles/examples_Chapter4_4-16_wasm.dir/all
 all: CMakeFiles/examples_Chapter4_4-3_wasm.dir/all
 all: CMakeFiles/examples_Chapter4_4-5_wasm.dir/all
 all: CMakeFiles/examples_Chapter4_4-7_wasm.dir/all
+all: CMakeFiles/homework_1080_wasm.dir/all
+all: CMakeFiles/homework_11051_wasm.dir/all
 all: CMakeFiles/homework_1310_wasm.dir/all
 all: CMakeFiles/homework_2416_wasm.dir/all
 all: CMakeFiles/homework_2417_wasm.dir/all
@@ -106,6 +108,8 @@ codegen: CMakeFiles/examples_Chapter4_4-16_wasm.dir/codegen
 codegen: CMakeFiles/examples_Chapter4_4-3_wasm.dir/codegen
 codegen: CMakeFiles/examples_Chapter4_4-5_wasm.dir/codegen
 codegen: CMakeFiles/examples_Chapter4_4-7_wasm.dir/codegen
+codegen: CMakeFiles/homework_1080_wasm.dir/codegen
+codegen: CMakeFiles/homework_11051_wasm.dir/codegen
 codegen: CMakeFiles/homework_1310_wasm.dir/codegen
 codegen: CMakeFiles/homework_2416_wasm.dir/codegen
 codegen: CMakeFiles/homework_2417_wasm.dir/codegen
@@ -137,6 +141,8 @@ clean: CMakeFiles/examples_Chapter4_4-16_wasm.dir/clean
 clean: CMakeFiles/examples_Chapter4_4-3_wasm.dir/clean
 clean: CMakeFiles/examples_Chapter4_4-5_wasm.dir/clean
 clean: CMakeFiles/examples_Chapter4_4-7_wasm.dir/clean
+clean: CMakeFiles/homework_1080_wasm.dir/clean
+clean: CMakeFiles/homework_11051_wasm.dir/clean
 clean: CMakeFiles/homework_1310_wasm.dir/clean
 clean: CMakeFiles/homework_2416_wasm.dir/clean
 clean: CMakeFiles/homework_2417_wasm.dir/clean
@@ -644,13 +650,75 @@ CMakeFiles/examples_Chapter4_4-7_wasm.dir/clean:
 .PHONY : CMakeFiles/examples_Chapter4_4-7_wasm.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/homework_1080_wasm.dir
+
+# All Build rule for target.
+CMakeFiles/homework_1080_wasm.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=33,34 "Built target homework_1080_wasm"
+.PHONY : CMakeFiles/homework_1080_wasm.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/homework_1080_wasm.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/CS2602/CS2602/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/homework_1080_wasm.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/CS2602/CS2602/build/CMakeFiles 0
+.PHONY : CMakeFiles/homework_1080_wasm.dir/rule
+
+# Convenience name for target.
+homework_1080_wasm: CMakeFiles/homework_1080_wasm.dir/rule
+.PHONY : homework_1080_wasm
+
+# codegen rule for target.
+CMakeFiles/homework_1080_wasm.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/codegen
+.PHONY : CMakeFiles/homework_1080_wasm.dir/codegen
+
+# clean rule for target.
+CMakeFiles/homework_1080_wasm.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/clean
+.PHONY : CMakeFiles/homework_1080_wasm.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/homework_11051_wasm.dir
+
+# All Build rule for target.
+CMakeFiles/homework_11051_wasm.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=35,36 "Built target homework_11051_wasm"
+.PHONY : CMakeFiles/homework_11051_wasm.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/homework_11051_wasm.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/CS2602/CS2602/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/homework_11051_wasm.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runner/work/CS2602/CS2602/build/CMakeFiles 0
+.PHONY : CMakeFiles/homework_11051_wasm.dir/rule
+
+# Convenience name for target.
+homework_11051_wasm: CMakeFiles/homework_11051_wasm.dir/rule
+.PHONY : homework_11051_wasm
+
+# codegen rule for target.
+CMakeFiles/homework_11051_wasm.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/codegen
+.PHONY : CMakeFiles/homework_11051_wasm.dir/codegen
+
+# clean rule for target.
+CMakeFiles/homework_11051_wasm.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/clean
+.PHONY : CMakeFiles/homework_11051_wasm.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/homework_1310_wasm.dir
 
 # All Build rule for target.
 CMakeFiles/homework_1310_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1310_wasm.dir/build.make CMakeFiles/homework_1310_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1310_wasm.dir/build.make CMakeFiles/homework_1310_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=33,34 "Built target homework_1310_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=37,38 "Built target homework_1310_wasm"
 .PHONY : CMakeFiles/homework_1310_wasm.dir/all
 
 # Build rule for subdir invocation for target.
@@ -681,7 +749,7 @@ CMakeFiles/homework_1310_wasm.dir/clean:
 CMakeFiles/homework_2416_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2416_wasm.dir/build.make CMakeFiles/homework_2416_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2416_wasm.dir/build.make CMakeFiles/homework_2416_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=35,36 "Built target homework_2416_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=39,40 "Built target homework_2416_wasm"
 .PHONY : CMakeFiles/homework_2416_wasm.dir/all
 
 # Build rule for subdir invocation for target.
@@ -712,7 +780,7 @@ CMakeFiles/homework_2416_wasm.dir/clean:
 CMakeFiles/homework_2417_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2417_wasm.dir/build.make CMakeFiles/homework_2417_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2417_wasm.dir/build.make CMakeFiles/homework_2417_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=37,38 "Built target homework_2417_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=41,42 "Built target homework_2417_wasm"
 .PHONY : CMakeFiles/homework_2417_wasm.dir/all
 
 # Build rule for subdir invocation for target.
@@ -743,7 +811,7 @@ CMakeFiles/homework_2417_wasm.dir/clean:
 CMakeFiles/homework_2470_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2470_wasm.dir/build.make CMakeFiles/homework_2470_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2470_wasm.dir/build.make CMakeFiles/homework_2470_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=39,40 "Built target homework_2470_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=43,44 "Built target homework_2470_wasm"
 .PHONY : CMakeFiles/homework_2470_wasm.dir/all
 
 # Build rule for subdir invocation for target.
@@ -774,7 +842,7 @@ CMakeFiles/homework_2470_wasm.dir/clean:
 CMakeFiles/homework_2491_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2491_wasm.dir/build.make CMakeFiles/homework_2491_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2491_wasm.dir/build.make CMakeFiles/homework_2491_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=41,42 "Built target homework_2491_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=45,46 "Built target homework_2491_wasm"
 .PHONY : CMakeFiles/homework_2491_wasm.dir/all
 
 # Build rule for subdir invocation for target.
@@ -805,7 +873,7 @@ CMakeFiles/homework_2491_wasm.dir/clean:
 CMakeFiles/homework_2498_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2498_wasm.dir/build.make CMakeFiles/homework_2498_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2498_wasm.dir/build.make CMakeFiles/homework_2498_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=43,44 "Built target homework_2498_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=47,48 "Built target homework_2498_wasm"
 .PHONY : CMakeFiles/homework_2498_wasm.dir/all
 
 # Build rule for subdir invocation for target.
@@ -836,7 +904,7 @@ CMakeFiles/homework_2498_wasm.dir/clean:
 CMakeFiles/homework_2513_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2513_wasm.dir/build.make CMakeFiles/homework_2513_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2513_wasm.dir/build.make CMakeFiles/homework_2513_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=45,46 "Built target homework_2513_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=49,50 "Built target homework_2513_wasm"
 .PHONY : CMakeFiles/homework_2513_wasm.dir/all
 
 # Build rule for subdir invocation for target.
@@ -867,7 +935,7 @@ CMakeFiles/homework_2513_wasm.dir/clean:
 CMakeFiles/homework_2526_wasm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2526_wasm.dir/build.make CMakeFiles/homework_2526_wasm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2526_wasm.dir/build.make CMakeFiles/homework_2526_wasm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=47,48 "Built target homework_2526_wasm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/runner/work/CS2602/CS2602/build/CMakeFiles --progress-num=51,52 "Built target homework_2526_wasm"
 .PHONY : CMakeFiles/homework_2526_wasm.dir/all
 
 # Build rule for subdir invocation for target.

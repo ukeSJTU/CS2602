@@ -74,6 +74,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/examples_Chapter4_4-3_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter4_4-5_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter4_4-7_wasm.dir/DependInfo.cmake"
+  "CMakeFiles/homework_1080_wasm.dir/DependInfo.cmake"
+  "CMakeFiles/homework_11051_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_1310_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_2416_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_2417_wasm.dir/DependInfo.cmake"

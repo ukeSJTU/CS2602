@@ -325,6 +325,32 @@ examples_Chapter4_4-7_wasm/fast:
 .PHONY : examples_Chapter4_4-7_wasm/fast
 
 #=============================================================================
+# Target rules for targets named homework_1080_wasm
+
+# Build rule for target.
+homework_1080_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_1080_wasm
+.PHONY : homework_1080_wasm
+
+# fast build rule for target.
+homework_1080_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/build
+.PHONY : homework_1080_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_11051_wasm
+
+# Build rule for target.
+homework_11051_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_11051_wasm
+.PHONY : homework_11051_wasm
+
+# fast build rule for target.
+homework_11051_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/build
+.PHONY : homework_11051_wasm/fast
+
+#=============================================================================
 # Target rules for targets named homework_1310_wasm
 
 # Build rule for target.
@@ -812,6 +838,54 @@ src/examples/Chapter4/4-7/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-7_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-7_wasm.dir/src/examples/Chapter4/4-7/main.cpp.s
 .PHONY : src/examples/Chapter4/4-7/main.cpp.s
 
+src/homework/1080/main.o: src/homework/1080/main.cpp.o
+.PHONY : src/homework/1080/main.o
+
+# target to build an object file
+src/homework/1080/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/src/homework/1080/main.cpp.o
+.PHONY : src/homework/1080/main.cpp.o
+
+src/homework/1080/main.i: src/homework/1080/main.cpp.i
+.PHONY : src/homework/1080/main.i
+
+# target to preprocess a source file
+src/homework/1080/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/src/homework/1080/main.cpp.i
+.PHONY : src/homework/1080/main.cpp.i
+
+src/homework/1080/main.s: src/homework/1080/main.cpp.s
+.PHONY : src/homework/1080/main.s
+
+# target to generate assembly for a file
+src/homework/1080/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1080_wasm.dir/build.make CMakeFiles/homework_1080_wasm.dir/src/homework/1080/main.cpp.s
+.PHONY : src/homework/1080/main.cpp.s
+
+src/homework/11051/main.o: src/homework/11051/main.cpp.o
+.PHONY : src/homework/11051/main.o
+
+# target to build an object file
+src/homework/11051/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/src/homework/11051/main.cpp.o
+.PHONY : src/homework/11051/main.cpp.o
+
+src/homework/11051/main.i: src/homework/11051/main.cpp.i
+.PHONY : src/homework/11051/main.i
+
+# target to preprocess a source file
+src/homework/11051/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/src/homework/11051/main.cpp.i
+.PHONY : src/homework/11051/main.cpp.i
+
+src/homework/11051/main.s: src/homework/11051/main.cpp.s
+.PHONY : src/homework/11051/main.s
+
+# target to generate assembly for a file
+src/homework/11051/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/src/homework/11051/main.cpp.s
+.PHONY : src/homework/11051/main.cpp.s
+
 src/homework/1310/main.o: src/homework/1310/main.cpp.o
 .PHONY : src/homework/1310/main.o
 
@@ -1028,6 +1102,8 @@ help:
 	@echo "... examples_Chapter4_4-3_wasm"
 	@echo "... examples_Chapter4_4-5_wasm"
 	@echo "... examples_Chapter4_4-7_wasm"
+	@echo "... homework_1080_wasm"
+	@echo "... homework_11051_wasm"
 	@echo "... homework_1310_wasm"
 	@echo "... homework_2416_wasm"
 	@echo "... homework_2417_wasm"
@@ -1084,6 +1160,12 @@ help:
 	@echo "... src/examples/Chapter4/4-7/main.o"
 	@echo "... src/examples/Chapter4/4-7/main.i"
 	@echo "... src/examples/Chapter4/4-7/main.s"
+	@echo "... src/homework/1080/main.o"
+	@echo "... src/homework/1080/main.i"
+	@echo "... src/homework/1080/main.s"
+	@echo "... src/homework/11051/main.o"
+	@echo "... src/homework/11051/main.i"
+	@echo "... src/homework/11051/main.s"
 	@echo "... src/homework/1310/main.o"
 	@echo "... src/homework/1310/main.i"
 	@echo "... src/homework/1310/main.s"
