@@ -898,3 +898,44 @@ OJ 上 2185：蚂蚁过河问题
 #### 2452 二叉搜索树的节点寻找
 
 #### 14315(4315) 二叉树的镜像
+
+#### 2464 森林中的可达节点
+
+#### 2454 捕鱼达人
+
+#### 12100(2100) 哈夫曼树
+
+#### 2491 简单丑数
+
+我们已经实现了优先队列，那么只需要维护一个已经见到过的元素的链表就可以了。
+
+这里有个很搞笑的事情就是和初始化空间有关：
+
+```cpp
+class UglyNumberQueue
+{
+   private:
+    PriorityQueue<long long> pq;  // 使用小顶堆优先队列
+    LinkList<long long> seen;     // 使用链表存储已经出现的丑数
+    const int primes[3] = {2, 3, 5};
+}
+```
+
+这个就会有两个测试案例 TLE，但是如果像下面这样：
+
+````cpp
+class UglyNumberQueue
+{
+   private:
+    PriorityQueue<long long> pq = PriorityQueue<long long>(1001);  // 使用小顶堆优先队列
+    LinkList<long long> seen;                                      // 使用链表存储已经出现的丑数
+    const int primes[3] = {2, 3, 5};
+}
+```
+
+提前开一个比较大的空间，避免过程中不断地调用 `doubleSpace` 浪费时间。
+
+#### 2470 热门帖子
+
+#### 1310 会议室安排
+````
