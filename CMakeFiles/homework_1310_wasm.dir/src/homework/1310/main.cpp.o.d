@@ -816,4 +816,6 @@ CMakeFiles/homework_1310_wasm.dir/src/homework/1310/main.cpp.o: \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__format/formatter_string.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__format/formatter_tuple.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/print \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/unistd.h
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/unistd.h \
+  /home/runner/work/CS2602/CS2602/include/PriorityQueue.h \
+  /home/runner/work/CS2602/CS2602/include/Exceptions.h
