@@ -56,7 +56,7 @@ if(NOT CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
 endif()
 
 # 配置生成编译数据库
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
 # 如果是 Emscripten 构建（WebAssembly）
 if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
