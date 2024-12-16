@@ -4,8 +4,8 @@
 #include <cstddef>
 #include <iostream>
 
+#include "LinkQueue.h"
 #include "SeqQueue.h"
-#include "SeqStack.h"
 
 namespace datastructures
 {
@@ -20,21 +20,21 @@ class BTree;
  * @tparam elemType 节点数据的类型
  */
 template <class elemType>
-class Node
+class TreeNode
 {
     friend class BTree<elemType>;
 
    private:
-    elemType data;                 ///< 节点数据
-    Node<elemType> *left, *right;  ///< 左右子节点指针
-    int leftFlag;                  ///< 表示左指针类型，0表示左子节点，1表示前驱线索
-    int rightFlag;                 ///< 表示右指针类型，0表示右子节点，1表示后继线索
+    elemType data;                     ///< 节点数据
+    TreeNode<elemType> *left, *right;  ///< 左右子节点指针
+    int leftFlag;                      ///< 表示左指针类型，0表示左子节点，1表示前驱线索
+    int rightFlag;                     ///< 表示右指针类型，0表示右子节点，1表示后继线索
 
    public:
     /**
      * @brief 默认构造函数
      */
-    Node()
+    TreeNode()
     {
         left = nullptr;
         right = nullptr;
@@ -49,7 +49,7 @@ class Node
      * @param l 左子节点指针，默认为空
      * @param r 右子节点指针，默认为空
      */
-    Node(const elemType &e, Node<elemType> *l = nullptr, Node<elemType> *r = nullptr)
+    TreeNode(const elemType &e, TreeNode<elemType> *l = nullptr, TreeNode<elemType> *r = nullptr)
     {
         data = e;
         left = l;
@@ -72,7 +72,7 @@ class BTree
      * @param t 二叉树根节点
      * @return int 节点个数
      */
-    int size(Node<elemType> *t);
+    int size(TreeNode<elemType> *t);
 
     /**
      * @brief 求以t为根的二叉树的高度
@@ -80,38 +80,38 @@ class BTree
      * @param t 二叉树根节点
      * @return int 树的高度
      */
-    int height(Node<elemType> *t);
+    int height(TreeNode<elemType> *t);
 
     /**
      * @brief 删除以t为根的二叉树
      *
      * @param t 二叉树根节点
      */
-    void delTree(Node<elemType> *t);
+    void delTree(TreeNode<elemType> *t);
 
     /**
      * @brief 前序遍历以t为根的二叉树
      *
      * @param t 二叉树根节点
      */
-    void preOrder(Node<elemType> *t);
+    void preOrder(TreeNode<elemType> *t);
 
     /**
      * @brief 中序遍历以t为根的二叉树
      *
      * @param t 二叉树根节点
      */
-    void inOrder(Node<elemType> *t);
+    void inOrder(TreeNode<elemType> *t);
 
     /**
      * @brief 后序遍历以t为根的二叉树
      *
      * @param t 二叉树根节点
      */
-    void postOrder(Node<elemType> *t);
+    void postOrder(TreeNode<elemType> *t);
 
    protected:
-    Node<elemType> *root;  ///< 二叉树根节点指针
+    TreeNode<elemType> *root;  ///< 二叉树根节点指针
 
    public:
     /**
@@ -136,9 +136,9 @@ class BTree
     /**
      * @brief 获取二叉树的根节点
      *
-     * @return Node<elemType>* 根节点指针
+     * @return TreeNode<elemType>* 根节点指针
      */
-    Node<elemType> *getRoot() { return root; }
+    TreeNode<elemType> *getRoot() { return root; }
 
     /**
      * @brief 求二叉树的节点个数
@@ -185,31 +185,31 @@ class BTree
      * @param node 节点指针
      * @return elemType 节点数据
      */
-    elemType getData(Node<elemType> *node) { return node->data; }
+    elemType getData(TreeNode<elemType> *node) { return node->data; }
 
     /**
      * @brief 获取指定节点的左子节点
      *
      * @param node 节点指针
-     * @return Node<elemType>* 左子节点指针
+     * @return TreeNode<elemType>* 左子节点指针
      */
-    Node<elemType> *getLeft(Node<elemType> *node) { return node->left; }
+    TreeNode<elemType> *getLeft(TreeNode<elemType> *node) { return node->left; }
 
     /**
      * @brief 获取指定节点的右子节点
      *
      * @param node 节点指针
-     * @return Node<elemType>* 右子节点指针
+     * @return TreeNode<elemType>* 右子节点指针
      */
-    Node<elemType> *getRight(Node<elemType> *node) { return node->right; }
+    TreeNode<elemType> *getRight(TreeNode<elemType> *node) { return node->right; }
 };
 
 template <class elemType>
 void BTree<elemType>::createTree(const elemType &flag)
 {
-    SeqQueue<Node<elemType> *> nodeQueue;              // 用队列来实现层次遍历
+    SeqQueue<TreeNode<elemType> *> nodeQueue;          // 用队列来实现层次遍历
     elemType nodeData, leftChildData, rightChildData;  // 当前节点和左右子节点的值
-    Node<elemType> *currentNode, *leftChildNode, *rightChildNode;
+    TreeNode<elemType> *currentNode, *leftChildNode, *rightChildNode;
 
     std::cout << "请输入根节点的值：";
     std::cin >> nodeData;
@@ -221,7 +221,7 @@ void BTree<elemType>::createTree(const elemType &flag)
     }
 
     // 创建根节点，并将其加入队列
-    currentNode = new Node<elemType>(nodeData);
+    currentNode = new TreeNode<elemType>(nodeData);
     root = currentNode;
     nodeQueue.enQueue(currentNode);
 
@@ -236,14 +236,14 @@ void BTree<elemType>::createTree(const elemType &flag)
 
         // 如果左子节点不为空，创建左子节点并加入队列
         if (leftChildData != flag) {
-            leftChildNode = new Node<elemType>(leftChildData);
+            leftChildNode = new TreeNode<elemType>(leftChildData);
             currentNode->left = leftChildNode;
             nodeQueue.enQueue(leftChildNode);  // 将左子节点加入队列
         }
 
         // 如果右子节点不为空，创建右子节点并加入队列
         if (rightChildData != flag) {
-            rightChildNode = new Node<elemType>(rightChildData);
+            rightChildNode = new TreeNode<elemType>(rightChildData);
             currentNode->right = rightChildNode;
             nodeQueue.enQueue(rightChildNode);  // 将右子节点加入队列
         }
@@ -251,7 +251,7 @@ void BTree<elemType>::createTree(const elemType &flag)
 }
 
 template <class elemType>
-int BTree<elemType>::size(Node<elemType> *t)
+int BTree<elemType>::size(TreeNode<elemType> *t)
 {
     if (t == nullptr) {
         return 0;
@@ -267,7 +267,7 @@ int BTree<elemType>::size()
 }
 
 template <class elemType>
-int BTree<elemType>::height(Node<elemType> *t)
+int BTree<elemType>::height(TreeNode<elemType> *t)
 {
     if (t == nullptr) {
         return 0;
@@ -285,7 +285,7 @@ int BTree<elemType>::height()
 }
 
 template <class elemType>
-void BTree<elemType>::delTree(Node<elemType> *t)
+void BTree<elemType>::delTree(TreeNode<elemType> *t)
 {
     if (t != nullptr) {
         delTree(t->left);
@@ -308,7 +308,7 @@ void BTree<elemType>::preOrder()
 }
 
 template <class elemType>
-void BTree<elemType>::preOrder(Node<elemType> *t)
+void BTree<elemType>::preOrder(TreeNode<elemType> *t)
 {
     if (t == nullptr) {
         return;
@@ -325,7 +325,7 @@ void BTree<elemType>::inOrder()
 }
 
 template <class elemType>
-void BTree<elemType>::inOrder(Node<elemType> *t)
+void BTree<elemType>::inOrder(TreeNode<elemType> *t)
 {
     if (t == nullptr) {
         return;
@@ -342,7 +342,7 @@ void BTree<elemType>::postOrder()
 }
 
 template <class elemType>
-void BTree<elemType>::postOrder(Node<elemType> *t)
+void BTree<elemType>::postOrder(TreeNode<elemType> *t)
 {
     if (t == nullptr) {
         return;
@@ -355,8 +355,8 @@ void BTree<elemType>::postOrder(Node<elemType> *t)
 template <class elemType>
 void BTree<elemType>::levelOrder()
 {
-    SeqQueue<Node<elemType> *> nodeQueue;
-    Node<elemType> *currentNode;
+    SeqQueue<TreeNode<elemType> *> nodeQueue;
+    TreeNode<elemType> *currentNode;
 
     if (root == nullptr) {
         return;
