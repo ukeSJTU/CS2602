@@ -120,6 +120,60 @@ class BTree
     BTree() { root = nullptr; }
 
     /**
+     * @brief 使用链式队列初始化二叉树
+     *
+     * @tparam elemType 二叉树节点数据类型
+     * @param dataQueue 链式队列，包含按层次顺序排列的节点数据
+     * @param flag 特殊值，表示空节点
+     *
+     * @note 链式队列中的数据应按层次遍历顺序排列（即根节点、左子节点、右子节点...），
+     *       并用 flag 标记空节点。如果队列为空或根节点为 flag，则创建空树。
+     *
+     * @warning 此构造函数会遍历并复制 `dataQueue`，原始队列不会被修改。
+     *
+     * @example
+     * ```cpp
+     * LinkQueue<int> dataQueue;
+     * dataQueue.enQueue(1);   // 根节点
+     * dataQueue.enQueue(2);   // 左子节点
+     * dataQueue.enQueue(3);   // 右子节点
+     * dataQueue.enQueue(-1);  // 空节点
+     * dataQueue.enQueue(4);   // 左子节点的右子节点
+     * int emptyFlag = -1;     // 用 -1 表示空节点
+     * datastructures::BTree<int> tree(dataQueue, emptyFlag);
+     * tree.levelOrder();      // 输出：1 2 3 -1 4
+     * ```
+     */
+    BTree(LinkQueue<elemType> &dataQueue, const elemType &flag);
+
+    /**
+     * @brief 使用顺序队列初始化二叉树
+     *
+     * @tparam elemType 二叉树节点数据类型
+     * @param dataQueue 顺序队列，包含按层次顺序排列的节点数据
+     * @param flag 特殊值，表示空节点
+     *
+     * @note 顺序队列中的数据应按层次遍历顺序排列（即根节点、左子节点、右子节点...），
+     *       并用 flag 标记空节点。如果队列为空或根节点为 flag，则创建空树。
+     *
+     * @warning 此构造函数会遍历并复制 `dataQueue`，原始队列不会被修改。
+     *
+     * @example
+     * ```cpp
+     * SeqQueue<int> dataQueue;
+     * dataQueue.enQueue(1);   // 根节点
+     * dataQueue.enQueue(2);   // 左子节点
+     * dataQueue.enQueue(3);   // 右子节点
+     * dataQueue.enQueue(-1);  // 空节点
+     * dataQueue.enQueue(4);   // 左子节点的右子节点
+     * int emptyFlag = -1;     // 用 -1 表示空节点
+     * datastructures::BTree<int> tree(dataQueue, emptyFlag);
+     * tree.levelOrder();      // 输出：1 2 3 -1 4
+     * ```
+     */
+    BTree(SeqQueue<elemType> &dataQueue, const elemType &flag);
+
+    /**
      * @brief 创建一棵二叉树
      *
      * @param flag 用于标记空节点的特殊值
@@ -373,6 +427,105 @@ void BTree<elemType>::levelOrder()
         }
         if (currentNode->right != nullptr) {
             nodeQueue.enQueue(currentNode->right);
+        }
+    }
+}
+
+// 下面这两个是我添加用来在作业题中更方便地初始化一棵二叉树用的函数
+template <class elemType>
+BTree<elemType>::BTree(LinkQueue<elemType> &dataQueue, const elemType &flag)
+{
+    if (dataQueue.isEmpty()) {
+        root = nullptr;
+        return;
+    }
+
+    LinkQueue<TreeNode<elemType> *> nodeQueue;
+
+    elemType nodeData = dataQueue.front();
+    dataQueue.deQueue();
+
+    if (nodeData == flag) {
+        root = nullptr;
+        return;
+    }
+
+    root = new TreeNode<elemType>(nodeData);
+    nodeQueue.enQueue(root);
+
+    while (!dataQueue.isEmpty()) {
+        TreeNode<elemType> *currentNode = nodeQueue.front();
+        nodeQueue.deQueue();
+
+        if (!dataQueue.isEmpty()) {
+            elemType leftData = dataQueue.front();
+            dataQueue.deQueue();
+
+            if (leftData != flag) {
+                currentNode->left = new TreeNode<elemType>(leftData);
+                nodeQueue.enQueue(currentNode->left);
+            }
+        }
+
+        if (!dataQueue.isEmpty()) {
+            elemType rightData = dataQueue.front();
+            dataQueue.deQueue();
+
+            if (rightData != flag) {
+                currentNode->right = new TreeNode<elemType>(rightData);
+                nodeQueue.enQueue(currentNode->right);
+            }
+        }
+    }
+}
+
+template <class elemType>
+BTree<elemType>::BTree(SeqQueue<elemType> &dataQueue, const elemType &flag)
+{
+    if (dataQueue.isEmpty()) {
+        root = nullptr;
+        return;
+    }
+
+    SeqQueue<TreeNode<elemType> *> nodeQueue;  // 辅助队列，用于构建树
+
+    // 避免浅拷贝问题，直接操作原始队列（需要确保调用时队列状态安全）
+    elemType nodeData = dataQueue.front();
+    dataQueue.deQueue();
+
+    if (nodeData == flag) {
+        root = nullptr;
+        return;
+    }
+
+    // 创建根节点
+    root = new TreeNode<elemType>(nodeData);
+    nodeQueue.enQueue(root);
+
+    while (!dataQueue.isEmpty()) {
+        TreeNode<elemType> *currentNode = nodeQueue.front();
+        nodeQueue.deQueue();
+
+        // 左子节点
+        if (!dataQueue.isEmpty()) {
+            elemType leftData = dataQueue.front();
+            dataQueue.deQueue();
+
+            if (leftData != flag) {
+                currentNode->left = new TreeNode<elemType>(leftData);
+                nodeQueue.enQueue(currentNode->left);
+            }
+        }
+
+        // 右子节点
+        if (!dataQueue.isEmpty()) {
+            elemType rightData = dataQueue.front();
+            dataQueue.deQueue();
+
+            if (rightData != flag) {
+                currentNode->right = new TreeNode<elemType>(rightData);
+                nodeQueue.enQueue(currentNode->right);
+            }
         }
     }
 }
