@@ -923,7 +923,7 @@ class UglyNumberQueue
 
 这个就会有两个测试案例 TLE，但是如果像下面这样：
 
-````cpp
+```cpp
 class UglyNumberQueue
 {
    private:
@@ -938,4 +938,3 @@ class UglyNumberQueue
 #### 2470 热门帖子
 
 #### 1310 会议室安排
-````
