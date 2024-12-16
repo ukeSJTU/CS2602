@@ -1,118 +1,187 @@
-#ifndef PRIORITY_QUEUE_H
-#define PRIORITY_QUEUE_H
+#ifndef PRIORITYQUEUE_H
+#define PRIORITYQUEUE_H
+
+/**
+ * @file PriorityQueue.h
+ * @brief 优先级队列（小顶堆）的实现
+ */
 
 #include "Exceptions.h"
 
 namespace datastructures
 {
-// 优先队列类
+
+/**
+ * @class PriorityQueue
+ * @brief 优先级队列（小顶堆）的模板类
+ *
+ * @tparam elemType 队列中存储元素的类型
+ */
 template <class elemType>
 class PriorityQueue
 {
    private:
-    struct Node {
-        elemType data;  // 存储数据
-        int priority;   // 优先级
-        Node *next;     // 指向下一个节点
+    elemType* array;  ///< 动态数组，用于存储堆的元素
+    int maxSize;      ///< 队列的最大容量
+    int currentLen;   ///< 当前存储的元素个数
 
-        Node(const elemType &d, int p) : data(d), priority(p), next(nullptr) {}
-    };
-
-    Node *front_p;  // 队列的前端指针
+    void doubleSpace();          ///< 扩展队列的存储空间
+    void adjust(int hole);       ///< 调整指定位置的元素以保持小顶堆的性质
+    void buildRecursive(int r);  ///< 递归方式建立堆（效率较低，已注释）
+    void buildIterative();       ///< 非递归方式建立堆
 
    public:
-    PriorityQueue();                                // 构造函数，初始化队列
-    ~PriorityQueue();                               // 析构函数，释放队列内存
-    bool isEmpty() const;                           // 判断队列是否为空
-    void enQueue(const elemType &x, int priority);  // 插入元素并设置优先级
-    void deQueue();                                 // 删除优先级最高的元素
-    elemType front();                               // 返回优先级最高的元素
+    PriorityQueue(int size = 10);                              ///< 构造空队列
+    PriorityQueue(elemType a[], int n);                        ///< 从数组初始化队列
+    bool isEmpty() const { return currentLen == 0; }           ///< 检查队列是否为空
+    bool isFull() const { return currentLen == maxSize - 1; }  ///< 检查队列是否已满
+    elemType front() const;                                    ///< 获取队首元素，不删除
+    void enQueue(const elemType& x);                           ///< 入队操作
+    void deQueue();                                            ///< 出队操作
+    ~PriorityQueue() { delete[] array; }                       ///< 析构函数，释放动态数组
 };
 
 /**
- * 构造函数
- * 初始化一个空的优先队列
+ * @brief 构造一个空的优先级队列
+ * @param size 队列的初始大小
  */
 template <class elemType>
-PriorityQueue<elemType>::PriorityQueue() : front_p(nullptr)
+PriorityQueue<elemType>::PriorityQueue(int size)
 {
+    if (size < 1) throw IllegalSize();
+    array = new elemType[size];
+    maxSize = size;
+    currentLen = 0;
 }
 
 /**
- * 析构函数
- * 释放队列占用的内存
+ * @brief 从数组初始化一个优先级队列
+ * @param a 输入数组
+ * @param n 数组长度
  */
 template <class elemType>
-PriorityQueue<elemType>::~PriorityQueue()
+PriorityQueue<elemType>::PriorityQueue(elemType a[], int n)
 {
-    while (!isEmpty()) {
-        deQueue();
+    if (n < 1) {
+        throw IllegalSize();
+    }
+    array = new elemType[n + 10];  // 申请额外空间以支持后续入队
+    maxSize = n + 10;
+    currentLen = n;
+
+    // 初始化堆
+    for (int i = 0; i < n; i++) {
+        array[i + 1] = a[i];
+    }
+
+    // 调用非递归方式建堆
+    buildIterative();
+
+    // 递归方式建堆（效率较低，已注释）
+    // buildRecursive(1);
+}
+
+/**
+ * @brief 非递归方式调整数组为小顶堆
+ */
+template <class elemType>
+void PriorityQueue<elemType>::buildIterative()
+{
+    for (int i = currentLen / 2; i >= 1; i--) {
+        adjust(i);
     }
 }
 
-/**
- * 判断队列是否为空
- * 如果队列为空，返回true；否则返回false
- * @return 是否为空
- */
-template <class elemType>
-bool PriorityQueue<elemType>::isEmpty() const
-{
-    return front_p == nullptr;
-}
+// /**
+//  * @brief 递归方式调整数组为小顶堆（效率较低）
+//  * @param r 当前调整的根节点下标
+//  */
+// template <class elemType>
+// void PriorityQueue<elemType>::buildRecursive(int r) {
+//     if (r > currentLen / 2) return;
+//     buildRecursive(2 * r);        // 递归调整左子树
+//     buildRecursive(2 * r + 1);    // 递归调整右子树
+//     adjust(r);
+// }
 
 /**
- * 插入元素并设置优先级
- * 按照优先级将元素插入队列中
- * @param x 插入的元素
- * @param priority 元素的优先级，越大优先级越高
+ * @brief 调整指定位置的元素以保持堆的性质
+ * @param hole 元素的位置
  */
 template <class elemType>
-void PriorityQueue<elemType>::enQueue(const elemType &x, int priority)
+void PriorityQueue<elemType>::adjust(int hole)
 {
-    Node *newNode = new Node(x, priority);
-    if (isEmpty() || front_p->priority < priority) {
-        newNode->next = front_p;
-        front_p = newNode;
-    } else {
-        Node *current = front_p;
-        while (current->next != nullptr && current->next->priority >= priority) {
-            current = current->next;
+    int minChild;
+    elemType x = array[hole];
+
+    while (2 * hole <= currentLen) {  // 如果存在左子节点
+        minChild = 2 * hole;
+        if (minChild + 1 <= currentLen && array[minChild + 1] < array[minChild]) {
+            minChild++;  // 找到左右子节点中较小的
         }
-        newNode->next = current->next;
-        current->next = newNode;
+        if (x <= array[minChild]) break;
+        array[hole] = array[minChild];
+        hole = minChild;  // 向下调整
     }
+    array[hole] = x;
 }
 
 /**
- * 删除优先级最高的元素
- * 删除队列头部的元素
+ * @brief 获取队首元素
+ * @return 队首元素的值
+ */
+template <class elemType>
+elemType PriorityQueue<elemType>::front() const
+{
+    if (isEmpty()) {
+        throw OutOfBound();
+    }
+    return array[1];
+}
+
+/**
+ * @brief 入队操作，将新元素插入队列
+ * @param x 新元素的值
+ */
+template <class elemType>
+void PriorityQueue<elemType>::enQueue(const elemType& x)
+{
+    if (isFull()) {
+        doubleSpace();
+    }
+    int hole = ++currentLen;
+
+    // 向上调整以保持堆性质
+    for (; hole > 1 && x < array[hole / 2]; hole /= 2) {
+        array[hole] = array[hole / 2];
+    }
+    array[hole] = x;
+}
+
+/**
+ * @brief 出队操作，删除队首元素
  */
 template <class elemType>
 void PriorityQueue<elemType>::deQueue()
 {
-    if (isEmpty()) {
-        throw OutOfBound();  // 如果队列为空，抛出异常
-    }
-
-    Node *tmp = front_p;
-    front_p = front_p->next;
-    delete tmp;
+    if (isEmpty()) throw OutOfBound();
+    array[1] = array[currentLen--];
+    adjust(1);
 }
 
 /**
- * 返回优先级最高的元素
- * 如果队列为空，抛出异常
- * @return 优先级最高的元素
+ * @brief 扩展队列存储空间
  */
 template <class elemType>
-elemType PriorityQueue<elemType>::front()
+void PriorityQueue<elemType>::doubleSpace()
 {
-    if (isEmpty()) {
-        throw OutOfBound();  // 如果队列为空，抛出异常
-    }
-    return front_p->data;
+    elemType* temp = new elemType[2 * maxSize];
+    for (int i = 1; i <= currentLen; i++) temp[i] = array[i];
+    delete[] array;
+    array = temp;
+    maxSize *= 2;
 }
+
 }  // namespace datastructures
 
-#endif  // PRIORITY_QUEUE_H
+#endif  // PRIORITYQUEUE_H
