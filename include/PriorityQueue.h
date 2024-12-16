@@ -38,6 +38,7 @@ class PriorityQueue
     elemType front() const;                                    ///< 获取队首元素，不删除
     void enQueue(const elemType& x);                           ///< 入队操作
     void deQueue();                                            ///< 出队操作
+    int getSize() const { return currentLen; }                 ///< 获取队列中元素的个数
     ~PriorityQueue() { delete[] array; }                       ///< 析构函数，释放动态数组
 };
 
