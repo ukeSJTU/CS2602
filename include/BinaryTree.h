@@ -14,25 +14,41 @@ namespace datastructures
 template <class elemType>
 class BTree;
 
+/**
+ * @brief 二叉树节点类
+ *
+ * @tparam elemType 节点数据的类型
+ */
 template <class elemType>
 class Node
 {
     friend class BTree<elemType>;
 
    private:
-    elemType data;
-    Node<elemType> *left, *right;
-    int leftFlag;   // 用于表示是否是线索，0表示left为左子节点，1表示left为前驱线索
-    int rightFlag;  // 用于表示是否是线索，0表示right为右子节点，1表示right为后继线索
+    elemType data;                 ///< 节点数据
+    Node<elemType> *left, *right;  ///< 左右子节点指针
+    int leftFlag;                  ///< 表示左指针类型，0表示左子节点，1表示前驱线索
+    int rightFlag;                 ///< 表示右指针类型，0表示右子节点，1表示后继线索
 
    public:
+    /**
+     * @brief 默认构造函数
+     */
     Node()
     {
         left = nullptr;
         right = nullptr;
         leftFlag = 0;
         rightFlag = 0;
-    };
+    }
+
+    /**
+     * @brief 带初值的构造函数
+     *
+     * @param e 节点数据
+     * @param l 左子节点指针，默认为空
+     * @param r 右子节点指针，默认为空
+     */
     Node(const elemType &e, Node<elemType> *l = nullptr, Node<elemType> *r = nullptr)
     {
         data = e;
@@ -41,41 +57,150 @@ class Node
     }
 };
 
+/**
+ * @brief 二叉树类
+ *
+ * @tparam elemType 节点数据的类型
+ */
 template <class elemType>
 class BTree
 {
    private:
-    int size(Node<elemType> *t);        // 求以t为根的二叉树的结点个数
-    int height(Node<elemType> *t);      // 求以t为根的二叉树的高度
-    void delTree(Node<elemType> *t);    // 删除以t为根的二叉树
-    void preOrder(Node<elemType> *t);   // 前序遍历以t为根的二叉树
-    void inOrder(Node<elemType> *t);    // 中序遍历以t为根的二叉树
-    void postOrder(Node<elemType> *t);  // 后序遍历以t为根的二叉树
+    /**
+     * @brief 求以t为根的二叉树的节点个数
+     *
+     * @param t 二叉树根节点
+     * @return int 节点个数
+     */
+    int size(Node<elemType> *t);
+
+    /**
+     * @brief 求以t为根的二叉树的高度
+     *
+     * @param t 二叉树根节点
+     * @return int 树的高度
+     */
+    int height(Node<elemType> *t);
+
+    /**
+     * @brief 删除以t为根的二叉树
+     *
+     * @param t 二叉树根节点
+     */
+    void delTree(Node<elemType> *t);
+
+    /**
+     * @brief 前序遍历以t为根的二叉树
+     *
+     * @param t 二叉树根节点
+     */
+    void preOrder(Node<elemType> *t);
+
+    /**
+     * @brief 中序遍历以t为根的二叉树
+     *
+     * @param t 二叉树根节点
+     */
+    void inOrder(Node<elemType> *t);
+
+    /**
+     * @brief 后序遍历以t为根的二叉树
+     *
+     * @param t 二叉树根节点
+     */
+    void postOrder(Node<elemType> *t);
 
    protected:
-    Node<elemType> *root;
+    Node<elemType> *root;  ///< 二叉树根节点指针
 
    public:
+    /**
+     * @brief 默认构造函数
+     */
     BTree() { root = nullptr; }
-    void createTree(const elemType &flag);        // 创建一棵二叉树
-    int isEmpty() { return (root == nullptr); };  // 判断二叉树是否为空
-    Node<elemType> *getRoot() { return root; }    // 返回根节点
 
-    int size();         // 求二叉树的结点个数
-    int height();       // 求二叉树的高度
-    void delTree();     // 删除二叉树
-    void preOrder();    // 前序遍历二叉树
-    void inOrder();     // 中序遍历二叉树
-    void postOrder();   // 后序遍历二叉树
-    void levelOrder();  // 层次遍历二叉树
+    /**
+     * @brief 创建一棵二叉树
+     *
+     * @param flag 用于标记空节点的特殊值
+     */
+    void createTree(const elemType &flag);
 
-    // 获取指定节点的 data
+    /**
+     * @brief 判断二叉树是否为空
+     *
+     * @return int 返回1表示为空，0表示不为空
+     */
+    int isEmpty() { return (root == nullptr); }
+
+    /**
+     * @brief 获取二叉树的根节点
+     *
+     * @return Node<elemType>* 根节点指针
+     */
+    Node<elemType> *getRoot() { return root; }
+
+    /**
+     * @brief 求二叉树的节点个数
+     *
+     * @return int 节点个数
+     */
+    int size();
+
+    /**
+     * @brief 求二叉树的高度
+     *
+     * @return int 树的高度
+     */
+    int height();
+
+    /**
+     * @brief 删除二叉树
+     */
+    void delTree();
+
+    /**
+     * @brief 前序遍历二叉树
+     */
+    void preOrder();
+
+    /**
+     * @brief 中序遍历二叉树
+     */
+    void inOrder();
+
+    /**
+     * @brief 后序遍历二叉树
+     */
+    void postOrder();
+
+    /**
+     * @brief 层次遍历二叉树
+     */
+    void levelOrder();
+
+    /**
+     * @brief 获取指定节点的数据
+     *
+     * @param node 节点指针
+     * @return elemType 节点数据
+     */
     elemType getData(Node<elemType> *node) { return node->data; }
 
-    // 获取指定节点的左子节点
+    /**
+     * @brief 获取指定节点的左子节点
+     *
+     * @param node 节点指针
+     * @return Node<elemType>* 左子节点指针
+     */
     Node<elemType> *getLeft(Node<elemType> *node) { return node->left; }
 
-    // 获取指定节点的右子节点
+    /**
+     * @brief 获取指定节点的右子节点
+     *
+     * @param node 节点指针
+     * @return Node<elemType>* 右子节点指针
+     */
     Node<elemType> *getRight(Node<elemType> *node) { return node->right; }
 };
 
