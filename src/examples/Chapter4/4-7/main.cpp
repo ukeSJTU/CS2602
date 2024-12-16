@@ -13,16 +13,16 @@ void nonRecursivePostOrder(BTree<elemType> &tree)
         return;
     }
 
-    Node<elemType> *currentNode = tree.getRoot();
-    SeqStack<Node<elemType> *> stack;
-    Node<elemType> *lastVisited = nullptr;
+    TreeNode<elemType> *currentNode = tree.getRoot();
+    SeqStack<TreeNode<elemType> *> stack;
+    TreeNode<elemType> *lastVisited = nullptr;
 
     while (!stack.isEmpty() || currentNode != nullptr) {
         if (currentNode != nullptr) {
             stack.push(currentNode);
             currentNode = tree.getLeft(currentNode);
         } else {
-            Node<elemType> *peekNode = stack.top();
+            TreeNode<elemType> *peekNode = stack.top();
 
             // 如果右子树为空或右子树已经访问过，访问当前节点
             if (tree.getRight(peekNode) == nullptr || tree.getRight(peekNode) == lastVisited) {

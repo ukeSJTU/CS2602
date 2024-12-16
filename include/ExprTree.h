@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "BinaryTree.h"
+#include "SeqStack.h"
 
 namespace datastructures
 {
@@ -52,19 +53,19 @@ int ExprTree<elemType>::comparePriority(const char op1, const char op2)
 template <class elemType>
 void ExprTree<elemType>::buildExpTree(const char *expr)
 {
-    SeqStack<char> opStack;                   // 操作符栈
-    SeqStack<Node<elemType> *> subTreeStack;  // 子树栈
-    Node<elemType> *node, *left, *right;
+    SeqStack<char> opStack;                       // 操作符栈
+    SeqStack<TreeNode<elemType> *> subTreeStack;  // 子树栈
+    TreeNode<elemType> *node, *left, *right;
     char hash = '#', currentChar;
 
     opStack.push(hash);  // 初始符号栈，填入#符号
 
     while (*expr) {
-        if ((*expr >= '0') && (*expr <= '9')) {  // 如果当前字符是数字
-            node = new Node<elemType>(*expr);    // 创建一个新节点
-            subTreeStack.push(node);             // 将该节点压入子树栈
-        } else {                                 // 如果是运算符
-            currentChar = opStack.top();         // 获取栈顶的运算符
+        if ((*expr >= '0') && (*expr <= '9')) {    // 如果当前字符是数字
+            node = new TreeNode<elemType>(*expr);  // 创建一个新节点
+            subTreeStack.push(node);               // 将该节点压入子树栈
+        } else {                                   // 如果是运算符
+            currentChar = opStack.top();           // 获取栈顶的运算符
 
             // 如果当前操作符优先级低于栈顶运算符，进行合并操作
             while (comparePriority(*expr, currentChar) == -1) {
@@ -73,7 +74,7 @@ void ExprTree<elemType>::buildExpTree(const char *expr)
                 subTreeStack.pop();
                 left = subTreeStack.top();
                 subTreeStack.pop();
-                node = new Node<elemType>(currentChar, left, right);
+                node = new TreeNode<elemType>(currentChar, left, right);
                 subTreeStack.push(node);
                 currentChar = opStack.top();  // 继续检查栈顶符号
             }
@@ -95,7 +96,7 @@ void ExprTree<elemType>::buildExpTree(const char *expr)
         subTreeStack.pop();
         left = subTreeStack.top();
         subTreeStack.pop();
-        node = new Node<elemType>(currentChar, left, right);
+        node = new TreeNode<elemType>(currentChar, left, right);
         subTreeStack.push(node);
         currentChar = opStack.top();  // 继续检查栈顶符号
     }
@@ -112,10 +113,10 @@ int ExprTree<elemType>::calcExprTree()
         return 0;
     }
 
-    Node<elemType> *node;
-    SeqStack<Node<elemType> *> nodeStack;  // 存储节点的栈
-    SeqStack<int> operationStack;          // 存储操作符的栈
-    SeqStack<int> numStack;                // 存储数值的栈
+    TreeNode<elemType> *node;
+    SeqStack<TreeNode<elemType> *> nodeStack;  // 存储节点的栈
+    SeqStack<int> operationStack;              // 存储操作符的栈
+    SeqStack<int> numStack;                    // 存储数值的栈
 
     int zero = 0, one = 1, two = 2;
     int flag, num, num1, num2;

@@ -13,8 +13,8 @@ void nonRecursiveInOrder(BTree<elemType> &tree)
         return;
     }
 
-    Node<elemType> *currentNode = tree.getRoot();
-    SeqStack<Node<elemType> *> stack;
+    TreeNode<elemType> *currentNode = tree.getRoot();
+    SeqStack<TreeNode<elemType> *> stack;
 
     // 从根节点开始
     while (currentNode != nullptr || !stack.isEmpty()) {

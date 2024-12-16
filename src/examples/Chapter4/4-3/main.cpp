@@ -13,8 +13,8 @@ void nonRecursivePreOrder(BTree<elemType> &tree)
         return;
     }
 
-    Node<elemType> *currentNode = tree.getRoot();
-    SeqStack<Node<elemType> *> stack;
+    TreeNode<elemType> *currentNode = tree.getRoot();
+    SeqStack<TreeNode<elemType> *> stack;
 
     stack.push(currentNode);
     while (!stack.isEmpty()) {
