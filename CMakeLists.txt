@@ -16,6 +16,9 @@ file(GLOB_RECURSE MAIN_SOURCES "src/**/main.cpp")
 
 # 如果不是 Emscripten 构建，则启用测试
 if(NOT CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+    # 设置全局可执行文件输出路径
+    set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
+    
     # 启用测试功能
     enable_testing()
 
