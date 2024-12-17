@@ -67,7 +67,6 @@ bool areCousins(TreeNode* root, int x, int y)
     int depthY = findDepth(root, y, 0);
 
     if (depthX == -1 || depthY == -1 || depthX != depthY) {
-        std::cout << depthX << " " << depthY << std::endl;
         return false;
     }
 
