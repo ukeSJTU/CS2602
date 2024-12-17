@@ -1,144 +1,145 @@
-// TODO：这个二叉搜索树的实现必须调整，注意命名空间，变量名冲突以及和普通二叉树的继承/组合关系
 #ifndef BINARYSEARCHTREE_H_INCLUDED
 #define BINARYSEARCHTREE_H_INCLUDED
 
-template <class elemType>
-class binarySearchTree;
+#include "BinaryTree.h"
 
-template <class elemType>
-class Node
+namespace datastructures
 {
-    friend class binarySearchTree<elemType>;
 
-   private:
-    elemType data;
-    Node *left, *right;
-    int factor;  // 平衡因子
-   public:
-    Node()
-    {
-        left = nullptr;
-        right = nullptr;
-    }
-    Node(const elemType &x, Node *l = nullptr, Node *r = nullptr)
-    {
-        data = x;
-        left = l;
-        right = r;
-    }
-};
+/**
+ * @brief 二叉搜索树的节点类
+ * @tparam elemType 数据类型
+ */
 template <class elemType>
-class binarySearchTree
+class BSTNode : public BaseNode<elemType>
 {
-   private:
-    Node<elemType> *root;
-    bool search(const elemType &x, Node<elemType> *t) const;
-    void insert(const elemType &x, Node<elemType> *&t);
-    void remove(const elemType &x, Node<elemType> *&t);
-
    public:
-    binarySearchTree() { root = nullptr; }
-    bool search(const elemType &x) const;
-    void insert(const elemType &x);
-    void remove(const elemType &x);
-    void levelTravese() const;  // 层次遍历,用于验证插入、删除操作
-    ~binarySearchTree();
+    using BaseNode<elemType>::left;
+    using BaseNode<elemType>::right;
+    using BaseNode<elemType>::data;
+
+    int factor;  ///< 平衡因子
+
+    /**
+     * @brief 构造函数
+     * @param data 节点数据
+     */
+    BSTNode(const elemType& d) : BaseNode<elemType>(d), factor(0) {}
 };
 
+/**
+ * @brief 二叉搜索树类
+ * @tparam elemType 数据类型
+ */
 template <class elemType>
-bool binarySearchTree<elemType>::search(const elemType &x) const
+class BinarySearchTree : public BTree<elemType, BSTNode<elemType>>
 {
-    Node<elemType> *p;
-    p = root;
-    while (p) {
-        if (x == p->data) return true;
-        if (x < p->data)
-            p = p->left;
-        else
-            p = p->right;
-    }
-    return false;
+   private:
+    using NodeType = BSTNode<elemType>;
+    using BTree<elemType, NodeType>::root;
+
+    /**
+     * @brief 搜索私有方法
+     * @param x 待查找的数据
+     * @param t 当前节点
+     * @return bool 是否找到目标数据
+     */
+    bool search(const elemType& x, NodeType* t) const;
+
+    /**
+     * @brief 插入私有方法
+     * @param x 插入的数据
+     * @param t 当前节点的引用
+     */
+    void insert(const elemType& x, NodeType*& t);
+
+    /**
+     * @brief 删除私有方法
+     * @param x 删除的数据
+     * @param t 当前节点的引用
+     */
+    void remove(const elemType& x, NodeType*& t);
+
+   public:
+    /**
+     * @brief 构造函数
+     */
+    BinarySearchTree() : BTree<elemType, NodeType>() {}
+
+    /**
+     * @brief 查找目标数据
+     * @param x 待查找的数据
+     * @return bool 是否找到目标数据
+     */
+    bool search(const elemType& x) const { return search(x, root); }
+
+    /**
+     * @brief 插入数据
+     * @param x 插入的数据
+     */
+    void insert(const elemType& x) { insert(x, root); }
+
+    /**
+     * @brief 删除数据
+     * @param x 删除的数据
+     */
+    void remove(const elemType& x) { remove(x, root); }
+
+    /**
+     * @brief 层次遍历二叉搜索树
+     */
+    void levelTraverse() const { this->levelOrder(); }
+};
+
+template <class elemType>
+bool BinarySearchTree<elemType>::search(const elemType& x, NodeType* t) const
+{
+    if (!t) return false;
+    if (x == t->data) return true;
+    return x < t->data ? search(x, static_cast<NodeType*>(t->left))
+                       : search(x, static_cast<NodeType*>(t->right));
 }
 
-template <class elemType>  // 非递归算法实现
-void binarySearchTree<elemType>::insert(const elemType &x)
+template <class elemType>
+void BinarySearchTree<elemType>::insert(const elemType& x, NodeType*& t)
 {
-    Node<elemType> *p;
-    if (!root)  // 如果查找树的根为空，直接建立一个结点并作为根结点
-    {
-        root = new Node<elemType>(x);
+    if (!t) {
+        t = new NodeType(x);
         return;
     }
-    p = root;
-    while (p) {
-        if (x == p->data) return;  // 已经在二叉树中
-        if (x < p->data) {
-            if (!p->left)  // 左子为空，插入位置即此地
-            {
-                p->left = new Node<elemType>(x);
-                return;
-            }
-            p = p->left;
-        } else {
-            if (!p->right)  // 右子为空，插入位置即此地
-            {
-                p->right = new Node<elemType>(x);
-                return;
-            }
-            p = p->right;
-        }  // if
-    }  // while
+    if (x == t->data) return;  // 已存在
+    if (x < t->data)
+        insert(x, reinterpret_cast<NodeType*&>(t->left));
+    else
+        insert(x, reinterpret_cast<NodeType*&>(t->right));
 }
 
-template <class elemType>  // 非递归算法实现
-void binarySearchTree<elemType>::remove(const elemType &x)
+template <class elemType>
+void BinarySearchTree<elemType>::remove(const elemType& x, NodeType*& t)
 {
-    if (!root) return;
-    Node<elemType> *p, *parent;
-    p = root;
+    if (!t) return;
 
-    parent = nullptr;
-    while (p) {
-        if (x < p->data) {
-            parent = p;
-            p = p->left;
-            continue;
-        }
-        if (x > p->data) {
-            parent = p;
-            p = p->right;
-            continue;
-        }
-        // x==p->data, 删除开始
-        if (!p->left || !p->right)  // 待删除结点仅有一个孩子结点或者为叶结点
-        {
-            Node<elemType> *tmp;
-            tmp = p;
-            if (!parent)  // 待删除结点为根，且根有一个孩子
-                root = (p->left) ? p->left : p->right;
-            else if (x < parent->data)  // 待删除结点为父结点的左子
-                parent->left = (p->left) ? p->left : p->right;
-            else  // 待删除结点为父结点的右子
-                parent->right = (p->left) ? p->left : p->right;
-            delete tmp;
-            return;
-        }  // 仅有一个孩子
+    if (x < t->data)
+        remove(x, reinterpret_cast<NodeType*&>(t->left));
+    else if (x > t->data)
+        remove(x, reinterpret_cast<NodeType*&>(t->right));
+    else {
+        // 找到目标节点
+        if (!t->left || !t->right) {  // 单子节点或叶节点
+            NodeType* oldNode = t;
+            t = static_cast<NodeType*>(t->left ? t->left : t->right);
+            delete oldNode;
+        } else {
+            // 两个子节点：找到左子树中最大的节点
+            NodeType* maxLeft = static_cast<NodeType*>(t->left);
+            while (maxLeft->right) maxLeft = static_cast<NodeType*>(maxLeft->right);
 
-        // 待删除结点有二个孩子结点
-        Node<elemType> *q, *substitute;
-        parent = p;
-        q = p->left;
-        while (q->right) {
-            parent = q;
-            q = q->right;
+            t->data = maxLeft->data;
+            remove(maxLeft->data, reinterpret_cast<NodeType*&>(t->left));
         }
-        substitute = q;
-
-        // 交换待删除结点和替身的元素值
-        p->data = substitute->data;
-        substitute->data = x;
-        p = substitute;  // 删除结点指针变为替身继续返回循环
-    }  // while
+    }
 }
+
+}  // namespace datastructures
 
 #endif  // BINARYSEARCHTREE_H_INCLUDED

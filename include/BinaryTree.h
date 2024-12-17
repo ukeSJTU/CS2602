@@ -1,447 +1,260 @@
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 
-#include <cstddef>
 #include <iostream>
 
+#include "BaseNode.h"
 #include "LinkQueue.h"
 #include "SeqQueue.h"
 
 namespace datastructures
 {
 
-// BTree 类的前向声明
+// Forward declaration of TreeNode
 template <class elemType>
+class TreeNode;
+
+// Forward declaration of BTree
+template <class elemType, class nodeType>
 class BTree;
 
 /**
  * @brief 二叉树节点类
- *
  * @tparam elemType 节点数据的类型
  */
 template <class elemType>
-class TreeNode
+class TreeNode : public BaseNode<elemType>
 {
-    friend class BTree<elemType>;
+    friend class BTree<elemType, TreeNode<elemType>>;
 
    private:
-    elemType data;                     ///< 节点数据
-    TreeNode<elemType> *left, *right;  ///< 左右子节点指针
-    int leftFlag;                      ///< 表示左指针类型，0表示左子节点，1表示前驱线索
-    int rightFlag;                     ///< 表示右指针类型，0表示右子节点，1表示后继线索
+    int leftFlag;   ///< 表示左指针类型，0表示左子节点，1表示前驱线索
+    int rightFlag;  ///< 表示右指针类型，0表示右子节点，1表示后继线索
 
    public:
+    using BaseNode<elemType>::left;
+    using BaseNode<elemType>::right;
+    using BaseNode<elemType>::data;
+
     /**
      * @brief 默认构造函数
      */
-    TreeNode()
-    {
-        left = nullptr;
-        right = nullptr;
-        leftFlag = 0;
-        rightFlag = 0;
-    }
+    TreeNode() : BaseNode<elemType>(elemType()), leftFlag(0), rightFlag(0) {}
 
     /**
      * @brief 带初值的构造函数
-     *
-     * @param e 节点数据
-     * @param l 左子节点指针，默认为空
-     * @param r 右子节点指针，默认为空
      */
-    TreeNode(const elemType &e, TreeNode<elemType> *l = nullptr, TreeNode<elemType> *r = nullptr)
+    TreeNode(const elemType& e, TreeNode<elemType>* l = nullptr, TreeNode<elemType>* r = nullptr)
+        : BaseNode<elemType>(e), leftFlag(0), rightFlag(0)
     {
-        data = e;
-        left = l;
-        right = r;
+        this->left = l;
+        this->right = r;
     }
 };
 
 /**
  * @brief 二叉树类
- *
  * @tparam elemType 节点数据的类型
+ * @tparam nodeType 节点类型，默认为TreeNode<elemType>
  */
-template <class elemType>
+template <class elemType, class nodeType = TreeNode<elemType>>
 class BTree
 {
    private:
-    /**
-     * @brief 求以t为根的二叉树的节点个数
-     *
-     * @param t 二叉树根节点
-     * @return int 节点个数
-     */
-    int size(TreeNode<elemType> *t);
-
-    /**
-     * @brief 求以t为根的二叉树的高度
-     *
-     * @param t 二叉树根节点
-     * @return int 树的高度
-     */
-    int height(TreeNode<elemType> *t);
-
-    /**
-     * @brief 删除以t为根的二叉树
-     *
-     * @param t 二叉树根节点
-     */
-    void delTree(TreeNode<elemType> *t);
-
-    /**
-     * @brief 前序遍历以t为根的二叉树
-     *
-     * @param t 二叉树根节点
-     */
-    void preOrder(TreeNode<elemType> *t);
-
-    /**
-     * @brief 中序遍历以t为根的二叉树
-     *
-     * @param t 二叉树根节点
-     */
-    void inOrder(TreeNode<elemType> *t);
-
-    /**
-     * @brief 后序遍历以t为根的二叉树
-     *
-     * @param t 二叉树根节点
-     */
-    void postOrder(TreeNode<elemType> *t);
+    int size(nodeType* t);
+    int height(nodeType* t);
+    void delTree(nodeType* t);
+    void preOrder(nodeType* t, LinkQueue<elemType>* result = nullptr);
+    void inOrder(nodeType* t, LinkQueue<elemType>* result = nullptr);
+    void postOrder(nodeType* t, LinkQueue<elemType>* result = nullptr);
 
    protected:
-    TreeNode<elemType> *root;  ///< 二叉树根节点指针
+    nodeType* root;  ///< 二叉树根节点指针
 
    public:
-    /**
-     * @brief 默认构造函数
-     */
-    BTree() { root = nullptr; }
+    BTree() : root(nullptr) {}
 
-    /**
-     * @brief 使用链式队列初始化二叉树
-     *
-     * @tparam elemType 二叉树节点数据类型
-     * @param dataQueue 链式队列，包含按层次顺序排列的节点数据
-     * @param flag 特殊值，表示空节点
-     *
-     * @note 链式队列中的数据应按层次遍历顺序排列（即根节点、左子节点、右子节点...），
-     *       并用 flag 标记空节点。如果队列为空或根节点为 flag，则创建空树。
-     *
-     * @warning 此构造函数会遍历并复制 `dataQueue`，原始队列不会被修改。
-     *
-     * @example
-     * ```cpp
-     * LinkQueue<int> dataQueue;
-     * dataQueue.enQueue(1);   // 根节点
-     * dataQueue.enQueue(2);   // 左子节点
-     * dataQueue.enQueue(3);   // 右子节点
-     * dataQueue.enQueue(-1);  // 空节点
-     * dataQueue.enQueue(4);   // 左子节点的右子节点
-     * int emptyFlag = -1;     // 用 -1 表示空节点
-     * datastructures::BTree<int> tree(dataQueue, emptyFlag);
-     * tree.levelOrder();      // 输出：1 2 3 -1 4
-     * ```
-     */
-    BTree(LinkQueue<elemType> &dataQueue, const elemType &flag);
+    BTree(LinkQueue<elemType>& dataQueue, const elemType& flag);
+    BTree(SeqQueue<elemType>& dataQueue, const elemType& flag);
 
-    /**
-     * @brief 使用顺序队列初始化二叉树
-     *
-     * @tparam elemType 二叉树节点数据类型
-     * @param dataQueue 顺序队列，包含按层次顺序排列的节点数据
-     * @param flag 特殊值，表示空节点
-     *
-     * @note 顺序队列中的数据应按层次遍历顺序排列（即根节点、左子节点、右子节点...），
-     *       并用 flag 标记空节点。如果队列为空或根节点为 flag，则创建空树。
-     *
-     * @warning 此构造函数会遍历并复制 `dataQueue`，原始队列不会被修改。
-     *
-     * @example
-     * ```cpp
-     * SeqQueue<int> dataQueue;
-     * dataQueue.enQueue(1);   // 根节点
-     * dataQueue.enQueue(2);   // 左子节点
-     * dataQueue.enQueue(3);   // 右子节点
-     * dataQueue.enQueue(-1);  // 空节点
-     * dataQueue.enQueue(4);   // 左子节点的右子节点
-     * int emptyFlag = -1;     // 用 -1 表示空节点
-     * datastructures::BTree<int> tree(dataQueue, emptyFlag);
-     * tree.levelOrder();      // 输出：1 2 3 -1 4
-     * ```
-     */
-    BTree(SeqQueue<elemType> &dataQueue, const elemType &flag);
+    virtual ~BTree() { delTree(); }
 
-    /**
-     * @brief 创建一棵二叉树
-     *
-     * @param flag 用于标记空节点的特殊值
-     */
-    void createTree(const elemType &flag);
-
-    /**
-     * @brief 判断二叉树是否为空
-     *
-     * @return int 返回1表示为空，0表示不为空
-     */
-    int isEmpty() { return (root == nullptr); }
-
-    /**
-     * @brief 获取二叉树的根节点
-     *
-     * @return TreeNode<elemType>* 根节点指针
-     */
-    TreeNode<elemType> *getRoot() { return root; }
-
-    /**
-     * @brief 求二叉树的节点个数
-     *
-     * @return int 节点个数
-     */
-    int size();
-
-    /**
-     * @brief 求二叉树的高度
-     *
-     * @return int 树的高度
-     */
-    int height();
-
-    /**
-     * @brief 删除二叉树
-     */
-    void delTree();
+    void createTree(const elemType& flag);
+    bool isEmpty() const { return root == nullptr; }
+    nodeType* getRoot() const { return root; }
+    int size() { return size(root); }
+    int height() { return height(root); }
+    void delTree()
+    {
+        delTree(root);
+        root = nullptr;
+    }
 
     /**
      * @brief 前序遍历二叉树
+     * @param result 可选的LinkList指针，如果提供则将遍历结果存入链表而不是输出到控制台
      */
-    void preOrder();
+    void preOrder(LinkQueue<elemType>* result = nullptr) { preOrder(root, result); }
 
     /**
      * @brief 中序遍历二叉树
+     * @param result 可选的LinkList指针，如果提供则将遍历结果存入链表而不是输出到控制台
      */
-    void inOrder();
+    void inOrder(LinkQueue<elemType>* result = nullptr) { inOrder(root, result); }
 
     /**
      * @brief 后序遍历二叉树
+     * @param result 可选的LinkList指针，如果提供则将遍历结果存入链表而不是输出到控制台
      */
-    void postOrder();
+    void postOrder(LinkQueue<elemType>* result = nullptr) { postOrder(root, result); }
 
     /**
      * @brief 层次遍历二叉树
+     * @param result 可选的LinkList指针，如果提供则将遍历结果存入链表而不是输出到控制台
      */
-    void levelOrder();
+    void levelOrder(LinkQueue<elemType>* result = nullptr);
 
-    /**
-     * @brief 获取指定节点的数据
-     *
-     * @param node 节点指针
-     * @return elemType 节点数据
-     */
-    elemType getData(TreeNode<elemType> *node) { return node->data; }
-
-    /**
-     * @brief 获取指定节点的左子节点
-     *
-     * @param node 节点指针
-     * @return TreeNode<elemType>* 左子节点指针
-     */
-    TreeNode<elemType> *getLeft(TreeNode<elemType> *node) { return node->left; }
-
-    /**
-     * @brief 获取指定节点的右子节点
-     *
-     * @param node 节点指针
-     * @return TreeNode<elemType>* 右子节点指针
-     */
-    TreeNode<elemType> *getRight(TreeNode<elemType> *node) { return node->right; }
+    elemType getData(nodeType* node) const { return node->data; }
+    nodeType* getLeft(nodeType* node) const { return static_cast<nodeType*>(node->left); }
+    nodeType* getRight(nodeType* node) const { return static_cast<nodeType*>(node->right); }
 };
 
-template <class elemType>
-void BTree<elemType>::createTree(const elemType &flag)
+// Implementation of member functions
+
+template <class elemType, class nodeType>
+void BTree<elemType, nodeType>::createTree(const elemType& flag)
 {
-    SeqQueue<TreeNode<elemType> *> nodeQueue;          // 用队列来实现层次遍历
-    elemType nodeData, leftChildData, rightChildData;  // 当前节点和左右子节点的值
-    TreeNode<elemType> *currentNode, *leftChildNode, *rightChildNode;
+    SeqQueue<nodeType*> nodeQueue;
+    elemType nodeData, leftChildData, rightChildData;
+    nodeType *currentNode, *leftChildNode, *rightChildNode;
 
     std::cout << "请输入根节点的值：";
     std::cin >> nodeData;
 
-    // 如果根节点的值等于 flag，表示树为空
     if (nodeData == flag) {
         root = nullptr;
         return;
     }
 
-    // 创建根节点，并将其加入队列
-    currentNode = new TreeNode<elemType>(nodeData);
+    currentNode = new nodeType(nodeData);
     root = currentNode;
     nodeQueue.enQueue(currentNode);
 
-    // 开始按层次遍历构建树
     while (!nodeQueue.isEmpty()) {
-        currentNode = nodeQueue.front();  // 获取当前节点
-        nodeQueue.deQueue();              // 弹出队列中的当前节点
+        currentNode = nodeQueue.front();
+        nodeQueue.deQueue();
 
         std::cout << "请输入 " << currentNode->data << " 的左孩子和右孩子，"
                   << "用 " << flag << " 表示空节点：";
         std::cin >> leftChildData >> rightChildData;
 
-        // 如果左子节点不为空，创建左子节点并加入队列
         if (leftChildData != flag) {
-            leftChildNode = new TreeNode<elemType>(leftChildData);
+            leftChildNode = new nodeType(leftChildData);
             currentNode->left = leftChildNode;
-            nodeQueue.enQueue(leftChildNode);  // 将左子节点加入队列
+            nodeQueue.enQueue(leftChildNode);
         }
 
-        // 如果右子节点不为空，创建右子节点并加入队列
         if (rightChildData != flag) {
-            rightChildNode = new TreeNode<elemType>(rightChildData);
+            rightChildNode = new nodeType(rightChildData);
             currentNode->right = rightChildNode;
-            nodeQueue.enQueue(rightChildNode);  // 将右子节点加入队列
+            nodeQueue.enQueue(rightChildNode);
         }
     }
 }
 
-template <class elemType>
-int BTree<elemType>::size(TreeNode<elemType> *t)
+template <class elemType, class nodeType>
+int BTree<elemType, nodeType>::size(nodeType* t)
 {
-    if (t == nullptr) {
-        return 0;
-    } else {
-        return 1 + size(t->left) + size(t->right);
-    }
+    if (t == nullptr) return 0;
+    return 1 + size(static_cast<nodeType*>(t->left)) + size(static_cast<nodeType*>(t->right));
 }
 
-template <class elemType>
-int BTree<elemType>::size()
+template <class elemType, class nodeType>
+int BTree<elemType, nodeType>::height(nodeType* t)
 {
-    return size(root);
+    if (t == nullptr) return 0;
+    int leftHeight = height(static_cast<nodeType*>(t->left));
+    int rightHeight = height(static_cast<nodeType*>(t->right));
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
 }
 
-template <class elemType>
-int BTree<elemType>::height(TreeNode<elemType> *t)
-{
-    if (t == nullptr) {
-        return 0;
-    } else {
-        int leftHeight = height(t->left);
-        int rightHeight = height(t->right);
-        return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
-    }
-}
-
-template <class elemType>
-int BTree<elemType>::height()
-{
-    return height(root);
-}
-
-template <class elemType>
-void BTree<elemType>::delTree(TreeNode<elemType> *t)
+template <class elemType, class nodeType>
+void BTree<elemType, nodeType>::delTree(nodeType* t)
 {
     if (t != nullptr) {
-        delTree(t->left);
-        delTree(t->right);
+        delTree(static_cast<nodeType*>(t->left));
+        delTree(static_cast<nodeType*>(t->right));
         delete t;
     }
 }
 
-template <class elemType>
-void BTree<elemType>::delTree()
+template <class elemType, class nodeType>
+void BTree<elemType, nodeType>::preOrder(nodeType* t, LinkQueue<elemType>* result)
 {
-    delTree(root);
-    root = nullptr;
+    if (t == nullptr) return;
+    if (result)
+        result->enQueue(t->data);
+    else
+        std::cout << t->data << " ";
+    preOrder(static_cast<nodeType*>(t->left), result);
+    preOrder(static_cast<nodeType*>(t->right), result);
 }
 
-template <class elemType>
-void BTree<elemType>::preOrder()
+template <class elemType, class nodeType>
+void BTree<elemType, nodeType>::inOrder(nodeType* t, LinkQueue<elemType>* result)
 {
-    preOrder(root);
+    if (t == nullptr) return;
+    inOrder(static_cast<nodeType*>(t->left), result);
+    if (result)
+        result->enQueue(t->data);
+    else
+        std::cout << t->data << " ";
+    inOrder(static_cast<nodeType*>(t->right), result);
 }
 
-template <class elemType>
-void BTree<elemType>::preOrder(TreeNode<elemType> *t)
+template <class elemType, class nodeType>
+void BTree<elemType, nodeType>::postOrder(nodeType* t, LinkQueue<elemType>* result)
 {
-    if (t == nullptr) {
-        return;
-    }
-    std ::cout << t->data << " ";
-    preOrder(t->left);
-    preOrder(t->right);
+    if (t == nullptr) return;
+    postOrder(static_cast<nodeType*>(t->left), result);
+    postOrder(static_cast<nodeType*>(t->right), result);
+    if (result)
+        result->enQueue(t->data);
+    else
+        std::cout << t->data << " ";
 }
 
-template <class elemType>
-void BTree<elemType>::inOrder()
+template <class elemType, class nodeType>
+void BTree<elemType, nodeType>::levelOrder(LinkQueue<elemType>* result)
 {
-    inOrder(root);
-}
+    if (root == nullptr) return;
 
-template <class elemType>
-void BTree<elemType>::inOrder(TreeNode<elemType> *t)
-{
-    if (t == nullptr) {
-        return;
-    }
-    inOrder(t->left);
-    std ::cout << t->data << " ";
-    inOrder(t->right);
-}
-
-template <class elemType>
-void BTree<elemType>::postOrder()
-{
-    postOrder(root);
-}
-
-template <class elemType>
-void BTree<elemType>::postOrder(TreeNode<elemType> *t)
-{
-    if (t == nullptr) {
-        return;
-    }
-    postOrder(t->left);
-    postOrder(t->right);
-    std ::cout << t->data << " ";
-}
-
-template <class elemType>
-void BTree<elemType>::levelOrder()
-{
-    SeqQueue<TreeNode<elemType> *> nodeQueue;
-    TreeNode<elemType> *currentNode;
-
-    if (root == nullptr) {
-        return;
-    }
-
+    SeqQueue<nodeType*> nodeQueue;
     nodeQueue.enQueue(root);
+
     while (!nodeQueue.isEmpty()) {
-        currentNode = nodeQueue.front();
+        nodeType* currentNode = nodeQueue.front();
         nodeQueue.deQueue();
-        std::cout << currentNode->data << " ";
 
-        if (currentNode->left != nullptr) {
-            nodeQueue.enQueue(currentNode->left);
-        }
-        if (currentNode->right != nullptr) {
-            nodeQueue.enQueue(currentNode->right);
-        }
+        if (result)
+            result->enQueue(currentNode->data);
+        else
+            std::cout << currentNode->data << " ";
+
+        if (currentNode->left) nodeQueue.enQueue(static_cast<nodeType*>(currentNode->left));
+        if (currentNode->right) nodeQueue.enQueue(static_cast<nodeType*>(currentNode->right));
     }
 }
 
-// 下面这两个是我添加用来在作业题中更方便地初始化一棵二叉树用的函数
-template <class elemType>
-BTree<elemType>::BTree(LinkQueue<elemType> &dataQueue, const elemType &flag)
+template <class elemType, class nodeType>
+BTree<elemType, nodeType>::BTree(LinkQueue<elemType>& dataQueue, const elemType& flag)
 {
     if (dataQueue.isEmpty()) {
         root = nullptr;
         return;
     }
 
-    LinkQueue<TreeNode<elemType> *> nodeQueue;
-
+    LinkQueue<nodeType*> nodeQueue;
     elemType nodeData = dataQueue.front();
     dataQueue.deQueue();
 
@@ -450,11 +263,11 @@ BTree<elemType>::BTree(LinkQueue<elemType> &dataQueue, const elemType &flag)
         return;
     }
 
-    root = new TreeNode<elemType>(nodeData);
+    root = new nodeType(nodeData);
     nodeQueue.enQueue(root);
 
     while (!dataQueue.isEmpty()) {
-        TreeNode<elemType> *currentNode = nodeQueue.front();
+        nodeType* currentNode = nodeQueue.front();
         nodeQueue.deQueue();
 
         if (!dataQueue.isEmpty()) {
@@ -462,8 +275,8 @@ BTree<elemType>::BTree(LinkQueue<elemType> &dataQueue, const elemType &flag)
             dataQueue.deQueue();
 
             if (leftData != flag) {
-                currentNode->left = new TreeNode<elemType>(leftData);
-                nodeQueue.enQueue(currentNode->left);
+                currentNode->left = new nodeType(leftData);
+                nodeQueue.enQueue(static_cast<nodeType*>(currentNode->left));
             }
         }
 
@@ -472,24 +285,22 @@ BTree<elemType>::BTree(LinkQueue<elemType> &dataQueue, const elemType &flag)
             dataQueue.deQueue();
 
             if (rightData != flag) {
-                currentNode->right = new TreeNode<elemType>(rightData);
-                nodeQueue.enQueue(currentNode->right);
+                currentNode->right = new nodeType(rightData);
+                nodeQueue.enQueue(static_cast<nodeType*>(currentNode->right));
             }
         }
     }
 }
 
-template <class elemType>
-BTree<elemType>::BTree(SeqQueue<elemType> &dataQueue, const elemType &flag)
+template <class elemType, class nodeType>
+BTree<elemType, nodeType>::BTree(SeqQueue<elemType>& dataQueue, const elemType& flag)
 {
     if (dataQueue.isEmpty()) {
         root = nullptr;
         return;
     }
 
-    SeqQueue<TreeNode<elemType> *> nodeQueue;  // 辅助队列，用于构建树
-
-    // 避免浅拷贝问题，直接操作原始队列（需要确保调用时队列状态安全）
+    SeqQueue<nodeType*> nodeQueue;
     elemType nodeData = dataQueue.front();
     dataQueue.deQueue();
 
@@ -498,33 +309,30 @@ BTree<elemType>::BTree(SeqQueue<elemType> &dataQueue, const elemType &flag)
         return;
     }
 
-    // 创建根节点
-    root = new TreeNode<elemType>(nodeData);
+    root = new nodeType(nodeData);
     nodeQueue.enQueue(root);
 
     while (!dataQueue.isEmpty()) {
-        TreeNode<elemType> *currentNode = nodeQueue.front();
+        nodeType* currentNode = nodeQueue.front();
         nodeQueue.deQueue();
 
-        // 左子节点
         if (!dataQueue.isEmpty()) {
             elemType leftData = dataQueue.front();
             dataQueue.deQueue();
 
             if (leftData != flag) {
-                currentNode->left = new TreeNode<elemType>(leftData);
-                nodeQueue.enQueue(currentNode->left);
+                currentNode->left = new nodeType(leftData);
+                nodeQueue.enQueue(static_cast<nodeType*>(currentNode->left));
             }
         }
 
-        // 右子节点
         if (!dataQueue.isEmpty()) {
             elemType rightData = dataQueue.front();
             dataQueue.deQueue();
 
             if (rightData != flag) {
-                currentNode->right = new TreeNode<elemType>(rightData);
-                nodeQueue.enQueue(currentNode->right);
+                currentNode->right = new nodeType(rightData);
+                nodeQueue.enQueue(static_cast<nodeType*>(currentNode->right));
             }
         }
     }
