@@ -442,6 +442,19 @@ homework_1310_wasm/fast:
 .PHONY : homework_1310_wasm/fast
 
 #=============================================================================
+# Target rules for targets named homework_14151_wasm
+
+# Build rule for target.
+homework_14151_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_14151_wasm
+.PHONY : homework_14151_wasm
+
+# fast build rule for target.
+homework_14151_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_14151_wasm.dir/build.make CMakeFiles/homework_14151_wasm.dir/build
+.PHONY : homework_14151_wasm/fast
+
+#=============================================================================
 # Target rules for targets named homework_14315_wasm
 
 # Build rule for target.
@@ -492,6 +505,19 @@ homework_2417_wasm: cmake_check_build_system
 homework_2417_wasm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2417_wasm.dir/build.make CMakeFiles/homework_2417_wasm.dir/build
 .PHONY : homework_2417_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_2444_wasm
+
+# Build rule for target.
+homework_2444_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2444_wasm
+.PHONY : homework_2444_wasm
+
+# fast build rule for target.
+homework_2444_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2444_wasm.dir/build.make CMakeFiles/homework_2444_wasm.dir/build
+.PHONY : homework_2444_wasm/fast
 
 #=============================================================================
 # Target rules for targets named homework_2452_wasm
@@ -1171,6 +1197,30 @@ src/homework/1310/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1310_wasm.dir/build.make CMakeFiles/homework_1310_wasm.dir/src/homework/1310/main.cpp.s
 .PHONY : src/homework/1310/main.cpp.s
 
+src/homework/14151/main.o: src/homework/14151/main.cpp.o
+.PHONY : src/homework/14151/main.o
+
+# target to build an object file
+src/homework/14151/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_14151_wasm.dir/build.make CMakeFiles/homework_14151_wasm.dir/src/homework/14151/main.cpp.o
+.PHONY : src/homework/14151/main.cpp.o
+
+src/homework/14151/main.i: src/homework/14151/main.cpp.i
+.PHONY : src/homework/14151/main.i
+
+# target to preprocess a source file
+src/homework/14151/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_14151_wasm.dir/build.make CMakeFiles/homework_14151_wasm.dir/src/homework/14151/main.cpp.i
+.PHONY : src/homework/14151/main.cpp.i
+
+src/homework/14151/main.s: src/homework/14151/main.cpp.s
+.PHONY : src/homework/14151/main.s
+
+# target to generate assembly for a file
+src/homework/14151/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_14151_wasm.dir/build.make CMakeFiles/homework_14151_wasm.dir/src/homework/14151/main.cpp.s
+.PHONY : src/homework/14151/main.cpp.s
+
 src/homework/14315/main.o: src/homework/14315/main.cpp.o
 .PHONY : src/homework/14315/main.o
 
@@ -1266,6 +1316,30 @@ src/homework/2417/main.s: src/homework/2417/main.cpp.s
 src/homework/2417/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2417_wasm.dir/build.make CMakeFiles/homework_2417_wasm.dir/src/homework/2417/main.cpp.s
 .PHONY : src/homework/2417/main.cpp.s
+
+src/homework/2444/main.o: src/homework/2444/main.cpp.o
+.PHONY : src/homework/2444/main.o
+
+# target to build an object file
+src/homework/2444/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2444_wasm.dir/build.make CMakeFiles/homework_2444_wasm.dir/src/homework/2444/main.cpp.o
+.PHONY : src/homework/2444/main.cpp.o
+
+src/homework/2444/main.i: src/homework/2444/main.cpp.i
+.PHONY : src/homework/2444/main.i
+
+# target to preprocess a source file
+src/homework/2444/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2444_wasm.dir/build.make CMakeFiles/homework_2444_wasm.dir/src/homework/2444/main.cpp.i
+.PHONY : src/homework/2444/main.cpp.i
+
+src/homework/2444/main.s: src/homework/2444/main.cpp.s
+.PHONY : src/homework/2444/main.s
+
+# target to generate assembly for a file
+src/homework/2444/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2444_wasm.dir/build.make CMakeFiles/homework_2444_wasm.dir/src/homework/2444/main.cpp.s
+.PHONY : src/homework/2444/main.cpp.s
 
 src/homework/2452/main.o: src/homework/2452/main.cpp.o
 .PHONY : src/homework/2452/main.o
@@ -1444,10 +1518,12 @@ help:
 	@echo "... homework_11005_wasm"
 	@echo "... homework_11051_wasm"
 	@echo "... homework_1310_wasm"
+	@echo "... homework_14151_wasm"
 	@echo "... homework_14315_wasm"
 	@echo "... homework_2218_wasm"
 	@echo "... homework_2416_wasm"
 	@echo "... homework_2417_wasm"
+	@echo "... homework_2444_wasm"
 	@echo "... homework_2452_wasm"
 	@echo "... homework_2470_wasm"
 	@echo "... homework_2491_wasm"
@@ -1529,6 +1605,9 @@ help:
 	@echo "... src/homework/1310/main.o"
 	@echo "... src/homework/1310/main.i"
 	@echo "... src/homework/1310/main.s"
+	@echo "... src/homework/14151/main.o"
+	@echo "... src/homework/14151/main.i"
+	@echo "... src/homework/14151/main.s"
 	@echo "... src/homework/14315/main.o"
 	@echo "... src/homework/14315/main.i"
 	@echo "... src/homework/14315/main.s"
@@ -1541,6 +1620,9 @@ help:
 	@echo "... src/homework/2417/main.o"
 	@echo "... src/homework/2417/main.i"
 	@echo "... src/homework/2417/main.s"
+	@echo "... src/homework/2444/main.o"
+	@echo "... src/homework/2444/main.i"
+	@echo "... src/homework/2444/main.s"
 	@echo "... src/homework/2452/main.o"
 	@echo "... src/homework/2452/main.i"
 	@echo "... src/homework/2452/main.s"
