@@ -41,6 +41,7 @@ def parse_includes(file_path, processed_files=None):
                     merged_code.append(
                         parse_includes(user_header_path, processed_files)
                     )
+                    merged_code.append("\n")  # 添加换行符
                 else:
                     # 系统头文件：直接保留
                     merged_code.append(line)
