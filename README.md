@@ -1,91 +1,268 @@
 # CS2602
-本代码仓库对应上海交通大学IEEE专业CS2602课程，主要包含课本代码以及课后习题。课本采用《数据结构C++语言描述》慕课版。上课老师：张同珍老师。
 
+本代码仓库对应上海交通大学 IEEE 专业 CS2602 课程。本课程课本采用《数据结构 C++语言描述》慕课版。任课教师：张同珍老师。
 
+如果你觉得这个仓库对你有所帮助的话请给我一个 Star 吧。
 
+如果你发现这个仓库还有需要完善的地方，欢迎提出 issue 甚至 PR。
 
+> **注意：** 作者本人也正在学习这门课程，所以本仓库还处于快速开发过程当中，很多内容还不完善，请见谅。
 
-# 项目构建和使用指南
+# Features
+
+## 更加规范化的开发过程
+
+使用了 Cmake 编译， Google Test 自动化测试，clang-format 格式化等等。绝大部分头文件添加 doxygen 注释，IDE 开发提示更智能，等等。
+
+## 高效的自动化脚本
+
+项目中有两个 python 脚本可以帮助你快速测试自己的代码，不需要等待 OJ 可以在本地先测试，也可以合并头文件生成一份独立的源程序方便你提交，不要再因为忘记/缺少自己实现的头文件导致 ACM-OJ 出现 CE 错误。
+
+## 更多参考资料
+
+除了课本内容，本仓库还融合了上课的 PPT，以及《大话数据结构》这本书。
+
+# Getting Started
+
+## 克隆仓库
+
+本项目使用了 Google Test，需要一起下载：
+
+```bash
+git clone https://github.com/ukeSJTU/CS2602.git --recursive
+```
 
 ## 环境配置
 
-在开始之前，确保你的系统已安装了以下软件：
+本项目需要以下工具来编译和运行代码。以下是详细的安装说明：
 
-- **CMake**：用于构建项目的工具。你可以通过以下命令安装 CMake（以 Ubuntu 为例）：
+### 1. C++编译器 (g++)
+
+这是编译 `C++` 代码的核心工具。
+
+- **Windows**:
+
+  - 推荐使用 MinGW-w64：
+    1. 访问 [MinGW-w64 下载页面](https://www.mingw-w64.org/downloads/)
+    2. 下载并运行安装程序
+    3. 将 MinGW 的 bin 目录添加到系统环境变量 PATH 中
+    4. 打开命令提示符，输入 `g++ --version` 验证安装
+
+- **macOS**:
+
+  ```bash
+  # 通过Homebrew安装
+  brew install gcc
+
+  # 验证安装
+  g++ --version
+  ```
+
+- **Linux (Ubuntu/Debian)**:
+
+  ```bash
+  # 安装编译器
+  sudo apt update
+  sudo apt install build-essential
+
+  # 验证安装
+  g++ --version
+  ```
+
+### 2. CMake (3.10+)
+
+CMake 是一个跨平台的构建系统，用于管理项目的编译过程。
+
+- **Windows**:
+
+  1. 访问 [CMake 官方下载页面](https://cmake.org/download/)
+  2. 下载并安装 Windows 安装程序
+  3. 安装时选择"Add CMake to the system PATH"
+  4. 打开新的命令提示符，输入 `cmake --version` 验证安装
+
+- **macOS**:
+
+  ```bash
+  # 通过Homebrew安装
+  brew install cmake
+
+  # 验证安装
+  cmake --version
+  ```
+
+- **Linux (Ubuntu/Debian)**:
+
+  ```bash
+  sudo apt update
+  sudo apt install cmake
+
+  # 验证安装
+  cmake --version
+  ```
+
+### 3. 构建工具
+
+- **Windows 平台**需要选择以下一种：
+
+  a) **Ninja** (推荐):
+
+  ```bash
+  # 通过pip安装
+  pip install ninja
+
+  # 验证安装
+  ninja --version
+  ```
+
+  b) **Visual Studio**:
+
+  - 访问 [Visual Studio 下载页面](https://visualstudio.microsoft.com/downloads/)
+  - 下载 Community 版本（免费）
+  - 安装时选择"使用 C++的桌面开发"工作负载
+
+### 4. Python 3.6+ (用于自动化脚本)
+
+如果你想使用项目提供的自动化工具，需要 Python 3.6 或更高版本。
+
+- **Windows**:
+
+  1. 访问 [Python 官网](https://www.python.org/downloads/)
+  2. 下载并运行安装程序
+  3. 安装时勾选"Add Python to PATH"
+  4. 打开新的命令提示符，输入 `python --version` 验证安装
+
+- **macOS**:
+
+  ```bash
+  # 通过Homebrew安装
+  brew install python
+
+  # 验证安装
+  python3 --version
+  ```
+
+- **Linux (Ubuntu/Debian)**:
+
+  ```bash
+  sudo apt update
+  sudo apt install python3 python3-pip
+
+  # 验证安装
+  python3 --version
+  ```
+
+### 5. clang-format (可选，用于代码格式化)
+
+这是一个可选工具，用于保持代码风格一致。
+
+- **Windows**:
+
+  ```bash
+  # 通过pip安装
+  pip install clang-format
+
+  # 验证安装
+  clang-format --version
+  ```
+
+- **macOS**:
+
+  ```bash
+  brew install clang-format
+
+  # 验证安装
+  clang-format --version
+  ```
+
+- **Linux (Ubuntu/Debian)**:
+
+  ```bash
+  sudo apt install clang-format
+
+  # 验证安装
+  clang-format --version
+  ```
+
+### 验证环境配置
+
+完成上述工具安装后，可以运行以下命令验证环境是否配置正确：
 
 ```bash
-sudo apt-get install cmake
+# 验证C++编译器
+g++ --version
+
+# 验证CMake
+cmake --version
+
+# 验证Python（如果需要使用自动化脚本）
+python --version  # Windows
+python3 --version  # macOS/Linux
+
+# 验证clang-format（如果已安装）
+clang-format --version
 ```
 
-如果使用的是 macOS，可以通过 Homebrew 安装 CMake：
+如果以上命令都能正常显示版本信息，说明环境配置已经完成。
 
-```bash
-brew install cmake
-```
+## 第一次编译并运行
 
-- **Google Test**：该项目使用 Google Test 作为单元测试框架，CMake 将自动下载并构建它。
-
-## 第一次配置和构建项目
-
-1. 克隆项目仓库到本地：
-
-```bash
-git clone https://github.com/ukeSJTU/CS2602.git
-cd CS2602
-```
-
-2. 创建构建目录并进入该目录：
+1. 创建构建目录并进入该目录：
 
 ```bash
 mkdir build
 cd build
 ```
 
-3. 运行 CMake 配置项目：
+2. 运行 CMake 配置项目：
+
+在 Windows 平台上：
+
+```bash
+cmake -G "Ninja" ..
+```
+
+在 macOS/Linux 电脑上：
 
 ```bash
 cmake ..
 ```
 
-CMake 会检查你的项目结构，配置编译设置，并生成一个 `Makefile` 文件。
-
-4. 构建项目：
+3. 构建项目：
 
 ```bash
 cmake --build .
 ```
 
-这将根据 `CMakeLists.txt` 中的配置，自动编译所有源文件和测试文件，并生成可执行文件。
+所有生成的文件都在 build/bin/ 文件夹下。运行示例：
 
-## 编译特定源文件
+macOS/Linux:
 
-在 `src/` 文件夹下的所有源文件都会被自动检测到并添加到构建中。如果你希望仅编译某一个特定的文件，可以通过修改 `CMakeLists.txt` 来指定你想要编译的文件。例如：
-
-```cmake
-add_executable(Chapter2_3 src/examples/Chapter2/2-3.cpp)
+```bash
+./bin/homework_2498
 ```
 
-然后，你可以使用 `cmake --build .` 命令来编译这个特定的文件。
+Windows:
+
+```cmd
+.\bin\homework_2498.exe
+```
 
 ## 运行测试
 
-1. 在构建完成后，你可以运行所有单元测试：
+1. 运行所有单元测试：
 
 ```bash
 ctest
 ```
 
-或者，你可以运行特定的测试：
+2. 运行特定测试：
 
 ```bash
-./test/test_seqlist
+./bin/test_seqlist  # macOS/Linux
+.\bin\test_seqlist.exe  # Windows
 ```
 
-这会执行对应的测试可执行文件。
-
 ## 修改头文件/源代码后重新编译
-
-如果你修改了头文件或源代码，或者添加了新的测试文件，只需要执行以下步骤来重新编译项目：
 
 1. 进入构建目录：
 
@@ -93,185 +270,184 @@ ctest
 cd build
 ```
 
-2. 运行 CMake 以检查更改：
+2. 运行 CMake 检查更改：
 
 ```bash
 cmake ..
 ```
 
-3. 然后，运行 `cmake --build .` 来重新编译所有文件：
+3. 重新编译：
 
 ```bash
 cmake --build .
 ```
 
-这样，CMake 会重新检测所有文件的更改并重新编译项目。
-
 ## 清理构建
 
-如果你想清理构建目录，可以删除整个 `build/` 文件夹：
+删除整个 build/ 文件夹：
 
 ```bash
-rm -rf build/
+rm -rf build/  # macOS/Linux
+rmdir /s /q build  # Windows
 ```
 
-然后重新创建该文件夹并运行 `cmake` 重新构建。
+# 工程目录结构
 
+为了让你更方便的使用这个仓库，或者你想要自己修改甚至改进本仓库，以下是各文件夹与文件的作用：
 
-# 合并源代码与头文件
+- `docs/`: 按章节编号组织的笔记和 OJ 习题解答
 
-如果你像我一样，自己整理了一个头文件目录(`./include`)，你应该会觉得做OJ题目还是挺轻松的，毕竟很多基本代码你已经在脚本代码里面实现了，但是我当时做OJ仍然很痛苦，因为我本地做题可能会在main.cpp中写很多的`#include "SeqList.h"`等等，有时候本地测试了一下发现一切正常，遂急急忙忙提交到了OJ平台上面结果2秒后喜提**COMPILE ERROR**。着实令人恼火，痛定思痛写了一个python脚本来自动化这个流程，使用方法如下：
+  - 每个章节的 markdown 文件包含笔记和习题解答
+  - 部分内容参考了《大话数据结构》
 
-以下是为 `merge_to_oj.py` 脚本生成的简单 Markdown 使用指南：
+- `include/`: 实现的数据结构
 
-# `merge_to_oj.py` 使用指南
+  - 基本实现与课本相同
+  - 添加了 namespace datastructures
+  - 添加了 doxygen 注释
+  - 树相关代码抽象了结点基类，可能与书本略有不同
+  - 如果只想用书本实现，可在 docs 对应小节找到代码
 
-## 简介
-`merge_to_oj.py` 是一个用于自动合并 C++ 源代码及其依赖的工具，特别适用于在线评测（OJ）平台无法上传多文件的情况。它能够解析 `#include` 指令，找到自定义头文件，并将其内容递归合并到主程序中。
+- `src/`: 源程序目录
 
----
+  - `examples/`: 书本示例代码，按章节编号组织
+  - `homework/`: ACM-OJ 课后作业，按题目编号组织
+  - `homework/index.md`: 记录作业习题编号和完成情况
 
-## 环境要求
-- Python 3.7 或更高版本
-- 可选：`clang-format`（用于代码格式化）
+- `test/`: 单元测试程序
 
----
+  - 用于测试 include/下实现的数据结构
 
-## 功能特性
-- **自动解析**：识别主文件中的 `#include` 并递归合并自定义头文件内容。
-- **指定题目编号**：通过题目编号快速指定要合并的文件。
-- **批量处理**：支持一次性处理多个文件。
-- **代码格式化**：自动检测并使用 `clang-format` 格式化输出代码。
-- **覆盖控制**：可选择是否覆盖已有的 `merged.cpp` 文件。
-- **文件标记**：在生成的文件中添加特殊标记，包含原始文件路径和生成时间。
-- **清理功能**：支持安全地删除所有由脚本生成的文件。
+- `testcases/`: 自定义测试数据
 
----
+  - 用于本地测试课后作业
 
-## 使用方法
+- `CMakeLists.txt`: CMake 配置文件
 
-### 1. 查看帮助信息
-运行以下命令查看完整的参数说明：
-```bash
-python merge_to_oj.py --help
-```
+  - 如果你不理解请不要修改
+  - 包含 Emscripten 配置(用于网页展示，开发中)
 
-输出示例：
-```
-usage: merge_to_oj.py [-h] [-i [IDS ...]] [-f] [--no-format] [--clean] [--force-clean]
+- `.clang-format`: 代码格式化配置文件
 
-自动合并 C++ 源文件及其依赖的头文件
+# 工具
 
-optional arguments:
-  -h, --help            显示帮助信息
-  -i [IDS ...], --ids [IDS ...]
-                        指定题目编号 ID（如 2498 2526），默认处理所有文件
-  -f, --force           强制覆盖已存在的 merged.cpp 文件
-  --no-format          不格式化输出文件
-  --clean              删除所有由脚本生成的文件（需要确认）
-  --force-clean        删除所有由脚本生成的文件（不需确认）
-```
+## 合并源代码与头文件 (merge_to_oj.py)
 
----
+这个工具可以自动合并你的 main.cpp 文件和它依赖的所有头文件，生成一个独立的源文件用于提交到 OJ 平台。
 
-### 2. 合并文件
+### 使用方法
 
-#### 合并所有文件
-默认会处理 `./src/homework/***/main.cpp` 中的所有文件，并生成对应的 `merged.cpp` 文件：
+1. 基本用法 - 处理所有作业：
+
 ```bash
 python merge_to_oj.py
 ```
 
-#### 指定题目编号
-如果只想合并特定题目（如编号为 `2498` 和 `2526`），可以使用 `-i` 参数：
+2. 处理特定题目：
+
 ```bash
 python merge_to_oj.py -i 2498 2526
 ```
 
-#### 强制覆盖输出文件
-若目标 `merged.cpp` 文件已存在但需要重新生成，可以使用 `-f` 参数强制覆盖：
+3. 强制覆盖已存在的 merged.cpp：
+
 ```bash
 python merge_to_oj.py -f
 ```
 
----
+4. 不进行代码格式化：
 
-### 3. 控制代码格式化
-
-#### 自动格式化（默认）
-脚本会尝试使用 `clang-format` 自动格式化生成的代码，并检测 `.clang-format` 配置文件。
-
-#### 禁用格式化
-如果不需要格式化输出文件，可以添加 `--no-format` 参数：
 ```bash
 python merge_to_oj.py --no-format
 ```
 
----
+5. 清理生成的文件：
 
-### 4. 清理生成的文件
-
-#### 安全清理（需确认）
-删除所有由脚本生成的文件，会显示要删除的文件列表并要求确认：
 ```bash
 python merge_to_oj.py --clean
 ```
 
-#### 强制清理（不需确认）
-直接删除所有由脚本生成的文件，不需要确认：
+### 功能特点
+
+- 自动递归解析和合并所有依赖的头文件
+- 保留系统头文件的 include 语句
+- 自动使用 clang-format 格式化生成的代码
+- 添加生成时间戳和原始文件标记
+- 支持强制覆盖和清理功能
+
+## 本地测试工具 (oj_evaluator.py)
+
+这个工具可以在本地运行和测试你的程序，无需等待 OJ 平台的结果。
+
+### 使用方法
+
+1. 测试所有有测试用例的题目：
+
 ```bash
-python merge_to_oj.py --force-clean
+python oj_evaluator.py
 ```
 
----
+2. 测试特定题目：
 
-### 5. 输出文件
-处理完成后，生成的文件将保存在与 `main.cpp` 文件同一目录下，文件名为 `merged.cpp`。每个生成的文件都会包含特殊标记，标明其来源和生成时间。
-
-示例：
-```
-src/homework/2498/main.cpp   -> src/homework/2498/merged.cpp
-src/homework/2526/main.cpp   -> src/homework/2526/merged.cpp
-```
-
----
-
-## 示例场景
-
-### 合并指定编号的题目并格式化代码
 ```bash
-python merge_to_oj.py -i 2498 -f
+python oj_evaluator.py -i 14151 14152
 ```
 
-### 合并所有文件但不格式化代码
+3. 指定测试用例目录：
+
 ```bash
-python merge_to_oj.py --no-format
+python oj_evaluator.py --testcases_dir ./my_testcases
 ```
 
-### 清理所有生成的文件
+4. 指定可执行文件目录：
+
 ```bash
-python merge_to_oj.py --clean
+python oj_evaluator.py --binary_dir ./my_build/bin
 ```
 
----
+### 功能特点
 
-## 注意事项
-1. **文件路径**：
-   - 自定义头文件需存放在 `./include` 文件夹中。
-   - 主文件需按照 `./src/homework/编号/main.cpp` 的结构组织。
+- 自动查找和运行测试用例
+- 彩色输出测试结果
+- 显示详细的对比信息
+- 支持超时检测
+- 汇总测试结果统计
 
-2. **循环依赖**：
-   - 脚本会自动检测循环依赖并避免重复解析。
+### 测试用例格式
 
-3. **格式化工具**：
-   - 请确保 `clang-format` 已正确安装并可用。
-   - 若未检测到格式化工具，脚本将跳过格式化步骤。
+在 `testcases/homework/题号/` 目录下创建测试用例文件：
 
-4. **文件清理**：
-   - 清理功能只会删除由脚本生成的文件（包含特定标记）。
-   - 建议使用 `--clean` 而不是 `--force-clean`，以便在删除前确认。
+- `1-in.txt`: 输入数据
+- `1-out.txt`: 期望输出
+- `2-in.txt`: 第二组输入数据
+- `2-out.txt`: 第二组期望输出
+  ...以此类推
 
----
+# Q&A
 
-## 开发与扩展
-- 如果有新的需求或改进建议，请直接修改脚本或提交反馈。
+1. **为什么要使用 CMake 而不是直接编译？**
+
+   - CMake 提供了跨平台的构建系统
+   - 更容易管理依赖关系
+   - 支持自动化测试
+   - 方便配置编译选项
+
+2. **如何添加新的测试用例？**
+
+   - 在 testcases/homework/对应题号下创建输入输出文件对
+   - 输入文件命名为 x-in.txt
+   - 输出文件命名为 x-out.txt
+   - x 为测试用例编号，从 1 开始
+
+3. **如何贡献代码？**
+
+   - Fork 本仓库
+   - 创建新的分支
+   - 提交改动
+   - 发起 Pull Request
+
+4. **遇到编译错误怎么办？**
+   - 检查是否正确安装了所有依赖
+   - 确保 CMake 版本满足要求
+   - 查看 build 目录下的 CMake 错误日志
+   - 提 issue 寻求帮助
