@@ -39,7 +39,7 @@ TODO：完善内容
 
 兄弟节点：……
 
-堂兄弟节点：……
+堂兄弟节点：同一祖父但不同父亲的结点互称堂兄弟结点。
 
 在树中，父结点可以看作是孩子结点的直接前驱、孩子结点可以看作是父结点的直接后继，直接前驱是唯一的、直接后继可以有多个。
 
@@ -894,6 +894,149 @@ OJ 上 2185：蚂蚁过河问题
 ### ACM-OJ
 
 #### 2444 二叉树的堂姐妹堂兄弟
+
+这个题思路比较纯粹，构建二叉树之后直接找节点深度，再找父节点，然后按照条件判断就可以了。
+
+问题是题目描述的“堂兄弟节点”：如果二叉树的两个节点深度相同，但父节点不同，则它们是一对堂姐妹堂兄弟节点。可实际上，书本还要求它们的祖父节点相同才可以，进而修改代码如下：
+
+```cpp
+#include <iostream>
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+// 函数用于构建二叉树
+TreeNode* buildTree(int* preorder, int& index, int size)
+{
+    if (index >= size || preorder[index] == -1) {
+        index++;
+        return nullptr;
+    }
+
+    TreeNode* node = new TreeNode(preorder[index++]);
+    node->left = buildTree(preorder, index, size);
+    node->right = buildTree(preorder, index, size);
+    return node;
+}
+
+// 释放树的内存
+void deleteTree(TreeNode* root)
+{
+    if (!root) return;
+    deleteTree(root->left);
+    deleteTree(root->right);
+    delete root;  // 释放当前节点的内存
+}
+
+// 查找节点的深度
+int findDepth(TreeNode* root, int target, int depth)
+{
+    if (!root) return -1;  // 找不到节点返回 -1
+
+    if (root->val == target) return depth;
+
+    int leftDepth = findDepth(root->left, target, depth + 1);
+    if (leftDepth != -1) return leftDepth;
+
+    return findDepth(root->right, target, depth + 1);
+}
+
+// 查找节点的父节点
+TreeNode* findParent(TreeNode* root, int target)
+{
+    if (!root || root->val == target) return nullptr;  // 根节点或者就是目标节点本身
+
+    if ((root->left && root->left->val == target) || (root->right && root->right->val == target)) {
+        return root;
+    }
+
+    TreeNode* leftParent = findParent(root->left, target);
+    if (leftParent) return leftParent;
+
+    return findParent(root->right, target);
+}
+
+// 查找节点的祖父节点
+TreeNode* findGrandparent(TreeNode* root, int target)
+{
+    TreeNode* parent = findParent(root, target);
+    if (parent) {
+        return findParent(root, parent->val);
+    }
+    return nullptr;
+}
+
+// 判断两个节点是否为堂兄弟节点
+bool areCousins(TreeNode* root, int x, int y)
+{
+    int depthX = findDepth(root, x, 0);
+    int depthY = findDepth(root, y, 0);
+
+    if (depthX == -1 || depthY == -1 || depthX != depthY) {
+        return false;  // 深度不同或节点不存在
+    }
+
+    TreeNode* parentX = findParent(root, x);
+    TreeNode* parentY = findParent(root, y);
+
+    // 如果父节点相同，则不是堂兄弟
+    if (parentX == parentY) return false;
+
+    // 查找祖父节点
+    TreeNode* grandparentX = findGrandparent(root, x);
+    TreeNode* grandparentY = findGrandparent(root, y);
+
+    // 判断祖父节点是否相同
+    return grandparentX == grandparentY;
+}
+
+int main()
+{
+    int q;
+    std::cin >> q;
+
+    int queries[q][2];  // 假设最大查询数量为 q
+    for (int i = 0; i < q; ++i) {
+        std::cin >> queries[i][0] >> queries[i][1];
+    }
+
+    int preorder[1500];  // 假设最大节点数量为 1500
+    int index = 0;
+
+    // 使用 std::cin 直接读取前序遍历数据
+    while (std::cin >> preorder[index]) {
+        index++;
+        if (std::cin.peek() == '\n') break;  // 一行结束时停止读取
+    }
+
+    int size = index;
+    index = 0;
+    TreeNode* root = buildTree(preorder, index, size);
+
+    for (int i = 0; i < q; ++i) {
+        int x = queries[i][0];
+        int y = queries[i][1];
+        if (areCousins(root, x, y)) {
+            std::cout << 1 << std::endl;
+        } else {
+            std::cout << 0 << std::endl;
+        }
+    }
+
+    // 释放树的内存
+    deleteTree(root);
+
+    return 0;
+}
+```
+
+但是提交上面这个代码结果是除了第二个和第六个测试案例 AC 以外其他全部都 WA，看起立题目确实没有考虑这种情况。
+
+AC 代码参考`src/homework/2444/main.cpp`文件。
 
 #### 2452 二叉搜索树的节点寻找
 
