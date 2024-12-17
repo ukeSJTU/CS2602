@@ -1046,6 +1046,148 @@ AC 代码参考`src/homework/2444/main.cpp`文件。
 
 #### 2454 捕鱼达人
 
+TODO: 需要补充并查集和本题目解题思路。有基础的常见做法可能是二维数组+搜索:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int MAX_M = 100; // 最大行数
+const int MAX_N = 100; // 最大列数
+
+int lake[MAX_M][MAX_N];  // 用于存储湖的鱼量分布
+bool visited[MAX_M][MAX_N]; // 用于标记是否访问过
+int m, n;               // 湖的大小
+
+// 队列实现（用于BFS）
+class Queue {
+private:
+    int data[MAX_M * MAX_N][2]; // 每个队列元素存储一个二维坐标
+    int front, rear;
+
+public:
+    Queue() {
+        front = 0;
+        rear = 0;
+    }
+
+    void push(int x, int y) {
+        data[rear][0] = x;
+        data[rear][1] = y;
+        rear++;
+    }
+
+    void pop() {
+        if (!empty()) {
+            front++;
+        }
+    }
+
+    int* frontElement() {
+        return data[front];
+    }
+
+    bool empty() {
+        return front == rear;
+    }
+};
+
+// 四个方向
+int directions[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+// BFS 函数
+int bfs(int startX, int startY) {
+    Queue q;
+    q.push(startX, startY);
+    visited[startX][startY] = true;
+
+    int totalFish = 0; // 累计鱼的数量
+
+    while (!q.empty()) {
+        int* current = q.frontElement();
+        int x = current[0];
+        int y = current[1];
+        q.pop();
+
+        totalFish += lake[x][y];
+
+        // 遍历四个方向
+        for (int i = 0; i < 4; i++) {
+            int nx = x + directions[i][0];
+            int ny = y + directions[i][1];
+
+            if (nx >= 0 && nx < m && ny >= 0 && ny < n && !visited[nx][ny] && lake[nx][ny] > 0) {
+                visited[nx][ny] = true;
+                q.push(nx, ny);
+            }
+        }
+    }
+
+    return totalFish;
+}
+
+int main() {
+    cin >> m >> n;
+
+    // 初始化湖的鱼量分布和访问标记
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> lake[i][j];
+            visited[i][j] = false;
+        }
+    }
+
+    int maxFish = 0;
+
+    // 遍历湖中的每一个格子
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (lake[i][j] > 0 && !visited[i][j]) {
+                maxFish = max(maxFish, bfs(i, j)); // 对每个未访问的水域格子启动 BFS
+            }
+        }
+    }
+
+    cout << maxFish << endl;
+    return 0;
+}
+```
+
+而这个方法完全错误，可以查看第二组测试案例。
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int fish_cnt[101][101];
+
+int main()
+{
+    int m, n, value, max_cnt;
+    cin >> m >> n;
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> value;
+            fish_cnt[i][j] = value;
+            if (value != 0) {
+                if ((i - 1) >= 0) {
+                    fish_cnt[i][j] += fish_cnt[i - 1][j];
+                }
+                if ((j - 1) >= 0) {
+                    fish_cnt[i][j] += fish_cnt[i][j - 1];
+                }
+            }
+            max_cnt = max(max_cnt, fish_cnt[i][j]);
+        }
+    }
+
+    cout << max_cnt << endl;
+    return 0;
+}
+```
+
 #### 12100(2100) 哈夫曼树
 
 #### 2491 简单丑数
