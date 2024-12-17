@@ -1,32 +1,38 @@
-CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: \
-  /home/runner/work/CS2602/CS2602/src/examples/Chapter4/4-3/main.cpp \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/iostream \
+CMakeFiles/homework_2218_wasm.dir/src/homework/2218/main.cpp.o: \
+  /home/runner/work/CS2602/CS2602/src/homework/2218/main.cpp \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cmath \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__assert \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__assertion_handler \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__config \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__config_site \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__verbose_abort \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__availability \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/version \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/ios \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/ios.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/string.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/memory_resource.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__ios/fpos.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__locale \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/shared_ptr.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/compare_three_way.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/three_way_comparable.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/common_comparison_category.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/ordering.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/enable_if.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_same.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_arithmetic.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/integral_constant.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstddef \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_integral.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_floating_point.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_cv.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_const.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_volatile.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_integral.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_constant_evaluated.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_same.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/promote.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__utility/declval.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/limits \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_signed.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__undef_macros \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/version \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/type_traits \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/hash.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_const.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_cv.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_lvalue_reference.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_referenceable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_pointer.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_void.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_reference.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstddef \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stddef.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/lib/clang/20/include/stddef.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/stddef.h \
@@ -38,85 +44,32 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/lib/clang/20/include/__stddef_nullptr_t.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/lib/clang/20/include/__stddef_max_align_t.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/lib/clang/20/include/__stddef_offsetof.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/common_reference_with.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/convertible_to.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_convertible.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_array.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_function.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_rvalue_reference.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_volatile.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/aligned_storage.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/conditional.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/nat.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/type_list.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/aligned_union.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/alignment_of.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/apply_cv.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_const.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_reference.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_void.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_reference.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__utility/declval.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/same_as.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_volatile.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/can_extract_key.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/pair.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_const_ref.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/common_reference.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/common_type.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/conditional.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/decay.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_pointer.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_referenceable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_array.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_function.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_reference.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_extent.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_cvref.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/void_t.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/copy_cv.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_const.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_cv.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_volatile.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/copy_cvref.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_lvalue_reference.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/add_rvalue_reference.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/equality_comparable.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/boolean_testable.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__utility/forward.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/make_const_lvalue_ref.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/totally_ordered.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__exception/exception.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/binary_function.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/operations.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/unary_function.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/operation_traits.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/reference_wrapper.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/invoke.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/invoke.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/apply_cv.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_volatile.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_base_of.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_core_convertible.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_member_function_pointer.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_member_object_pointer.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_reference_wrapper.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/nat.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/weak_result_type.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/addressof.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/ostream.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__iterator/access.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocation_guard.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocator_traits.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/construct_at.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/voidify.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__utility/move.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_copy_constructible.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_move_constructible.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_constructible.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_constructible.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__undef_macros \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/new \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstdlib \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/compat/stdlib.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdlib.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/stdlib.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/features.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/bits/alltypes.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/alloca.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/type_traits \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/hash.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/aligned_storage.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/type_list.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/aligned_union.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/alignment_of.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/can_extract_key.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/pair.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_const_ref.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_convertible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/conjunction.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/dependent_type.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/disjunction.h \
@@ -124,10 +77,15 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/has_unique_object_representation.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_all_extents.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/has_virtual_destructor.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/invoke.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_base_of.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_core_convertible.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_member_function_pointer.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_member_object_pointer.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_reference_wrapper.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__utility/forward.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_abstract.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_aggregate.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_arithmetic.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_floating_point.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_assignable.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_bounded_array.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_callable.h \
@@ -138,8 +96,9 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_compound.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_fundamental.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_null_pointer.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_constant_evaluated.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_copy_assignable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_copy_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_default_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_destructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_empty.h \
@@ -151,6 +110,7 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_move_assignable.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_move_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_assignable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_convertible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/lazy.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_copy_assignable.h \
@@ -160,13 +120,13 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_scalar.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_pointer.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_move_assignable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_nothrow_move_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_object.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_union.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_pod.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_polymorphic.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_scoped_enum.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/underlying_type.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_signed.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_specialization.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_swappable.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_trivially_assignable.h \
@@ -178,6 +138,7 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdint.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/lib/clang/20/include/stdint.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/stdint.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/bits/alltypes.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/bits/stdint.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_trivially_default_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_trivially_destructible.h \
@@ -185,6 +146,7 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_trivially_move_constructible.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_unbounded_array.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/is_unsigned.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/make_const_lvalue_ref.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/make_signed.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/make_unsigned.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/maybe_const.h \
@@ -192,10 +154,72 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/rank.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/remove_pointer.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/result_of.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/invoke.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/type_identity.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/unwrap_ref.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/compat/math.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/math.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/math.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/features.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/abs.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/copysign.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/error_functions.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/exponential_functions.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/fdim.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/fma.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/gamma.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/hyperbolic_functions.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/hypot.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/inverse_hyperbolic_functions.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/inverse_trigonometric_functions.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/logarithms.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/min_max.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/modulo.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/remainder.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/roots.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/rounding_functions.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/traits.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/trigonometric_functions.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/compat/stdlib.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdlib.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/stdlib.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/alloca.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/iostream \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/ios \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/ios.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/string.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/memory_resource.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__ios/fpos.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__locale \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/shared_ptr.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/compare_three_way.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/three_way_comparable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/common_comparison_category.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/ordering.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/common_reference_with.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/convertible_to.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/same_as.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/equality_comparable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/boolean_testable.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__concepts/totally_ordered.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__exception/exception.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/binary_function.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/operations.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/unary_function.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/operation_traits.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/reference_wrapper.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional/weak_result_type.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/addressof.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__fwd/ostream.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__iterator/access.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocation_guard.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocator_traits.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/construct_at.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/voidify.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__utility/move.h \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/new \
+  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstdlib \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/pointer_traits.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/limits \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocator.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocate_at_least.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocator_destructor.h \
@@ -309,30 +333,6 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/strong_order.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__bit/bit_cast.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__utility/priority_tag.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cmath \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__type_traits/promote.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/compat/math.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/math.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/math.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/abs.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/copysign.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/error_functions.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/exponential_functions.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/fdim.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/fma.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/gamma.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/hyperbolic_functions.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/hypot.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/inverse_hyperbolic_functions.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/inverse_trigonometric_functions.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/logarithms.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/min_max.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/modulo.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/remainder.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/roots.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/rounding_functions.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/traits.h \
-  /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__math/trigonometric_functions.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/compare_strong_order_fallback.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/compare_weak_order_fallback.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__compare/is_eq.h \
@@ -817,9 +817,9 @@ CMakeFiles/examples_Chapter4_4-3_wasm.dir/src/examples/Chapter4/4-3/main.cpp.o: 
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__format/formatter_tuple.h \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/print \
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/unistd.h \
+  /home/runner/work/CS2602/CS2602/include/BinarySearchTree.h \
   /home/runner/work/CS2602/CS2602/include/BinaryTree.h \
   /home/runner/work/CS2602/CS2602/include/BaseNode.h \
   /home/runner/work/CS2602/CS2602/include/LinkQueue.h \
   /home/runner/work/CS2602/CS2602/include/Exceptions.h \
-  /home/runner/work/CS2602/CS2602/include/SeqQueue.h \
-  /home/runner/work/CS2602/CS2602/include/SeqStack.h
+  /home/runner/work/CS2602/CS2602/include/SeqQueue.h

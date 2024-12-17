@@ -819,6 +819,7 @@ CMakeFiles/examples_Chapter4_4-16_wasm.dir/src/examples/Chapter4/4-16/main.cpp.o
   /home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/cache/sysroot/include/unistd.h \
   /home/runner/work/CS2602/CS2602/include/ExprTree.h \
   /home/runner/work/CS2602/CS2602/include/BinaryTree.h \
+  /home/runner/work/CS2602/CS2602/include/BaseNode.h \
   /home/runner/work/CS2602/CS2602/include/LinkQueue.h \
   /home/runner/work/CS2602/CS2602/include/Exceptions.h \
   /home/runner/work/CS2602/CS2602/include/SeqQueue.h \
