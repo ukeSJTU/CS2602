@@ -1,8 +1,6 @@
 #ifndef LINKSTACK_H
 #define LINKSTACK_H
 
-#include <cstddef>
-
 #include "Exceptions.h"
 
 namespace datastructures

@@ -1,9 +1,6 @@
 #ifndef EXP_TREE_H
 #define EXP_TREE_H
 
-#include <cstddef>
-#include <iostream>
-
 #include "BinaryTree.h"
 #include "SeqStack.h"
 

@@ -1,8 +1,6 @@
 #ifndef LINK_QUEUE_H
 #define LINK_QUEUE_H
 
-#include <cstddef>
-
 #include "Exceptions.h"
 
 namespace datastructures

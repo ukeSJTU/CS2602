@@ -1,9 +1,6 @@
 #ifndef LINKLIST_H
 #define LINKLIST_H
 
-#include <iostream>
-#include <stdexcept>
-
 #include "Exceptions.h"
 
 // 定义命名空间 datastructures
