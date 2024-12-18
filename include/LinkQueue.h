@@ -77,10 +77,17 @@ class LinkQueue
 
     /**
      * @brief 获取队列头部元素
-     * @return 队列头部元素
+     * @return 队列头部元素的引用
      * @throw OutOfBound 如果队列为空，抛出异常
      */
-    elemType front();
+    elemType &front();
+
+    /**
+     * @brief 获取队列头部的元素（const版本）
+     * @return 队列头部元素的常量引用
+     * @throw OutOfBound 如果队列为空，抛出异常
+     */
+    const elemType &front() const;
 
     /**
      * @brief 向队列尾部插入新元素
@@ -98,11 +105,24 @@ class LinkQueue
 /**
  * @brief 获取队列头部元素
  * @tparam elemType 队列中存储的元素类型
- * @return 队列头部元素
+ * @return 队列头部元素的引用
  * @throw OutOfBound 如果队列为空，抛出异常
  */
 template <class elemType>
-elemType LinkQueue<elemType>::front()
+elemType &LinkQueue<elemType>::front()
+{
+    if (isEmpty()) throw OutOfBound();
+    return front_p->data;
+}
+
+/**
+ * @brief 获取队列头部的元素（const版本）
+ * @tparam elemType 队列中存储的元素类型
+ * @return 队列头部元素的常量引用
+ * @throw OutOfBound 如果队列为空，抛出异常
+ */
+template <class elemType>
+const elemType &LinkQueue<elemType>::front() const
 {
     if (isEmpty()) throw OutOfBound();
     return front_p->data;
