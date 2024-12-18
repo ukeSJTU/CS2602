@@ -90,6 +90,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/homework_2417_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_2444_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_2445_wasm.dir/DependInfo.cmake"
+  "CMakeFiles/homework_2446_wasm.dir/DependInfo.cmake"
+  "CMakeFiles/homework_2449_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_2452_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_2454_wasm.dir/DependInfo.cmake"
   "CMakeFiles/homework_2470_wasm.dir/DependInfo.cmake"

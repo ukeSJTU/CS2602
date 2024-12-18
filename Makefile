@@ -533,6 +533,32 @@ homework_2445_wasm/fast:
 .PHONY : homework_2445_wasm/fast
 
 #=============================================================================
+# Target rules for targets named homework_2446_wasm
+
+# Build rule for target.
+homework_2446_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2446_wasm
+.PHONY : homework_2446_wasm
+
+# fast build rule for target.
+homework_2446_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2446_wasm.dir/build.make CMakeFiles/homework_2446_wasm.dir/build
+.PHONY : homework_2446_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_2449_wasm
+
+# Build rule for target.
+homework_2449_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2449_wasm
+.PHONY : homework_2449_wasm
+
+# fast build rule for target.
+homework_2449_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2449_wasm.dir/build.make CMakeFiles/homework_2449_wasm.dir/build
+.PHONY : homework_2449_wasm/fast
+
+#=============================================================================
 # Target rules for targets named homework_2452_wasm
 
 # Build rule for target.
@@ -1391,6 +1417,54 @@ src/homework/2445/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2445_wasm.dir/build.make CMakeFiles/homework_2445_wasm.dir/src/homework/2445/main.cpp.s
 .PHONY : src/homework/2445/main.cpp.s
 
+src/homework/2446/main.o: src/homework/2446/main.cpp.o
+.PHONY : src/homework/2446/main.o
+
+# target to build an object file
+src/homework/2446/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2446_wasm.dir/build.make CMakeFiles/homework_2446_wasm.dir/src/homework/2446/main.cpp.o
+.PHONY : src/homework/2446/main.cpp.o
+
+src/homework/2446/main.i: src/homework/2446/main.cpp.i
+.PHONY : src/homework/2446/main.i
+
+# target to preprocess a source file
+src/homework/2446/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2446_wasm.dir/build.make CMakeFiles/homework_2446_wasm.dir/src/homework/2446/main.cpp.i
+.PHONY : src/homework/2446/main.cpp.i
+
+src/homework/2446/main.s: src/homework/2446/main.cpp.s
+.PHONY : src/homework/2446/main.s
+
+# target to generate assembly for a file
+src/homework/2446/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2446_wasm.dir/build.make CMakeFiles/homework_2446_wasm.dir/src/homework/2446/main.cpp.s
+.PHONY : src/homework/2446/main.cpp.s
+
+src/homework/2449/main.o: src/homework/2449/main.cpp.o
+.PHONY : src/homework/2449/main.o
+
+# target to build an object file
+src/homework/2449/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2449_wasm.dir/build.make CMakeFiles/homework_2449_wasm.dir/src/homework/2449/main.cpp.o
+.PHONY : src/homework/2449/main.cpp.o
+
+src/homework/2449/main.i: src/homework/2449/main.cpp.i
+.PHONY : src/homework/2449/main.i
+
+# target to preprocess a source file
+src/homework/2449/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2449_wasm.dir/build.make CMakeFiles/homework_2449_wasm.dir/src/homework/2449/main.cpp.i
+.PHONY : src/homework/2449/main.cpp.i
+
+src/homework/2449/main.s: src/homework/2449/main.cpp.s
+.PHONY : src/homework/2449/main.s
+
+# target to generate assembly for a file
+src/homework/2449/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2449_wasm.dir/build.make CMakeFiles/homework_2449_wasm.dir/src/homework/2449/main.cpp.s
+.PHONY : src/homework/2449/main.cpp.s
+
 src/homework/2452/main.o: src/homework/2452/main.cpp.o
 .PHONY : src/homework/2452/main.o
 
@@ -1599,6 +1673,8 @@ help:
 	@echo "... homework_2417_wasm"
 	@echo "... homework_2444_wasm"
 	@echo "... homework_2445_wasm"
+	@echo "... homework_2446_wasm"
+	@echo "... homework_2449_wasm"
 	@echo "... homework_2452_wasm"
 	@echo "... homework_2454_wasm"
 	@echo "... homework_2470_wasm"
@@ -1702,6 +1778,12 @@ help:
 	@echo "... src/homework/2445/main.o"
 	@echo "... src/homework/2445/main.i"
 	@echo "... src/homework/2445/main.s"
+	@echo "... src/homework/2446/main.o"
+	@echo "... src/homework/2446/main.i"
+	@echo "... src/homework/2446/main.s"
+	@echo "... src/homework/2449/main.o"
+	@echo "... src/homework/2449/main.i"
+	@echo "... src/homework/2449/main.s"
 	@echo "... src/homework/2452/main.o"
 	@echo "... src/homework/2452/main.i"
 	@echo "... src/homework/2452/main.s"
