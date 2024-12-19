@@ -1,0 +1,15 @@
+{
+  "projectName": "CS2602",
+  "projectOwner": "ukeSJTU",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "Contributors.md"
+  ],
+  "imageSize": 80,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [],
+  "contributorsPerLine": 7,
+  "linkToUsage": false
+}
