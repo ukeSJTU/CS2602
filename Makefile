@@ -351,6 +351,32 @@ examples_Chapter4_4-16_wasm/fast:
 .PHONY : examples_Chapter4_4-16_wasm/fast
 
 #=============================================================================
+# Target rules for targets named examples_Chapter4_4-17_wasm
+
+# Build rule for target.
+examples_Chapter4_4-17_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter4_4-17_wasm
+.PHONY : examples_Chapter4_4-17_wasm
+
+# fast build rule for target.
+examples_Chapter4_4-17_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-17_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-17_wasm.dir/build
+.PHONY : examples_Chapter4_4-17_wasm/fast
+
+#=============================================================================
+# Target rules for targets named examples_Chapter4_4-18_wasm
+
+# Build rule for target.
+examples_Chapter4_4-18_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter4_4-18_wasm
+.PHONY : examples_Chapter4_4-18_wasm
+
+# fast build rule for target.
+examples_Chapter4_4-18_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-18_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-18_wasm.dir/build
+.PHONY : examples_Chapter4_4-18_wasm/fast
+
+#=============================================================================
 # Target rules for targets named examples_Chapter4_4-3_wasm
 
 # Build rule for target.
@@ -427,6 +453,19 @@ homework_11051_wasm: cmake_check_build_system
 homework_11051_wasm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/build
 .PHONY : homework_11051_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_12100_wasm
+
+# Build rule for target.
+homework_12100_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_12100_wasm
+.PHONY : homework_12100_wasm
+
+# fast build rule for target.
+homework_12100_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_12100_wasm.dir/build.make CMakeFiles/homework_12100_wasm.dir/build
+.PHONY : homework_12100_wasm/fast
 
 #=============================================================================
 # Target rules for targets named homework_1310_wasm
@@ -622,6 +661,19 @@ homework_2498_wasm: cmake_check_build_system
 homework_2498_wasm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2498_wasm.dir/build.make CMakeFiles/homework_2498_wasm.dir/build
 .PHONY : homework_2498_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_2499_wasm
+
+# Build rule for target.
+homework_2499_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2499_wasm
+.PHONY : homework_2499_wasm
+
+# fast build rule for target.
+homework_2499_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2499_wasm.dir/build.make CMakeFiles/homework_2499_wasm.dir/build
+.PHONY : homework_2499_wasm/fast
 
 #=============================================================================
 # Target rules for targets named homework_2513_wasm
@@ -1081,6 +1133,54 @@ src/examples/Chapter4/4-16/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-16_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-16_wasm.dir/src/examples/Chapter4/4-16/main.cpp.s
 .PHONY : src/examples/Chapter4/4-16/main.cpp.s
 
+src/examples/Chapter4/4-17/main.o: src/examples/Chapter4/4-17/main.cpp.o
+.PHONY : src/examples/Chapter4/4-17/main.o
+
+# target to build an object file
+src/examples/Chapter4/4-17/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-17_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-17_wasm.dir/src/examples/Chapter4/4-17/main.cpp.o
+.PHONY : src/examples/Chapter4/4-17/main.cpp.o
+
+src/examples/Chapter4/4-17/main.i: src/examples/Chapter4/4-17/main.cpp.i
+.PHONY : src/examples/Chapter4/4-17/main.i
+
+# target to preprocess a source file
+src/examples/Chapter4/4-17/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-17_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-17_wasm.dir/src/examples/Chapter4/4-17/main.cpp.i
+.PHONY : src/examples/Chapter4/4-17/main.cpp.i
+
+src/examples/Chapter4/4-17/main.s: src/examples/Chapter4/4-17/main.cpp.s
+.PHONY : src/examples/Chapter4/4-17/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter4/4-17/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-17_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-17_wasm.dir/src/examples/Chapter4/4-17/main.cpp.s
+.PHONY : src/examples/Chapter4/4-17/main.cpp.s
+
+src/examples/Chapter4/4-18/main.o: src/examples/Chapter4/4-18/main.cpp.o
+.PHONY : src/examples/Chapter4/4-18/main.o
+
+# target to build an object file
+src/examples/Chapter4/4-18/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-18_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-18_wasm.dir/src/examples/Chapter4/4-18/main.cpp.o
+.PHONY : src/examples/Chapter4/4-18/main.cpp.o
+
+src/examples/Chapter4/4-18/main.i: src/examples/Chapter4/4-18/main.cpp.i
+.PHONY : src/examples/Chapter4/4-18/main.i
+
+# target to preprocess a source file
+src/examples/Chapter4/4-18/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-18_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-18_wasm.dir/src/examples/Chapter4/4-18/main.cpp.i
+.PHONY : src/examples/Chapter4/4-18/main.cpp.i
+
+src/examples/Chapter4/4-18/main.s: src/examples/Chapter4/4-18/main.cpp.s
+.PHONY : src/examples/Chapter4/4-18/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter4/4-18/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-18_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-18_wasm.dir/src/examples/Chapter4/4-18/main.cpp.s
+.PHONY : src/examples/Chapter4/4-18/main.cpp.s
+
 src/examples/Chapter4/4-3/main.o: src/examples/Chapter4/4-3/main.cpp.o
 .PHONY : src/examples/Chapter4/4-3/main.o
 
@@ -1224,6 +1324,30 @@ src/homework/11051/main.s: src/homework/11051/main.cpp.s
 src/homework/11051/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/src/homework/11051/main.cpp.s
 .PHONY : src/homework/11051/main.cpp.s
+
+src/homework/12100/main.o: src/homework/12100/main.cpp.o
+.PHONY : src/homework/12100/main.o
+
+# target to build an object file
+src/homework/12100/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_12100_wasm.dir/build.make CMakeFiles/homework_12100_wasm.dir/src/homework/12100/main.cpp.o
+.PHONY : src/homework/12100/main.cpp.o
+
+src/homework/12100/main.i: src/homework/12100/main.cpp.i
+.PHONY : src/homework/12100/main.i
+
+# target to preprocess a source file
+src/homework/12100/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_12100_wasm.dir/build.make CMakeFiles/homework_12100_wasm.dir/src/homework/12100/main.cpp.i
+.PHONY : src/homework/12100/main.cpp.i
+
+src/homework/12100/main.s: src/homework/12100/main.cpp.s
+.PHONY : src/homework/12100/main.s
+
+# target to generate assembly for a file
+src/homework/12100/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_12100_wasm.dir/build.make CMakeFiles/homework_12100_wasm.dir/src/homework/12100/main.cpp.s
+.PHONY : src/homework/12100/main.cpp.s
 
 src/homework/1310/main.o: src/homework/1310/main.cpp.o
 .PHONY : src/homework/1310/main.o
@@ -1585,6 +1709,30 @@ src/homework/2498/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2498_wasm.dir/build.make CMakeFiles/homework_2498_wasm.dir/src/homework/2498/main.cpp.s
 .PHONY : src/homework/2498/main.cpp.s
 
+src/homework/2499/main.o: src/homework/2499/main.cpp.o
+.PHONY : src/homework/2499/main.o
+
+# target to build an object file
+src/homework/2499/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2499_wasm.dir/build.make CMakeFiles/homework_2499_wasm.dir/src/homework/2499/main.cpp.o
+.PHONY : src/homework/2499/main.cpp.o
+
+src/homework/2499/main.i: src/homework/2499/main.cpp.i
+.PHONY : src/homework/2499/main.i
+
+# target to preprocess a source file
+src/homework/2499/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2499_wasm.dir/build.make CMakeFiles/homework_2499_wasm.dir/src/homework/2499/main.cpp.i
+.PHONY : src/homework/2499/main.cpp.i
+
+src/homework/2499/main.s: src/homework/2499/main.cpp.s
+.PHONY : src/homework/2499/main.s
+
+# target to generate assembly for a file
+src/homework/2499/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2499_wasm.dir/build.make CMakeFiles/homework_2499_wasm.dir/src/homework/2499/main.cpp.s
+.PHONY : src/homework/2499/main.cpp.s
+
 src/homework/2513/main.o: src/homework/2513/main.cpp.o
 .PHONY : src/homework/2513/main.o
 
@@ -1659,12 +1807,15 @@ help:
 	@echo "... examples_Chapter3_3-8_wasm"
 	@echo "... examples_Chapter3_banking_wasm"
 	@echo "... examples_Chapter4_4-16_wasm"
+	@echo "... examples_Chapter4_4-17_wasm"
+	@echo "... examples_Chapter4_4-18_wasm"
 	@echo "... examples_Chapter4_4-3_wasm"
 	@echo "... examples_Chapter4_4-5_wasm"
 	@echo "... examples_Chapter4_4-7_wasm"
 	@echo "... homework_1080_wasm"
 	@echo "... homework_11005_wasm"
 	@echo "... homework_11051_wasm"
+	@echo "... homework_12100_wasm"
 	@echo "... homework_1310_wasm"
 	@echo "... homework_14151_wasm"
 	@echo "... homework_14315_wasm"
@@ -1680,6 +1831,7 @@ help:
 	@echo "... homework_2470_wasm"
 	@echo "... homework_2491_wasm"
 	@echo "... homework_2498_wasm"
+	@echo "... homework_2499_wasm"
 	@echo "... homework_2513_wasm"
 	@echo "... homework_2526_wasm"
 	@echo "... src/examples/Chapter1/1-1/main.o"
@@ -1736,6 +1888,12 @@ help:
 	@echo "... src/examples/Chapter4/4-16/main.o"
 	@echo "... src/examples/Chapter4/4-16/main.i"
 	@echo "... src/examples/Chapter4/4-16/main.s"
+	@echo "... src/examples/Chapter4/4-17/main.o"
+	@echo "... src/examples/Chapter4/4-17/main.i"
+	@echo "... src/examples/Chapter4/4-17/main.s"
+	@echo "... src/examples/Chapter4/4-18/main.o"
+	@echo "... src/examples/Chapter4/4-18/main.i"
+	@echo "... src/examples/Chapter4/4-18/main.s"
 	@echo "... src/examples/Chapter4/4-3/main.o"
 	@echo "... src/examples/Chapter4/4-3/main.i"
 	@echo "... src/examples/Chapter4/4-3/main.s"
@@ -1754,6 +1912,9 @@ help:
 	@echo "... src/homework/11051/main.o"
 	@echo "... src/homework/11051/main.i"
 	@echo "... src/homework/11051/main.s"
+	@echo "... src/homework/12100/main.o"
+	@echo "... src/homework/12100/main.i"
+	@echo "... src/homework/12100/main.s"
 	@echo "... src/homework/1310/main.o"
 	@echo "... src/homework/1310/main.i"
 	@echo "... src/homework/1310/main.s"
@@ -1799,6 +1960,9 @@ help:
 	@echo "... src/homework/2498/main.o"
 	@echo "... src/homework/2498/main.i"
 	@echo "... src/homework/2498/main.s"
+	@echo "... src/homework/2499/main.o"
+	@echo "... src/homework/2499/main.i"
+	@echo "... src/homework/2499/main.s"
 	@echo "... src/homework/2513/main.o"
 	@echo "... src/homework/2513/main.i"
 	@echo "... src/homework/2513/main.s"
