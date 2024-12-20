@@ -32,7 +32,7 @@ void quickSort(elemType a[], int start, int end)
         a[hole] = a[j];
         hole = j;
 
-        // 从j位置开始从后往前找第一个小于tmp的值
+        // 从i位置开始从后往前找第一个小于tmp的值
         while ((i < j) && (a[i] < tmp)) {
             i++;
         }
