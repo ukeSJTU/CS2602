@@ -23,8 +23,10 @@
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/examples_Chapter4_4-7_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/examples_Chapter7_7-1_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/examples_Chapter7_7-2_wasm.dir
+/home/runner/work/CS2602/CS2602/build/CMakeFiles/examples_Chapter7_7-4_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/examples_Chapter7_7-5_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/examples_Chapter7_7-6_wasm.dir
+/home/runner/work/CS2602/CS2602/build/CMakeFiles/examples_Chapter7_7-7_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_1080_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_11005_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_11051_wasm.dir
@@ -32,6 +34,10 @@
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_1310_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_14151_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_14315_wasm.dir
+/home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_2158_wasm.dir
+/home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_2160_wasm.dir
+/home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_2188_wasm.dir
+/home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_2189_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_2218_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_2416_wasm.dir
 /home/runner/work/CS2602/CS2602/build/CMakeFiles/homework_2417_wasm.dir

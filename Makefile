@@ -442,6 +442,19 @@ examples_Chapter7_7-2_wasm/fast:
 .PHONY : examples_Chapter7_7-2_wasm/fast
 
 #=============================================================================
+# Target rules for targets named examples_Chapter7_7-4_wasm
+
+# Build rule for target.
+examples_Chapter7_7-4_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter7_7-4_wasm
+.PHONY : examples_Chapter7_7-4_wasm
+
+# fast build rule for target.
+examples_Chapter7_7-4_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-4_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-4_wasm.dir/build
+.PHONY : examples_Chapter7_7-4_wasm/fast
+
+#=============================================================================
 # Target rules for targets named examples_Chapter7_7-5_wasm
 
 # Build rule for target.
@@ -466,6 +479,19 @@ examples_Chapter7_7-6_wasm: cmake_check_build_system
 examples_Chapter7_7-6_wasm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-6_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-6_wasm.dir/build
 .PHONY : examples_Chapter7_7-6_wasm/fast
+
+#=============================================================================
+# Target rules for targets named examples_Chapter7_7-7_wasm
+
+# Build rule for target.
+examples_Chapter7_7-7_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter7_7-7_wasm
+.PHONY : examples_Chapter7_7-7_wasm
+
+# fast build rule for target.
+examples_Chapter7_7-7_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-7_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-7_wasm.dir/build
+.PHONY : examples_Chapter7_7-7_wasm/fast
 
 #=============================================================================
 # Target rules for targets named homework_1080_wasm
@@ -557,6 +583,58 @@ homework_14315_wasm: cmake_check_build_system
 homework_14315_wasm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_14315_wasm.dir/build.make CMakeFiles/homework_14315_wasm.dir/build
 .PHONY : homework_14315_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_2158_wasm
+
+# Build rule for target.
+homework_2158_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2158_wasm
+.PHONY : homework_2158_wasm
+
+# fast build rule for target.
+homework_2158_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2158_wasm.dir/build.make CMakeFiles/homework_2158_wasm.dir/build
+.PHONY : homework_2158_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_2160_wasm
+
+# Build rule for target.
+homework_2160_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2160_wasm
+.PHONY : homework_2160_wasm
+
+# fast build rule for target.
+homework_2160_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2160_wasm.dir/build.make CMakeFiles/homework_2160_wasm.dir/build
+.PHONY : homework_2160_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_2188_wasm
+
+# Build rule for target.
+homework_2188_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2188_wasm
+.PHONY : homework_2188_wasm
+
+# fast build rule for target.
+homework_2188_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2188_wasm.dir/build.make CMakeFiles/homework_2188_wasm.dir/build
+.PHONY : homework_2188_wasm/fast
+
+#=============================================================================
+# Target rules for targets named homework_2189_wasm
+
+# Build rule for target.
+homework_2189_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_2189_wasm
+.PHONY : homework_2189_wasm
+
+# fast build rule for target.
+homework_2189_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2189_wasm.dir/build.make CMakeFiles/homework_2189_wasm.dir/build
+.PHONY : homework_2189_wasm/fast
 
 #=============================================================================
 # Target rules for targets named homework_2218_wasm
@@ -1353,6 +1431,30 @@ src/examples/Chapter7/7-2/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-2_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-2_wasm.dir/src/examples/Chapter7/7-2/main.cpp.s
 .PHONY : src/examples/Chapter7/7-2/main.cpp.s
 
+src/examples/Chapter7/7-4/main.o: src/examples/Chapter7/7-4/main.cpp.o
+.PHONY : src/examples/Chapter7/7-4/main.o
+
+# target to build an object file
+src/examples/Chapter7/7-4/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-4_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-4_wasm.dir/src/examples/Chapter7/7-4/main.cpp.o
+.PHONY : src/examples/Chapter7/7-4/main.cpp.o
+
+src/examples/Chapter7/7-4/main.i: src/examples/Chapter7/7-4/main.cpp.i
+.PHONY : src/examples/Chapter7/7-4/main.i
+
+# target to preprocess a source file
+src/examples/Chapter7/7-4/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-4_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-4_wasm.dir/src/examples/Chapter7/7-4/main.cpp.i
+.PHONY : src/examples/Chapter7/7-4/main.cpp.i
+
+src/examples/Chapter7/7-4/main.s: src/examples/Chapter7/7-4/main.cpp.s
+.PHONY : src/examples/Chapter7/7-4/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter7/7-4/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-4_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-4_wasm.dir/src/examples/Chapter7/7-4/main.cpp.s
+.PHONY : src/examples/Chapter7/7-4/main.cpp.s
+
 src/examples/Chapter7/7-5/main.o: src/examples/Chapter7/7-5/main.cpp.o
 .PHONY : src/examples/Chapter7/7-5/main.o
 
@@ -1400,6 +1502,30 @@ src/examples/Chapter7/7-6/main.s: src/examples/Chapter7/7-6/main.cpp.s
 src/examples/Chapter7/7-6/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-6_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-6_wasm.dir/src/examples/Chapter7/7-6/main.cpp.s
 .PHONY : src/examples/Chapter7/7-6/main.cpp.s
+
+src/examples/Chapter7/7-7/main.o: src/examples/Chapter7/7-7/main.cpp.o
+.PHONY : src/examples/Chapter7/7-7/main.o
+
+# target to build an object file
+src/examples/Chapter7/7-7/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-7_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-7_wasm.dir/src/examples/Chapter7/7-7/main.cpp.o
+.PHONY : src/examples/Chapter7/7-7/main.cpp.o
+
+src/examples/Chapter7/7-7/main.i: src/examples/Chapter7/7-7/main.cpp.i
+.PHONY : src/examples/Chapter7/7-7/main.i
+
+# target to preprocess a source file
+src/examples/Chapter7/7-7/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-7_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-7_wasm.dir/src/examples/Chapter7/7-7/main.cpp.i
+.PHONY : src/examples/Chapter7/7-7/main.cpp.i
+
+src/examples/Chapter7/7-7/main.s: src/examples/Chapter7/7-7/main.cpp.s
+.PHONY : src/examples/Chapter7/7-7/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter7/7-7/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter7_7-7_wasm.dir/build.make CMakeFiles/examples_Chapter7_7-7_wasm.dir/src/examples/Chapter7/7-7/main.cpp.s
+.PHONY : src/examples/Chapter7/7-7/main.cpp.s
 
 src/homework/1080/main.o: src/homework/1080/main.cpp.o
 .PHONY : src/homework/1080/main.o
@@ -1568,6 +1694,102 @@ src/homework/14315/main.s: src/homework/14315/main.cpp.s
 src/homework/14315/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_14315_wasm.dir/build.make CMakeFiles/homework_14315_wasm.dir/src/homework/14315/main.cpp.s
 .PHONY : src/homework/14315/main.cpp.s
+
+src/homework/2158/main.o: src/homework/2158/main.cpp.o
+.PHONY : src/homework/2158/main.o
+
+# target to build an object file
+src/homework/2158/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2158_wasm.dir/build.make CMakeFiles/homework_2158_wasm.dir/src/homework/2158/main.cpp.o
+.PHONY : src/homework/2158/main.cpp.o
+
+src/homework/2158/main.i: src/homework/2158/main.cpp.i
+.PHONY : src/homework/2158/main.i
+
+# target to preprocess a source file
+src/homework/2158/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2158_wasm.dir/build.make CMakeFiles/homework_2158_wasm.dir/src/homework/2158/main.cpp.i
+.PHONY : src/homework/2158/main.cpp.i
+
+src/homework/2158/main.s: src/homework/2158/main.cpp.s
+.PHONY : src/homework/2158/main.s
+
+# target to generate assembly for a file
+src/homework/2158/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2158_wasm.dir/build.make CMakeFiles/homework_2158_wasm.dir/src/homework/2158/main.cpp.s
+.PHONY : src/homework/2158/main.cpp.s
+
+src/homework/2160/main.o: src/homework/2160/main.cpp.o
+.PHONY : src/homework/2160/main.o
+
+# target to build an object file
+src/homework/2160/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2160_wasm.dir/build.make CMakeFiles/homework_2160_wasm.dir/src/homework/2160/main.cpp.o
+.PHONY : src/homework/2160/main.cpp.o
+
+src/homework/2160/main.i: src/homework/2160/main.cpp.i
+.PHONY : src/homework/2160/main.i
+
+# target to preprocess a source file
+src/homework/2160/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2160_wasm.dir/build.make CMakeFiles/homework_2160_wasm.dir/src/homework/2160/main.cpp.i
+.PHONY : src/homework/2160/main.cpp.i
+
+src/homework/2160/main.s: src/homework/2160/main.cpp.s
+.PHONY : src/homework/2160/main.s
+
+# target to generate assembly for a file
+src/homework/2160/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2160_wasm.dir/build.make CMakeFiles/homework_2160_wasm.dir/src/homework/2160/main.cpp.s
+.PHONY : src/homework/2160/main.cpp.s
+
+src/homework/2188/main.o: src/homework/2188/main.cpp.o
+.PHONY : src/homework/2188/main.o
+
+# target to build an object file
+src/homework/2188/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2188_wasm.dir/build.make CMakeFiles/homework_2188_wasm.dir/src/homework/2188/main.cpp.o
+.PHONY : src/homework/2188/main.cpp.o
+
+src/homework/2188/main.i: src/homework/2188/main.cpp.i
+.PHONY : src/homework/2188/main.i
+
+# target to preprocess a source file
+src/homework/2188/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2188_wasm.dir/build.make CMakeFiles/homework_2188_wasm.dir/src/homework/2188/main.cpp.i
+.PHONY : src/homework/2188/main.cpp.i
+
+src/homework/2188/main.s: src/homework/2188/main.cpp.s
+.PHONY : src/homework/2188/main.s
+
+# target to generate assembly for a file
+src/homework/2188/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2188_wasm.dir/build.make CMakeFiles/homework_2188_wasm.dir/src/homework/2188/main.cpp.s
+.PHONY : src/homework/2188/main.cpp.s
+
+src/homework/2189/main.o: src/homework/2189/main.cpp.o
+.PHONY : src/homework/2189/main.o
+
+# target to build an object file
+src/homework/2189/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2189_wasm.dir/build.make CMakeFiles/homework_2189_wasm.dir/src/homework/2189/main.cpp.o
+.PHONY : src/homework/2189/main.cpp.o
+
+src/homework/2189/main.i: src/homework/2189/main.cpp.i
+.PHONY : src/homework/2189/main.i
+
+# target to preprocess a source file
+src/homework/2189/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2189_wasm.dir/build.make CMakeFiles/homework_2189_wasm.dir/src/homework/2189/main.cpp.i
+.PHONY : src/homework/2189/main.cpp.i
+
+src/homework/2189/main.s: src/homework/2189/main.cpp.s
+.PHONY : src/homework/2189/main.s
+
+# target to generate assembly for a file
+src/homework/2189/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_2189_wasm.dir/build.make CMakeFiles/homework_2189_wasm.dir/src/homework/2189/main.cpp.s
+.PHONY : src/homework/2189/main.cpp.s
 
 src/homework/2218/main.o: src/homework/2218/main.cpp.o
 .PHONY : src/homework/2218/main.o
@@ -1962,8 +2184,10 @@ help:
 	@echo "... examples_Chapter4_4-7_wasm"
 	@echo "... examples_Chapter7_7-1_wasm"
 	@echo "... examples_Chapter7_7-2_wasm"
+	@echo "... examples_Chapter7_7-4_wasm"
 	@echo "... examples_Chapter7_7-5_wasm"
 	@echo "... examples_Chapter7_7-6_wasm"
+	@echo "... examples_Chapter7_7-7_wasm"
 	@echo "... homework_1080_wasm"
 	@echo "... homework_11005_wasm"
 	@echo "... homework_11051_wasm"
@@ -1971,6 +2195,10 @@ help:
 	@echo "... homework_1310_wasm"
 	@echo "... homework_14151_wasm"
 	@echo "... homework_14315_wasm"
+	@echo "... homework_2158_wasm"
+	@echo "... homework_2160_wasm"
+	@echo "... homework_2188_wasm"
+	@echo "... homework_2189_wasm"
 	@echo "... homework_2218_wasm"
 	@echo "... homework_2416_wasm"
 	@echo "... homework_2417_wasm"
@@ -2061,12 +2289,18 @@ help:
 	@echo "... src/examples/Chapter7/7-2/main.o"
 	@echo "... src/examples/Chapter7/7-2/main.i"
 	@echo "... src/examples/Chapter7/7-2/main.s"
+	@echo "... src/examples/Chapter7/7-4/main.o"
+	@echo "... src/examples/Chapter7/7-4/main.i"
+	@echo "... src/examples/Chapter7/7-4/main.s"
 	@echo "... src/examples/Chapter7/7-5/main.o"
 	@echo "... src/examples/Chapter7/7-5/main.i"
 	@echo "... src/examples/Chapter7/7-5/main.s"
 	@echo "... src/examples/Chapter7/7-6/main.o"
 	@echo "... src/examples/Chapter7/7-6/main.i"
 	@echo "... src/examples/Chapter7/7-6/main.s"
+	@echo "... src/examples/Chapter7/7-7/main.o"
+	@echo "... src/examples/Chapter7/7-7/main.i"
+	@echo "... src/examples/Chapter7/7-7/main.s"
 	@echo "... src/homework/1080/main.o"
 	@echo "... src/homework/1080/main.i"
 	@echo "... src/homework/1080/main.s"
@@ -2088,6 +2322,18 @@ help:
 	@echo "... src/homework/14315/main.o"
 	@echo "... src/homework/14315/main.i"
 	@echo "... src/homework/14315/main.s"
+	@echo "... src/homework/2158/main.o"
+	@echo "... src/homework/2158/main.i"
+	@echo "... src/homework/2158/main.s"
+	@echo "... src/homework/2160/main.o"
+	@echo "... src/homework/2160/main.i"
+	@echo "... src/homework/2160/main.s"
+	@echo "... src/homework/2188/main.o"
+	@echo "... src/homework/2188/main.i"
+	@echo "... src/homework/2188/main.s"
+	@echo "... src/homework/2189/main.o"
+	@echo "... src/homework/2189/main.i"
+	@echo "... src/homework/2189/main.s"
 	@echo "... src/homework/2218/main.o"
 	@echo "... src/homework/2218/main.i"
 	@echo "... src/homework/2218/main.s"

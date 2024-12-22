@@ -151,6 +151,12 @@
 },
 {
   "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter7_7-4_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter7_7-4_wasm.dir/src/examples/Chapter7/7-4/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-4/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-4/main.cpp",
+  "output": "CMakeFiles/examples_Chapter7_7-4_wasm.dir/src/examples/Chapter7/7-4/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
   "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter7_7-5_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter7_7-5_wasm.dir/src/examples/Chapter7/7-5/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-5/main.cpp",
   "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-5/main.cpp",
   "output": "CMakeFiles/examples_Chapter7_7-5_wasm.dir/src/examples/Chapter7/7-5/main.cpp.o"
@@ -160,6 +166,12 @@
   "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter7_7-6_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter7_7-6_wasm.dir/src/examples/Chapter7/7-6/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-6/main.cpp",
   "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-6/main.cpp",
   "output": "CMakeFiles/examples_Chapter7_7-6_wasm.dir/src/examples/Chapter7/7-6/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter7_7-7_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter7_7-7_wasm.dir/src/examples/Chapter7/7-7/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-7/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-7/main.cpp",
+  "output": "CMakeFiles/examples_Chapter7_7-7_wasm.dir/src/examples/Chapter7/7-7/main.cpp.o"
 },
 {
   "directory": "/home/runner/work/CS2602/CS2602/build",
@@ -202,6 +214,30 @@
   "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/homework_14315_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/homework_14315_wasm.dir/src/homework/14315/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/homework/14315/main.cpp",
   "file": "/home/runner/work/CS2602/CS2602/src/homework/14315/main.cpp",
   "output": "CMakeFiles/homework_14315_wasm.dir/src/homework/14315/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/homework_2158_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/homework_2158_wasm.dir/src/homework/2158/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/homework/2158/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/homework/2158/main.cpp",
+  "output": "CMakeFiles/homework_2158_wasm.dir/src/homework/2158/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/homework_2160_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/homework_2160_wasm.dir/src/homework/2160/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/homework/2160/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/homework/2160/main.cpp",
+  "output": "CMakeFiles/homework_2160_wasm.dir/src/homework/2160/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/homework_2188_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/homework_2188_wasm.dir/src/homework/2188/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/homework/2188/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/homework/2188/main.cpp",
+  "output": "CMakeFiles/homework_2188_wasm.dir/src/homework/2188/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/homework_2189_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/homework_2189_wasm.dir/src/homework/2189/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/homework/2189/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/homework/2189/main.cpp",
+  "output": "CMakeFiles/homework_2189_wasm.dir/src/homework/2189/main.cpp.o"
 },
 {
   "directory": "/home/runner/work/CS2602/CS2602/build",
