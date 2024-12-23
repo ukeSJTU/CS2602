@@ -2,6 +2,9 @@ import os
 import subprocess
 import argparse
 import sys
+import json
+import yaml
+import psutil  # 获取内存使用信息
 from pathlib import Path
 from collections import defaultdict
 
@@ -34,14 +37,56 @@ def parse_args():
     parser.add_argument(
         "--binary_dir", default="./build/bin", help="可执行文件目录，默认 ./build/bin"
     )
+    parser.add_argument(
+        "--config",
+        default="./config.yaml",
+        help="指定配置文件路径，支持 JSON 和 YAML 格式，默认 ./config.yaml",
+    )
     return parser.parse_args()
+
+
+def load_config(config_path):
+    """加载配置文件 (支持 JSON 和 YAML)"""
+    config_path = Path(config_path)
+    if not config_path.exists():
+        print_color("⚠️ 未找到配置文件，将使用默认配置。", YELLOW)
+        return {}
+
+    try:
+        if config_path.suffix == ".json":
+            with open(config_path, "r") as f:
+                return json.load(f)
+        elif config_path.suffix in [".yaml", ".yml"]:
+            with open(config_path, "r") as f:
+                return yaml.safe_load(f)
+    except Exception as e:
+        print_color(f"❌ 配置文件加载失败: {e}", RED)
+        return {}
+
+
+def get_problem_config(config, problem_id):
+    """获取单个题目的配置，优先级：特定题目 > 全局配置 > 默认配置"""
+    default_config = {
+        "time_limit": 5,
+        "memory_limit": 256,  # 单位 MB
+        "max_attempts": 1,
+        "output_diff": True,
+    }
+    global_config = config.get("global", {})
+    problem_config = config.get(str(problem_id), {})
+
+    final_config = default_config.copy()
+    final_config.update(global_config)
+    final_config.update(problem_config)
+
+    return final_config
 
 
 def find_binary(problem_id, binary_dir):
     """找到二进制文件"""
     binary_name = f"homework_{problem_id}"
     binary_path = Path(binary_dir) / binary_name
-    if os.name == "nt":  # Windows 平台添加 .exe 后缀
+    if os.name == "nt":
         binary_path = binary_path.with_suffix(".exe")
     return binary_path
 
@@ -61,97 +106,101 @@ def get_testcases(testcases_dir, problem_id):
     return testcases
 
 
-def compile_and_run(binary_path, input_file):
-    """运行二进制程序并获取输出"""
+def compile_and_run(binary_path, input_file, time_limit):
+    """运行二进制程序并获取输出，同时监控内存使用"""
     try:
         with open(input_file, "r") as infile:
-            result = subprocess.run(
+            process = subprocess.Popen(
                 [str(binary_path)],
                 stdin=infile,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
-                timeout=5,  # 设置超时时间，避免死循环
             )
-        return result.stdout.strip(), result.stderr.strip()
+            ps_process = psutil.Process(process.pid)
+            peak_memory = 0
+
+            while process.poll() is None:
+                try:
+                    memory_usage = ps_process.memory_info().rss / (1024 * 1024)  # MB
+                    peak_memory = max(peak_memory, memory_usage)
+                except psutil.NoSuchProcess:
+                    break
+
+            stdout, stderr = process.communicate(timeout=time_limit)
+            returncode = process.returncode
+
+            if returncode != 0:
+                return None, f"Runtime Error (Exit Code: {returncode})", peak_memory
+
+            return stdout.strip(), stderr.strip(), peak_memory
+
     except subprocess.TimeoutExpired:
-        return None, "Timeout"
+        process.kill()
+        return None, "Time Limit Exceeded (TLE)", peak_memory
+    except Exception as e:
+        return None, f"Runtime Error: {e}", 0
 
 
-def evaluate_testcases(problem_id, binary_path, testcases):
+def evaluate_testcases(problem_id, binary_path, testcases, config):
     """评测所有测试用例"""
-    summary = {"AC": 0, "WA": 0}
+    summary = {"AC": 0, "WA": 0, "RE": 0, "TLE": 0, "MLE": 0}
+    time_limit = config["time_limit"]
+    memory_limit = config["memory_limit"]
+
     print_color(f"\n🚀 开始评测题目 {problem_id}...", GREEN)
 
     for i, (input_file, output_file) in enumerate(testcases, 1):
         print_color(f"🧪 测试用例 {i}: {input_file.name}", BLUE)
-        user_output, error_output = compile_and_run(binary_path, input_file)
+        user_output, error_output, peak_memory = compile_and_run(
+            binary_path, input_file, time_limit
+        )
 
-        if error_output:
-            print_color(f"❌ 程序运行错误：{error_output}", RED)
-            summary["WA"] += 1
+        if error_output == "Time Limit Exceeded (TLE)":
+            print_color("❌ 超时 (TLE)", RED)
+            summary["TLE"] += 1
+            continue
+
+        if "Runtime Error" in error_output:
+            print_color(f"❌ 运行时错误 (RE): {error_output}", RED)
+            summary["RE"] += 1
+            continue
+
+        if peak_memory > memory_limit:
+            print_color(f"❌ 内存超限 (MLE) — 使用 {peak_memory:.2f} MB", RED)
+            summary["MLE"] += 1
             continue
 
         with open(output_file, "r") as f:
             expected_output = f.read().strip()
 
         if user_output == expected_output:
-            print_color(f"✅ 测试用例 {i} 通过", GREEN)
+            print_color("✅ 测试用例通过 (AC)", GREEN)
             summary["AC"] += 1
         else:
-            print_color(f"❌ 测试用例 {i} 未通过", RED)
-            print(f"{YELLOW}期望输出：{RESET}\n{expected_output}")
-            print(f"{YELLOW}实际输出：{RESET}\n{user_output}")
+            print_color("❌ 输出错误 (WA)", RED)
             summary["WA"] += 1
 
-    total = summary["AC"] + summary["WA"]
-    print_color(
-        f"\n🎯 题目 {problem_id} 测试结果：{summary['AC']}/{total} AC, {summary['WA']}/{total} WA",
-        GREEN if summary["WA"] == 0 else RED,
-    )
     return summary
 
 
 def main():
     args = parse_args()
+    config = load_config(args.config)
     testcases_dir = Path(args.testcases_dir)
     binary_dir = Path(args.binary_dir)
 
-    # 获取所有题目编号或指定编号
-    problem_ids = (
-        args.ids
-        if args.ids
-        else [p.name for p in testcases_dir.iterdir() if p.is_dir()]
-    )
-    if not problem_ids:
-        print_color("⚠️ 未找到任何测试用例目录，请检查路径。", YELLOW)
-        sys.exit(1)
-
     total_summary = defaultdict(int)
 
-    for problem_id in problem_ids:
+    for problem_id in args.ids or [
+        p.name for p in testcases_dir.iterdir() if p.is_dir()
+    ]:
+        problem_config = get_problem_config(config, problem_id)
         binary_path = find_binary(problem_id, binary_dir)
         testcases = get_testcases(testcases_dir, problem_id)
-
-        if not binary_path.exists():
-            print_color(f"❌ 二进制文件 {binary_path} 不存在，跳过评测。", RED)
-            continue
-
-        if not testcases:
-            print_color(f"⚠️ 题目 {problem_id} 没有找到有效的测试用例，跳过。", YELLOW)
-            continue
-
-        summary = evaluate_testcases(problem_id, binary_path, testcases)
-        total_summary["AC"] += summary["AC"]
-        total_summary["WA"] += summary["WA"]
-
-    # 输出最终汇总
-    total_tests = total_summary["AC"] + total_summary["WA"]
-    print_color("\n🏆 总评测结果:", BLUE)
-    print_color(
-        f"🎯 总计 {total_tests} 测试用例，{total_summary['AC']} AC, {total_summary['WA']} WA",
-        GREEN if total_summary["WA"] == 0 else RED,
-    )
+        summary = evaluate_testcases(problem_id, binary_path, testcases, problem_config)
+        for k, v in summary.items():
+            total_summary[k] += v
 
 
 if __name__ == "__main__":
