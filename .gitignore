@@ -1,6 +1,8 @@
 # Ignore merged.cpp files because they automatically generated 
 merged.cpp
 
+# python venv
+venv
 
 # Build directories
 /build/
