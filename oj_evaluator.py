@@ -92,7 +92,7 @@ def find_binary(problem_id, binary_dir):
 
 
 def get_testcases(testcases_dir, problem_id):
-    """获取测试用例的输入输出文件"""
+    """获取测试用例的输入输出文件，并按字典序排序"""
     problem_dir = Path(testcases_dir) / problem_id
     if not problem_dir.exists():
         return []
@@ -103,6 +103,9 @@ def get_testcases(testcases_dir, problem_id):
         output_file = file.with_name(file.name.replace("-in.txt", "-out.txt"))
         if output_file.exists():
             testcases.append((input_file, output_file))
+
+    # 按文件名字典序排序
+    testcases.sort(key=lambda x: x[0].name)
     return testcases
 
 
