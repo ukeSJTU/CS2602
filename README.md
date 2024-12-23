@@ -42,6 +42,7 @@
     - [使用方法](#使用方法)
     - [功能特点](#功能特点)
   - [本地测试工具 (oj_evaluator.py)](#本地测试工具-oj_evaluatorpy)
+    - [环境配置](#环境配置-1)
     - [使用方法](#使用方法-1)
     - [配置文件](#配置文件)
     - [功能特点](#功能特点-1)
@@ -418,6 +419,30 @@ python merge_to_oj.py --clean
 ## 本地测试工具 (oj_evaluator.py)
 
 这个工具可以在本地运行和测试你的程序，无需等待 OJ 平台的结果。支持配置文件、内存监控、彩色输出等功能。
+
+### 环境配置
+
+脚本工具利用`pyyaml`加载并读取 yaml 格式的配置文件，还需要用到`psutil`来检测内存用量进一步判断是否`MLE(Memory Limit Exceed)`。因此需要先安装这两个第三方库才能运行。
+
+我推荐创建一个独立的虚拟环境再安装第三方库，你可以根据自己需求与实际情况选择合适的办法。
+
+在工作区根目录下执行：
+
+`Linux/MacOS`：
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+
+`Windows`：
+
+```sh
+python3 -m venv venv
+.\venv\Scripts\Activate.ps1
+pip3 install -r requirements.txt
+```
 
 ### 使用方法
 
