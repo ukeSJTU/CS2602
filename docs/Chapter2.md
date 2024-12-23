@@ -417,6 +417,17 @@ lorem ipsum
 
 现将 f 存放于 1014H 处并插入到单链表中，若 f 在逻辑上位于 a 和 e 之间，则 a, e, f 的“链接地址“依次是什么？
 
+<details>
+  <summary>答案</summary>
+
+从原本的表格上来看，单链表关系为`c -> a -> e -> b -> d`。
+
+所谓“f 在逻辑上位于 a 和 e 之间”，指的就是`a -> f -> e`。因此需要修改 a 的链接地址指向 f 所在的 1014H 内存地址，并且让 f 的链接地址指向 e 所在的内存地址 1010H。
+
+因此，a, e, f 的“链接地址“依次是`1014H`, `1004H`, `1010H`
+
+</details>
+
 #### 问题 6
 
 顺序表中如果每个结点除了存储元素的值，还要存储下一个元素的地址。那么这个地址可以是怎样的？是否有必要存在？
@@ -439,6 +450,13 @@ lorem ipsum
 #### 问题 9
 
 如习题 7，设计、测试 `linkList` 类及基本操作函数。
+
+<details>
+  <summary>答案</summary>
+
+头文件请参考[LinkList.h](../include/LinkList.h)。示例程序请参考[main.cpp](../src/examples/Chapter2/2-7/main.cpp)。测试程序请参考[test_linklist.cpp](../test/test_linklist.cpp)。
+
+</details>
 
 #### 问题 10
 
