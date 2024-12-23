@@ -43,6 +43,7 @@
     - [功能特点](#功能特点)
   - [本地测试工具 (oj_evaluator.py)](#本地测试工具-oj_evaluatorpy)
     - [使用方法](#使用方法-1)
+    - [配置文件](#配置文件)
     - [功能特点](#功能特点-1)
     - [测试用例格式](#测试用例格式)
 - [Q\&A](#qa)
@@ -416,7 +417,7 @@ python merge_to_oj.py --clean
 
 ## 本地测试工具 (oj_evaluator.py)
 
-这个工具可以在本地运行和测试你的程序，无需等待 OJ 平台的结果。
+这个工具可以在本地运行和测试你的程序，无需等待 OJ 平台的结果。支持配置文件、内存监控、彩色输出等功能。
 
 ### 使用方法
 
@@ -444,12 +445,36 @@ python oj_evaluator.py --testcases_dir ./my_testcases
 python oj_evaluator.py --binary_dir ./my_build/bin
 ```
 
+5. 使用配置文件：
+
+```bash
+python oj_evaluator.py --config my_config.yaml
+```
+
+### 配置文件
+
+支持 YAML 和 JSON 格式的配置文件，可以设置全局配置和针对特定题目的配置：
+
+```yaml
+global: # 全局配置
+  time_limit: 5 # 时间限制（秒）
+  memory_limit: 256 # 内存限制（MB）
+  max_attempts: 1 # 最大尝试次数
+  output_diff: true # 是否显示输出差异
+
+"14151": # 特定题目配置（会覆盖全局配置）
+  time_limit: 2
+  memory_limit: 128
+```
+
 ### 功能特点
 
 - 自动查找和运行测试用例
+- 支持配置文件（YAML/JSON）自定义运行参数
+- 内存使用监控（Memory Limit Exceeded 检测）
 - 彩色输出测试结果
-- 显示详细的对比信息
-- 支持超时检测
+- 详细的错误报告（包括 RE、TLE、MLE 等）
+- 支持多次尝试运行
 - 汇总测试结果统计
 
 ### 测试用例格式
