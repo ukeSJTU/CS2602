@@ -533,6 +533,19 @@ homework_11051_wasm/fast:
 .PHONY : homework_11051_wasm/fast
 
 #=============================================================================
+# Target rules for targets named homework_1141_wasm
+
+# Build rule for target.
+homework_1141_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework_1141_wasm
+.PHONY : homework_1141_wasm
+
+# fast build rule for target.
+homework_1141_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1141_wasm.dir/build.make CMakeFiles/homework_1141_wasm.dir/build
+.PHONY : homework_1141_wasm/fast
+
+#=============================================================================
 # Target rules for targets named homework_12100_wasm
 
 # Build rule for target.
@@ -1599,6 +1612,30 @@ src/homework/11051/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_11051_wasm.dir/build.make CMakeFiles/homework_11051_wasm.dir/src/homework/11051/main.cpp.s
 .PHONY : src/homework/11051/main.cpp.s
 
+src/homework/1141/main.o: src/homework/1141/main.cpp.o
+.PHONY : src/homework/1141/main.o
+
+# target to build an object file
+src/homework/1141/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1141_wasm.dir/build.make CMakeFiles/homework_1141_wasm.dir/src/homework/1141/main.cpp.o
+.PHONY : src/homework/1141/main.cpp.o
+
+src/homework/1141/main.i: src/homework/1141/main.cpp.i
+.PHONY : src/homework/1141/main.i
+
+# target to preprocess a source file
+src/homework/1141/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1141_wasm.dir/build.make CMakeFiles/homework_1141_wasm.dir/src/homework/1141/main.cpp.i
+.PHONY : src/homework/1141/main.cpp.i
+
+src/homework/1141/main.s: src/homework/1141/main.cpp.s
+.PHONY : src/homework/1141/main.s
+
+# target to generate assembly for a file
+src/homework/1141/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework_1141_wasm.dir/build.make CMakeFiles/homework_1141_wasm.dir/src/homework/1141/main.cpp.s
+.PHONY : src/homework/1141/main.cpp.s
+
 src/homework/12100/main.o: src/homework/12100/main.cpp.o
 .PHONY : src/homework/12100/main.o
 
@@ -2191,6 +2228,7 @@ help:
 	@echo "... homework_1080_wasm"
 	@echo "... homework_11005_wasm"
 	@echo "... homework_11051_wasm"
+	@echo "... homework_1141_wasm"
 	@echo "... homework_12100_wasm"
 	@echo "... homework_1310_wasm"
 	@echo "... homework_14151_wasm"
@@ -2310,6 +2348,9 @@ help:
 	@echo "... src/homework/11051/main.o"
 	@echo "... src/homework/11051/main.i"
 	@echo "... src/homework/11051/main.s"
+	@echo "... src/homework/1141/main.o"
+	@echo "... src/homework/1141/main.i"
+	@echo "... src/homework/1141/main.s"
 	@echo "... src/homework/12100/main.o"
 	@echo "... src/homework/12100/main.i"
 	@echo "... src/homework/12100/main.s"

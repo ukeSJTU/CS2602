@@ -1,0 +1,1 @@
+/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  -s WASM=1 -s ENVIRONMENT=web -s EXPORTED_RUNTIME_METHODS=["ccall","cwrap"] --shell-file /home/runner/work/CS2602/CS2602/shell.html @CMakeFiles/homework_1141_wasm.dir/objects1.rsp -o homework_1141_wasm.html
