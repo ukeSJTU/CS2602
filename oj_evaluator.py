@@ -159,18 +159,38 @@ def evaluate_testcases(problem_id, binary_path, testcases, config):
             binary_path, input_file, time_limit
         )
 
+        # 读取输入用例内容，用于错误时显示
+        with open(input_file, "r") as f:
+            input_content = f.read().strip()
+
         if error_output == "Time Limit Exceeded (TLE)":
-            print_color("❌ 超时 (TLE)", RED)
+            print_color(f"❌ 超时 (TLE)", RED)
+            print_color(f"  时间限制: {time_limit}s", RED)
+            print_color(f"  输入:", RED)
+            print_color(f"  {input_content}", RED)
             summary["TLE"] += 1
             continue
 
         if "Runtime Error" in error_output:
-            print_color(f"❌ 运行时错误 (RE): {error_output}", RED)
+            print_color(f"❌ 运行时错误 (RE):", RED)
+            print_color(f"  错误信息: {error_output}", RED)
+            if user_output and user_output.strip():
+                print_color("  标准输出 (stdout):", RED)
+                print_color(f"  {user_output}", RED)
+            if error_output and error_output.strip():
+                print_color("  错误输出 (stderr):", RED)
+                print_color(f"  {error_output}", RED)
+            print_color(f"  输入:", RED)
+            print_color(f"  {input_content}", RED)
             summary["RE"] += 1
             continue
 
         if peak_memory > memory_limit:
-            print_color(f"❌ 内存超限 (MLE) — 使用 {peak_memory:.2f} MB", RED)
+            print_color(f"❌ 内存超限 (MLE):", RED)
+            print_color(f"  内存限制: {memory_limit} MB", RED)
+            print_color(f"  实际使用: {peak_memory:.2f} MB", RED)
+            print_color(f"  输入:", RED)
+            print_color(f"  {input_content}", RED)
             summary["MLE"] += 1
             continue
 
@@ -181,7 +201,15 @@ def evaluate_testcases(problem_id, binary_path, testcases, config):
             print_color("✅ 测试用例通过 (AC)", GREEN)
             summary["AC"] += 1
         else:
-            print_color("❌ 输出错误 (WA)", RED)
+            print_color("❌ 输出错误 (WA):", RED)
+            print_color("  输入:", RED)
+            print_color(f"  {input_content}", RED)
+            print_color("  预期输出:", RED)
+            print_color(f"  {expected_output}", RED)
+            print_color("  实际输出:", RED)
+            print_color(
+                f"  {user_output if user_output is not None else '<无输出>'}", RED
+            )
             summary["WA"] += 1
 
     return summary
