@@ -22,7 +22,12 @@ TODO: 可以添加 manim 动画在一个模拟的表格中分别标记以上概�
     - [6.2.2 基本操作实现](#622-基本操作实现)
     - [6.2.3 顺序统计](#623-顺序统计)
   - [6.3 平衡二叉查找树](#63-平衡二叉查找树)
+    - [6.3.0 查找操作](#630-查找操作)
     - [6.3.1 插入操作](#631-插入操作)
+      - [LL](#ll)
+      - [RR](#rr)
+      - [LR](#lr)
+      - [RL](#rl)
     - [6.3.2 删除操作](#632-删除操作)
     - [6.3.3 最大高度](#633-最大高度)
   - [6.4 红黑树](#64-红黑树)
@@ -154,6 +159,69 @@ TODO: 下面的公式修改成 latex
 
 ## 6.3 平衡二叉查找树
 
+结点的平衡因子：一个结点的平衡因子等于其左子树的高度减去其右子树的高度。
+
+如果一棵二叉树中所有结点的平衡因子的绝对值不超过 1，即为-1，0，1 这三种情况，这棵二叉树就称为平衡二叉树。
+
+平衡二叉树的目标是限制二叉树的高度.
+
+平衡二叉查找树并不能直接和树高最矮划等号，但平衡二叉查找树已经接近于最矮了。
+
+这里补充三张 mermaid 图片：
+
+1. 非平衡二叉树
+2. 平衡二叉树但非最矮
+3. 最矮但非平衡二叉树
+
+```cpp
+template <class elemType>
+class AVL_Tree;
+
+template <class elemType>
+class Node
+{
+    friend class AVL_Tree<elemType>;
+
+   private:
+    elemType data;
+    Node *left, *right;
+    int factor;
+
+   public:
+    Node()
+    {
+        left = NULL;
+        right = NULL;
+        factor = 0;
+    }
+    Node(const elemType &x, Node *l = NULL, Node *r = NULL, int f = 0)
+    {
+        data = x;
+        left = l;
+        right = r;
+        factor = f;
+    }
+};
+
+template <class elemType>
+class AVL_Tree
+{
+   private:
+    Node<elemType> *root;
+
+   public:
+    binarySearchTree() { root = NULL; }
+    bool search(const elemType &x) const;
+    void insert(const elemType &x);
+    void remove(const elemType &x);
+    ~binarySearchTree()
+}
+```
+
+### 6.3.0 查找操作
+
+AVL 树的查找操作和普通的查找树一模一样。
+
 ### 6.3.1 插入操作
 
 - 基本步骤：
@@ -165,6 +233,198 @@ TODO: 下面的公式修改成 latex
   2. RR：左旋
   3. LR：左右旋
   4. RL：右左旋
+
+当元素插入到 AVL 树中时，就可能打破原有的平衡。
+新结点插入，会引起哪些结点的平衡因子发生变化？
+
+新插入结点的平衡因子为 0，一路自下而上往祖先结点传导。
+如果传导来自于左子树，说明左子树高度增加了 1，父结点平衡因子加 1；
+如果传导来自于右子树，说明右子树高度增加了 1，父结点平衡因子减 1。
+
+父结点平衡因子变化后，如果结果变为 0，说明原本的左右子树一边高、一边低，现在低的长高了，变得和高的一样了，以父结点为根的子树高度没有变化，自下而上的传导行为停止，祖父包括更上层祖先结点的平衡因子保持不变；
+父结点平衡因子变化后，如果结果变为非 0，依然按照传导来自左子树加 1、右子树减 1 的原则向祖父结点传导，直到某一层祖先结点的平衡因子变为 0、+2 或者-2、或者到达根结点。
+
+TODO：下面的 mermaid 图片需要想办法添加每个结点的平衡因子
+
+```mermaid
+flowchart TD
+  A((80)) --- B((40))
+  A((80)) --- C((90))
+  B((40)) --- D((30))
+  B((40)) --- E((50))
+  C((90)) --- F((85))
+  C((90)) --- G(( ))
+  style G fill:#f100,stroke-width:0px
+  D((30)) --- H(( ))
+  D((30)) --- I((35))
+  style H fill:#f100,stroke-width:0px
+  linkStyle 5 stroke:#0ff,stroke-width:0px
+  linkStyle 6 stroke:#0ff,stroke-width:0px
+```
+
+插入结点 38:
+
+```mermaid
+flowchart TD
+  A((80)) --- B((40))
+  A((80)) --- C((90))
+  B((40)) --- D((30))
+  B((40)) --- E((50))
+  C((90)) --- F((85))
+  C((90)) --- G(( ))
+  style G fill:#f100,stroke-width:0px
+  D((30)) --- H(( ))
+  D((30)) --- I((35))
+  I((35)) --- J(( ))
+  I((35)) --- K((38))
+  style H fill:#f100,stroke-width:0px
+  style J fill:#f100,stroke-width:0px
+  linkStyle 5 stroke:#0ff,stroke-width:0px
+  linkStyle 6 stroke:#0ff,stroke-width:0px
+  linkStyle 8 stroke:#0ff,stroke-width:0px
+```
+
+或者插入结点 99 后：
+
+```mermaid
+flowchart TD
+  A((80)) --- B((40))
+  A((80)) --- C((90))
+  B((40)) --- D((30))
+  B((40)) --- E((50))
+  C((90)) --- F((85))
+  C((90)) --- G((99))
+  D((30)) --- H(( ))
+  D((30)) --- I((35))
+  style H fill:#f100,stroke-width:0px
+  linkStyle 6 stroke:#0ff,stroke-width:0px
+```
+
+冲突结点：
+
+二叉查找树中一旦有一个结点的平衡因子不在-1，0，1 的范围内，二叉树就不再平衡。在向上的传导过程中，平衡因子第一个超过-1，0，1 范围的结点称为冲突结点。
+一旦发现冲突结点，暂停沿祖先向上的传导，先对二叉树在冲突结点附近实施调整，直到它变得平衡。
+
+下面就开始按照冲突结点的类型分别讨论该如何解决。
+
+冲突结点和来自插入方向的子结点、孙子结点关系分 4 种类型
+（LL、RR、LR、RL 型）
+
+#### LL
+
+上臂右旋
+
+TODO：添加 mermaid 演示
+
+#### RR
+
+上臂左旋
+
+TODO：添加 mermaid 演示
+
+#### LR
+
+TODO：添加 mermaid 演示
+
+LR 型比 LL、RR 型的情况要复杂些，根据 C 的平衡因子分，
+LR 有三种形态：LR0、LR+1、LR-1。
+LR0：
+
+双旋调整：一次下臂左旋，变 LL 型，一次上臂右旋，
+
+LR+1：
+
+双旋调整：一次下臂的左旋，变 LL 型，一次上臂的右旋，
+
+LR-1：
+
+双旋调整：旋转方法如 LR+1，但调整好后结点 A 平衡因子不同。
+
+总结：
+LR0、LR+1、LR-1 处理方法相同之处：
+做一次双旋，先下臂左旋，变 LL 型，再上臂右旋。
+
+不同之处在于双旋之后，局部根的左、右子结点平衡因子不同：
+LR0： 左、右子平衡因子均为 0
+LR+1： 左、右子平衡因子分别为 0、-1
+LR-1： 左、右子平衡因子分别为 1、0
+
+#### RL
+
+TODO：添加 mermaid 演示
+
+RL 型和 LR 型类似，也有三种形态：RL0、RL+1、RL-1。
+
+RL0、RL+1、RL-1 处理相同之处：
+做一次双旋，先下臂右旋，变 RR 型，再上臂左旋。
+
+不同之处在于双旋之后，局部根的左、右子结点平衡因子不同：
+RL0： 左、右子平衡因子分别为 0、0
+RL+1： 左、右子平衡因子分别为 0、-1
+RL-1： 左、右子平衡因子分别为 1、0
+
+另外一种方法：
+每个结点不存平衡因子，而是存储以它为根的二叉树的高度。
+
+存储高度的好处：
+因为根结点的高度值可由左、右子的高度值直接导出。
+以上 LR 和 RL 型中，C 平衡因子为+1、-1 型不同，但其高度都是一样的。
+一个结点的平衡性即是否危机结点，由其左、右子高度值的差临时判断。
+利于递归，算法逻辑更为简单。
+
+于是 AVL 树的代码定义可以调整成：
+
+```cpp
+template <class elemType>
+class Node
+{
+    friend class AVL_Tree<elemType>;
+
+   private:
+    elemType data;
+    Node *left, *right;
+    int height;
+
+   public:
+    Node()
+    {
+        left = NULL;
+        right = NULL;
+        height = 1;
+    }
+    Node(const elemType &x, Node *l = NULL, Node *r = NULL, int h = 1)
+    {
+        data = x;
+        left = l;
+        right = r;
+        height = h;
+    }
+};
+```
+
+从高度角度看 AVL 树中冲突结点各种情况的调整方法：
+
+LL 型： 做一次上臂右旋前后，各点高度变化
+
+RR 型： 做一次上臂左旋前后，，各点高度变化
+
+LR+1 型： 做一次下臂左旋，再做一次上臂右旋即转为 LL 型
+LR-1 型： 做一次下臂左旋，再做一次上臂右旋即转为 LL 型
+
+LR+1，LR-1 调整过后：C、A、B 的高度均为 h+1、h、h
+
+RL 型和 LR 型类似，也有三种形态。且三种形态：
+
+相同之处：做一次双旋，先下臂右旋，变 RR 型，再上臂左旋。且调整过后：RL+1、RL-1 中 C、A、B 均为 h+1、h、h
+
+下面是书本上的代码，我补充了一些中文注释：
+
+```cpp
+TODO: 补充AVL树的插入实现代码
+```
+
+TODO：算法实现的讨论：
+一次调整过后，向上影响的传导结束，为什么还要向上继续计算各祖先结点高度，如何改进？
 
 ### 6.3.2 删除操作
 
