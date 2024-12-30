@@ -154,13 +154,13 @@
 ```
 初始状态：
 [ | | | | | | ]
-↑         ↑
-s0        s1
+ ↑           ↑
+ s0          s1
 
 入栈后：
-[a|b| | |y|z]
-    ↑   ↑
-    s0  s1
+[a|b| | | |z]
+     ↑   ↑
+     s0  s1
 ```
 
 #### 优缺点
@@ -186,8 +186,7 @@ s0        s1
 
 所有基本操作的时间复杂度都是 $O(1)$。如果需要动态扩容，`push` 操作的时间复杂度是 $O(n)$，但分摊到每次操作仍然是 $O(1)$。
 
-时间复杂度分析：
-都是 O(1), `push`如果需要扩大空间那么就是 O(n), 但是分摊到每次插入操作那么仍然是 O(1).
+时间复杂度分析：都是 $O(1)$, `push` 如果需要扩大空间那么就是$O(n)$ , 但是分摊到每次插入操作那么仍然是$O(1)$.
 
 ### 3.1.3 栈的链式存储及实现
 
@@ -226,7 +225,7 @@ s0        s1
 结束    →  栈空，括号匹配
 ```
 
-具体实现可参考：[src/examples/Chapter3/check-brackets/main.cpp](../src/examples/Chapter3/check-brackets/main.cpp)
+具体实现可参考：[src/examples/Chapter3/3-5/main.cpp](../src/examples/Chapter3/3-5/main.cpp)
 
 ### 3.2.2 表达式计算
 
@@ -662,7 +661,14 @@ front_p = (front_p + 1) % maxSize;
 
 #### 问题 2
 
-如果一个字母序列的入栈站顺序为 `abcd` ，且假设在进栈的过程中，任何时候只要栈内有字母都可以选择出栈。则以下序列哪些不可能是出栈序列，为什么？<br/>(1)`dcba` (2)`badc` (3)`dbca` (4)`cabd` (5)`bacd` (6)`abcd`
+如果一个字母序列的入栈站顺序为 `abcd` ，且假设在进栈的过程中，任何时候只要栈内有字母都可以选择出栈。则以下序列哪些不可能是出栈序列，为什么？
+
+1. `dcba`
+2. `badc`
+3. `dbca`
+4. `cabd`
+5. `bacd`
+6. `abcd`
 
 <details>
   <summary>答案</summary>
@@ -685,7 +691,7 @@ front_p = (front_p + 1) % maxSize;
 <details>
   <summary>答案</summary>
 
-TODO
+`n-1`个。`p3`除了不可能是`3`以外，其他取值都有可能。
 
 </details>
 
@@ -723,8 +729,6 @@ pop(1)       []         2,4,5,3,1
    - 3 出栈时，1 必须还在栈中
    - 1 最后出栈
 
-具体实现可参考：[src/examples/Chapter3/3-10/main.cpp](../src/examples/Chapter3/3-10/main.cpp)
-
 </details>
 
 #### 问题 5
@@ -734,7 +738,14 @@ pop(1)       []         2,4,5,3,1
 <details>
   <summary>答案</summary>
 
-TODO
+`n`至少是 4.下面是 1 号列车进站的情形作为示例：
+
+```plaintext
+1号轨道: 8 5 2
+2号轨道: 6 4
+3号轨道: 3
+4号轨道: 1
+```
 
 </details>
 
@@ -764,13 +775,15 @@ D. `p(1) -> p(0) -> main()`
 <details>
   <summary>答案</summary>
 
-TODO
+A
+
+所有的 C++程序都应该从主函数`main`开始运行。在主函数中调用`p(1)`，接着递归调用`p(0)`。
 
 </details>
 
 #### 问题 7
 
-用单链表保存 m 个整数，结点含有两个字段：data 和 link，且$|data| \leq n$（n 为正整数）。现要求对于链表中 data 的绝对值相等的结点，仅保留第一次出现的结点而删除其余结点，如图 3-17 所示。
+用单链表保存 m 个整数，结点含有两个字段：data 和 link，且$|data| \leq n$（n 为正整数）。现要求对于链表中 data 的绝对值相等的结点，仅保留第一次出现的结点而删除其余结点，如下图所示。
 
 ```mermaid
 flowchart LR
@@ -781,6 +794,8 @@ flowchart LR
     node4 --> node5["| 15 | → |"]
     node5 --> null["NULL"]
 ```
+
+想要修改成下面这个样子：
 
 ```mermaid
 flowchart LR
@@ -806,13 +821,23 @@ TODO
 <details>
   <summary>答案</summary>
 
-TODO
+核心思想：使用数组 `visited` 来标记每个绝对值是否已经出现过，避免重复节点。
+
+具体操作过程：从头到尾遍历链表。
+
+- 对每个节点的 `|data|` 检查数组 `visited`：
+- 如果 `visited[|data|]` 为 `false`，则保留该节点，并将 `visited[|data|]` 设为 `true`。
+- 如果 `visited[|data|]` 为 `true`，则跳过当前节点，将前一个节点的 `link` 指向当前节点的下一个节点（删除当前节点）。
+
+时间复杂度：$O(m)$
+
+空间复杂度：$O(n)$
 
 </details>
 
 #### 问题 9
 
-写出求 n！的非递归和递归算法。要求：
+写出求$n!$的非递归和递归算法。要求：
 
 非递归算法中设计一个栈，不断压入整数 n, n-1, ... 1，当遇到 0 时，不断弹出并得到最终结果。
 
@@ -856,14 +881,14 @@ int factorial_non_recursive(int n) {
 
 算法分析：
 
-1. 时间复杂度：两种算法都是 O(n)
+1. 时间复杂度：两种算法都是$O(n)$
 2. 空间复杂度：
-   - 递归：O(n)，递归调用栈的深度
-   - 非递归：O(n)，显式栈的大小
+   - 递归：$O(n)$，递归调用栈的深度
+   - 非递归：$O(n)$，显式栈的大小
 
-示例：计算 5!
+示例：计算 $5!$
 
-```
+```plaintext
 递归版本的调用过程：
 5 * factorial(4)
 5 * (4 * factorial(3))
@@ -886,8 +911,6 @@ result = 1
 6 * 4 = 24
 24 * 5 = 120
 ```
-
-具体实现可参考：[src/examples/Chapter3/3-7/factorial.cpp](../src/examples/Chapter3/3-7/factorial.cpp)
 
 </details>
 
@@ -1022,15 +1045,13 @@ public:
 
 | 操作 | 顺序存储 | 链式存储 |
 | ---- | -------- | -------- |
-| 入队 | O(1)     | O(n)     |
-| 出队 | O(n)     | O(1)     |
+| 入队 | $O(1)$   | $O(n)$   |
+| 出队 | $O(n)$   | $O(1)$   |
 
 空间复杂度：
 
-- 顺序存储：O(n)，需要预先分配固定大小的数组
-- 链式存储：O(n)，随元素个数动态增长
-
-具体实现可参考：[PriorityQueue.h](../include/PriorityQueue.h)
+- 顺序存储：$O(n)$，需要预先分配固定大小的数组
+- 链式存储：$O(n)$，随元素个数动态增长
 
 </details>
 
@@ -1042,46 +1063,55 @@ public:
   <summary>答案</summary>
 
 ```cpp
-bool checkBrackets(const string& code) {
-    stack<char> s;
-
-    // 定义括号对应关系
-    map<char, char> brackets = {
-        {')', '('},
-        {']', '['},
-        {'}', '{'}
-    };
-
-    for (char c : code) {
-        // 遇到左括号，入栈
-        if (c == '(' || c == '[' || c == '{') {
-            s.push(c);
-        }
-        // 遇到右括号
-        else if (c == ')' || c == ']' || c == '}') {
-            // 栈空，说明缺少左括号
-            if (s.empty()) {
+// 检查括号匹配的逻辑
+bool checkBrackets(const std::string &expression, std::string &errorMsg, std::string &errorTrace)
+{
+    datastructures::LinkStack<std::pair<char, int>> s;
+    char ctemp;
+    for (int i = 0; i < expression.length(); ++i) {
+        ctemp = expression[i];
+        if (ctemp == '(' || ctemp == '[' || ctemp == '{') {
+            s.push({ctemp, i});
+        } else if (ctemp == ')' || ctemp == ']' || ctemp == '}') {
+            if (s.isEmpty()) {
+                errorMsg = "Unexpected closing bracket '" + std::string(1, ctemp) +
+                           "' at position " + std::to_string(i);
+                errorTrace = std::string(i, ' ') + "^";  // 标记位置
                 return false;
             }
+            auto [topChar, topPos] = s.top();
+            s.pop();
 
-            // 栈顶括号与当前右括号不匹配
-            if (s.top() != brackets[c]) {
+            // 检查匹配
+            if ((topChar == '(' && ctemp != ')') || (topChar == '[' && ctemp != ']') ||
+                (topChar == '{' && ctemp != '}')) {
+                errorMsg = "Mismatched brackets: '" + std::string(1, topChar) + "' at position " +
+                           std::to_string(topPos) + " and '" + std::string(1, ctemp) +
+                           "' at position " + std::to_string(i);
+                errorTrace =
+                    std::string(topPos, ' ') + "^" + std::string(i - topPos - 1, ' ') + "^";
                 return false;
             }
-
-            s.pop();  // 括号匹配，出栈
         }
     }
 
-    // 最后检查栈是否为空
-    return s.empty();
+    // 检查未匹配的左括号
+    if (!s.isEmpty()) {
+        auto [topChar, topPos] = s.top();
+        errorMsg = "Unclosed opening bracket '" + std::string(1, topChar) + "' at position " +
+                   std::to_string(topPos);
+        errorTrace = std::string(topPos, ' ') + "^";  // 标记位置
+        return false;
+    }
+
+    return true;
 }
 ```
 
 算法分析：
 
-1. 时间复杂度：O(n)，其中 n 是代码字符串的长度
-2. 空间复杂度：O(n)，最坏情况下所有字符都是左括号
+1. 时间复杂度：$O(n)$，其中`n`是代码字符串的长度
+2. 空间复杂度：$O(n)$，最坏情况下所有字符都是左括号
 
 测试用例：
 
@@ -1147,8 +1177,6 @@ string code4 = "for (i=0;i<n;i++) }";          // false
   p1=2, p2=3, p3=1
   不满足p3<p1<p2
 ```
-
-具体实现可参考：[src/examples/Chapter3/3-8/main.cpp](../src/examples/Chapter3/3-8/main.cpp)
 
 </details>
 
@@ -1221,7 +1249,7 @@ bool knapsackNonRecursive(int weights[], int n, int target) {
 
 算法分析：
 
-1. 时间复杂度：O(2ⁿ)，因为每个物品都有选或不选两种可能
+1. 时间复杂度：$O(2ⁿ)$，因为每个物品都有选或不选两种可能
 2. 空间复杂度：
    - 递归：O(n)，递归调用栈的深度
    - 非递归：O(n)，显式栈的大小
@@ -1246,8 +1274,6 @@ bool result2 = knapsackNonRecursive(weights, n, target);  // true
 1. 可以先对重量数组排序
 2. 可以添加记忆化搜索避免重复计算
 3. 可以使用动态规划优化时间复杂度
-
-具体实现可参考：[src/examples/Chapter3/3-6/knapsack.cpp](../src/examples/Chapter3/3-6/knapsack.cpp)
 
 </details>
 
