@@ -103,6 +103,12 @@
 },
 {
   "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/src/examples/Chapter3/check-brackets/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter3/check-brackets/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter3/check-brackets/main.cpp",
+  "output": "CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/src/examples/Chapter3/check-brackets/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
   "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter4_4-16_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter4_4-16_wasm.dir/src/examples/Chapter4/4-16/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter4/4-16/main.cpp",
   "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter4/4-16/main.cpp",
   "output": "CMakeFiles/examples_Chapter4_4-16_wasm.dir/src/examples/Chapter4/4-16/main.cpp.o"

@@ -338,6 +338,19 @@ examples_Chapter3_banking_wasm/fast:
 .PHONY : examples_Chapter3_banking_wasm/fast
 
 #=============================================================================
+# Target rules for targets named examples_Chapter3_check-brackets_wasm
+
+# Build rule for target.
+examples_Chapter3_check-brackets_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter3_check-brackets_wasm
+.PHONY : examples_Chapter3_check-brackets_wasm
+
+# fast build rule for target.
+examples_Chapter3_check-brackets_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/build.make CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/build
+.PHONY : examples_Chapter3_check-brackets_wasm/fast
+
+#=============================================================================
 # Target rules for targets named examples_Chapter4_4-16_wasm
 
 # Build rule for target.
@@ -1277,6 +1290,30 @@ src/examples/Chapter3/banking/main.s: src/examples/Chapter3/banking/main.cpp.s
 src/examples/Chapter3/banking/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter3_banking_wasm.dir/build.make CMakeFiles/examples_Chapter3_banking_wasm.dir/src/examples/Chapter3/banking/main.cpp.s
 .PHONY : src/examples/Chapter3/banking/main.cpp.s
+
+src/examples/Chapter3/check-brackets/main.o: src/examples/Chapter3/check-brackets/main.cpp.o
+.PHONY : src/examples/Chapter3/check-brackets/main.o
+
+# target to build an object file
+src/examples/Chapter3/check-brackets/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/build.make CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/src/examples/Chapter3/check-brackets/main.cpp.o
+.PHONY : src/examples/Chapter3/check-brackets/main.cpp.o
+
+src/examples/Chapter3/check-brackets/main.i: src/examples/Chapter3/check-brackets/main.cpp.i
+.PHONY : src/examples/Chapter3/check-brackets/main.i
+
+# target to preprocess a source file
+src/examples/Chapter3/check-brackets/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/build.make CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/src/examples/Chapter3/check-brackets/main.cpp.i
+.PHONY : src/examples/Chapter3/check-brackets/main.cpp.i
+
+src/examples/Chapter3/check-brackets/main.s: src/examples/Chapter3/check-brackets/main.cpp.s
+.PHONY : src/examples/Chapter3/check-brackets/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter3/check-brackets/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/build.make CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/src/examples/Chapter3/check-brackets/main.cpp.s
+.PHONY : src/examples/Chapter3/check-brackets/main.cpp.s
 
 src/examples/Chapter4/4-16/main.o: src/examples/Chapter4/4-16/main.cpp.o
 .PHONY : src/examples/Chapter4/4-16/main.o
@@ -2287,6 +2324,7 @@ help:
 	@echo "... examples_Chapter3_3-7_wasm"
 	@echo "... examples_Chapter3_3-8_wasm"
 	@echo "... examples_Chapter3_banking_wasm"
+	@echo "... examples_Chapter3_check-brackets_wasm"
 	@echo "... examples_Chapter4_4-16_wasm"
 	@echo "... examples_Chapter4_4-17_wasm"
 	@echo "... examples_Chapter4_4-18_wasm"
@@ -2379,6 +2417,9 @@ help:
 	@echo "... src/examples/Chapter3/banking/main.o"
 	@echo "... src/examples/Chapter3/banking/main.i"
 	@echo "... src/examples/Chapter3/banking/main.s"
+	@echo "... src/examples/Chapter3/check-brackets/main.o"
+	@echo "... src/examples/Chapter3/check-brackets/main.i"
+	@echo "... src/examples/Chapter3/check-brackets/main.s"
 	@echo "... src/examples/Chapter4/4-16/main.o"
 	@echo "... src/examples/Chapter4/4-16/main.i"
 	@echo "... src/examples/Chapter4/4-16/main.s"

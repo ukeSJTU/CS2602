@@ -75,6 +75,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/examples_Chapter3_3-7_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter3_3-8_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter3_banking_wasm.dir/DependInfo.cmake"
+  "CMakeFiles/examples_Chapter3_check-brackets_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter4_4-16_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter4_4-17_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter4_4-18_wasm.dir/DependInfo.cmake"
