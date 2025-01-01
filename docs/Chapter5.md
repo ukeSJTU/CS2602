@@ -25,6 +25,22 @@
   - [5.7 小结](#57-小结)
   - [5.8 习题](#58-习题)
     - [书本](#书本)
+      - [问题 1](#问题-1)
+      - [问题 2](#问题-2)
+      - [问题 3](#问题-3)
+      - [问题 4](#问题-4)
+      - [问题 5](#问题-5)
+      - [问题 6](#问题-6)
+      - [问题 7](#问题-7)
+      - [问题 8](#问题-8)
+      - [问题 9](#问题-9)
+      - [问题 10](#问题-10)
+      - [问题 11](#问题-11)
+      - [问题 12](#问题-12)
+      - [问题 13](#问题-13)
+      - [问题 14](#问题-14)
+      - [问题 15](#问题-15)
+      - [问题 16 `**`](#问题-16-)
     - [PPT](#ppt)
     - [ACM-OJ](#acm-oj)
 
@@ -84,18 +100,18 @@
 
 ### 5.1.2 图的抽象数据类型
 
+按照书本上来看，基本操作包括：
+
 构造类：
 
-- 创建空图
-- 销毁图
-- 清空图
+- 创建一个图结构
 
 属性类：
 
-- 获取顶点数和边数
-- 获取顶点的度
-- 判断边是否存在
-- 获取边的权值
+- 查询顶点个数
+- 查询边的条数
+- 查询各顶点的度
+- 查询某些边是否存在
 
 数据操纵类：
 
@@ -103,7 +119,6 @@
 - 删除顶点
 - 插入边
 - 删除边
-- 修改边的权值
 
 遍历类：
 
@@ -113,45 +128,191 @@
 应用操作类：
 
 - 最小生成树
-- 最短路径
 - 拓扑排序
+- 最短路径
 - 关键路径
+
+PPT 上的代码如下：
+
+```cpp
+#define DefaultNumVertex 20
+class outOfBound
+{
+};
+template <class verType, class edgeType>
+class Graph
+{
+   private:                 // 7个属性
+    int verts, edges;       // 图的实际顶点数和实际边数
+    int maxVertex;          // 图顶点的最大可能数量
+    verType *verList;       // 保存顶点数据的一维数组
+    edgeType **edgeMatrix;  // 保存邻接矩阵内容的二维数组
+    edgeType noEdge;        // 无边的标志，一般图为0， 网为无穷大MAXNUM
+    bool directed;          // 有向图为1，无向图为0
+   public:
+    // 初始化图结构g，direct为是否有向图标志，e为无边数据
+    Graph(bool direct, edgeType e);
+    ~Graph();
+    int numberOfVertex() const { return verts; };  // 返回图当前顶点数
+    int numberOfEdge() const { return edges; };    // 返回图当前边数
+    // 返回顶点为vertex值的元素在顶点表中的下标，无则-1。
+    int getVertex(verType vertex) const;
+    ;
+    // 判断某两个顶点间是否有边
+    bool existEdge(verType vertex1, verType vertex2) const;
+    void insertVertex(verType vertex);                                 // 插入顶点
+    void insertEdge(verType vertex1, verType vertex2, edgeType edge);  // 插入边
+    void removeVertex(verType vertex);                                 // 删除顶点
+    void removeEdge(verType vertex1, verType vertex2);                 // 删除边
+
+    // 返回顶点vertex的第一个邻接点,如果无邻接点返回-1
+    int getFirstNeighbor(verType vertex) const;
+    // 返回顶点vertex1相对vertex2的下一个邻接点，如果无下一个邻接点返回-1
+    int getNextNeighbor(verType vertex1, verType vertex2) const;
+    void disp() const;  // 显示邻接矩阵的值
+};
+```
 
 ## 5.2 图的存储表示
 
 ### 5.2.1 邻接矩阵和加权邻接矩阵
 
-TODO：调整文字格式,表述；添加示例,图解
-顶点由一个一维数组存储，边由一个二维数组存储，这种存储方式称邻接矩阵表示法。
+TODO：添加示例,图解
+
+**将顶点和边的存储独立开来**，**顶点**由一个一维数组存储，**边**由一个二维数组存储，这种存储方式称邻接矩阵表示法。
 
 在有向图中，其邻接矩阵某一行中所有 1 的个数，就是相应行顶点的出度；而某一列中所有 1 的个数，就是相应列顶点的入度。
+
 在无向图中，某一行中所有 1 的个数或者某一列中所有 1 的个数，就是相应顶点的度。
+
 无向图中，同一条边在邻接矩阵中出现两次，无向图的邻接矩阵是以主对角线为轴对称的，主对角线全为零，因此在存储无向图时可以只存储它的上三角矩阵或下三角矩阵。（三角矩阵可特殊存储）
-一般来说，边的总数即便远远小于 n2 ，也需 n2 个内存单元来存储边的信息，空间消耗大。
 
-当图中边带有权值时，可以用加权邻接矩阵表示加权有向图或无向图。
-如果顶点 i 至 j 有一条有向边且它的权值为 w，可令 A[i][j]=w；如果顶点 i 至 j 没有边相连，可令 A[i][j]=∞；主对角线上的元素依然有 A[i][i]=0。
+一般来说，边的总数即便远远小于$n^2$，也需$n^2$个内存单元来存储边的信息，空间消耗大。
 
-另外一种观点，顶点到自身没有边，也应用 ∞ 表示。
-都可以，本书采用第一种方案。
+当图中边带有权值时，可以用**加权邻接矩阵**表示加权有向图或无向图。
 
-PPT 上的关键属性方法实现请参考
+如果顶点$i$至$j$有一条有向边且它的权值为$w$，可令$A[i][j]=w$；如果顶点$i$至$j$没有边相连，可令$A[i][j]=\inf$；主对角线上的元素依然有$A[i][i]=0$。
+
+而对于邻接矩阵的$A[i][i]$的取值有两种看法：一种认为是权值为$0$，另外一种观点认为顶点到自身没有边，用$\inf$表示。两种方法都可以，本书采用第一种方案。
+
+```cpp
+// 初始化图结构g，direct为是否有向图标志，e为无边数据
+template <class verType, class edgeType>
+Graph<verType, edgeType>::Graph(bool direct, edgeType e)
+{
+    int i, j;
+    // 初始化属性
+    directed = direct;
+    noEdge = e;
+    verts = 0;
+    edges = 0;
+    maxVertex = DefaultNumVertex;
+    // 为存顶点的一维数组和存边的二维数组创建空间
+    verList = new verType[maxVertex];
+    edgeMatrix = new edgeType *[maxVertex];
+    // 初始化图结构g，direct为是否有向图标志，e为无边数据
+    for (i = 0; i < maxVertex; i++) edgeMatrix[i] = new edgeType[maxVertex];
+
+    // 初始化二维数组，边的个数为0
+    for (i = 0; i < maxVertex; i++)
+        for (j = 0; j < maxVertex; j++)
+            if (i == j)
+                edgeMatrix[i][j] = 0;  // 对角线元素
+            else
+                edgeMatrix[i][j] = noEdge;  // 无边
+}
+
+template <class verType, class edgeType>
+Graph<verType, edgeType>::~Graph()
+{
+    int i;
+    delete[] verList;
+    for (i = 0; i < maxVertex; i++) delete[] edgeMatrix[i];
+    delete[] edgeMatrix;
+}
+
+// 返回顶点为vertex值的元素在顶点表中的下标
+template <class verType, class edgeType>
+int Graph<verType, edgeType>::getVertex(verType vertex) const
+{
+    int i;
+    for (i = 0; i < verts; i++)
+        if (verList[i] == vertex) return i;
+    return -1;
+}
+
+// 判断某两个顶点是否有边
+template <class verType, class edgeType>
+bool Graph<verType, edgeType>::existEdge(verType vertex1, verType vertex2) const
+{
+    int i, j;
+    // 找到vertex1和vertex2的下标
+    i = getVertex(vertex1);
+    j = getVertex(vertex2);
+
+    // 无此顶点
+    if ((i == -1) || (j == -1)) return false;
+    if (i == j) return false;
+
+    if (edgeMatrix[i][j] == noEdge) return false;
+    return true;
+}
+
+// 删除顶点
+template <class verType, class edgeType>
+void Graph<verType, edgeType>::removeVertex(verType vertex)
+// 删除顶点
+{
+    int i, j, k;
+    // 找到该顶点在顶点表中的下标
+    i = getVertex(vertex);
+    // 无此顶点
+    if (i == -1) return;
+
+    // 在顶点表中删除顶点
+    verList[i] = verList[verts - 1];
+
+    // 计数删除顶点射出的边,边数减少
+    for (j = 0; j < verts; j++)
+        if ((j != i) && (edgeMatrix[i][j] != noEdge)) edges--;
+
+    // 如果是有向图，计数删除顶点射入的边,边数减少
+    if (directed) {
+        for (k = 0; k < verts; k++)
+            if (((k != i) && edgeMatrix[k][i] != noEdge)) edges--;
+    }
+    // 最后一行移到第i行
+    for (k = 0; k < verts; k++) edgeMatrix[i][k] = edgeMatrix[verts - 1][k];
+
+    // 最后一列移到第i列
+    for (k = 0; k < verts; k++) edgeMatrix[k][i] = edgeMatrix[k][verts - 1];
+    verts--;
+}
+```
+
+完整的代码实现以及相应的测试代码请参考[程序 5-2](../src/examples/Chapter5/5-2/main.cpp)
 
 ### 5.2.2 邻接表
 
-TODO：调整文字格式,表述；添加示例,图解
+TODO：添加示例,图解
 
-对于无向图，邻接于同一个顶点的所有边形成一条单链表；对于有向图，自同一个顶点出发的所有边形成一条单链表。顶点信息可以用一个一维数组来存储，这个数组称为顶点表，保存边信息的单链表称为边表。一个图可以由顶点表和边表共同表示，这种方法称为邻接表表示法。
+为了解决前面**邻接矩阵**对于边数较少的图存储时空间利用率低的问题，可以采用**邻接表**来存储。
 
-用邻接表表示图时，要想得到某个顶点的出度，要遍历该顶点连接的边表；要判断两个顶点见是否有边也需要遍历该顶点连接的边表；在这方面邻接表不如邻接矩阵。但是空间复杂度上邻接表 O(n+e)，邻接矩阵(On^2)，空间利用率提高。
+顶点信息仍然可以用一个一维数组来存储，这个数组称为**顶点表**。边的信息的用单链表存储，称为**边表**。一个图可以由顶点表和边表共同表示，这种方法称为邻接表表示法。
 
-邻接表计算入度很不放拜年，需要遍历所有的边表。于是提出逆邻接表，也就是保存该顶点的射入边形成的单链表首指针。那么自然逆邻接表不方便查询顶点的出度。后序我们学习十字链表兼顾二者。
+边表里面具体是什么内容？对于无向图，邻接于同一个顶点的所有边形成一条单链表；对于有向图，自同一个顶点出发的所有边形成一条单链表。
 
-无向图的边结点会重复，后序学习多重邻接表来解决这个问题
+用邻接表表示图时，要想得到某个顶点的出度，要遍历该顶点连接的边表；要判断两个顶点间是否有边也需要遍历该顶点连接的边表；在这方面邻接表不如邻接矩阵。但是空间复杂度上邻接表$O(n+e)$，邻接矩阵$O(n^2)$，空间利用率提高。
 
-如果图是假全图，那么边结点存储 weight 字段即可。
+邻接表计算入度很不方便，需要遍历所有的边表，时间复杂度为$O(n+e)$。于是提出**逆邻接表**，也就是保存该顶点的入边形成的单链表首指针。那么自然逆邻接表在查询顶点的出度不方便。后序我们会学习**十字链表**兼顾二者。
 
-顶点表也可以用单链表，而不是一维数组，相应地边结点 dest 字段存储需要修改。
+无向图的边结点会重复，后序学习**多重邻接表**来解决这个问题
+
+如果图是加权图，那么边结点存储`weight`字段即可。
+
+顶点表也可以用单链表，而不是一维数组，相应地边结点`dest`字段存储需要修改。原本的顶点表采用一维数组实现，我们在边表结点的`dest`字段存储的是边终点（邻接表）或者边起点（逆邻接表）的顶点在顶点表中的下标。现在顶点表采用链表实现的话，`dest`字段就应该存储指向每个顶点的指针。
+
+完整的代码实现以及相应的测试代码请参考[程序 5-3](../src/examples/Chapter5/5-3/main.cpp)
 
 ### 5.2.3 邻接多重表
 
@@ -332,6 +493,253 @@ flowchart TB
 ## 5.8 习题
 
 ### 书本
+
+#### 问题 1
+
+对下图`图5-35(a)`所示的有向图
+
+1. 指出每个顶点的出度、入度。
+2. 画出邻接矩阵存储图。
+3. 画出邻接表存储图。
+4. 画出逆邻接表存储图。
+5. 画出十字链表存储图。
+6. 指出强连通分量个数并画出所有强连通分量。
+7. 写出一个深度优先遍历序列和对应的生成树或者森林。
+8. 写出一个广度优先遍历序列和对应的生成树或者森林。
+9. 写出所有可能的拓扑排序序列。
+10. 指出起点为`A`终点为`F`的工程项目图中的关键活动和关键路径。
+11. 指出从顶点`A`到图中其他每个顶点的最短路径和最短路径长度。
+
+```mermaid
+graph LR
+  A((A))--1-->B((B))
+  A((A))--3-->C((D))
+  A((A))--5-->D((D))
+  B((B))--4-->C((D))
+  B((B))--2-->E((E))
+  C((C))--2-->D((D))
+  D((D))--1-->E((E))
+  D((D))--7-->F((F))
+  E((E))--2-->F((F))
+```
+
+<details>
+  <summary>答案</summary>
+
+6. 4 个强连通分量，分别是`{B}`,`{C}`,`{D}`,`{E}`.
+
+</details>
+
+#### 问题 2
+
+对下图`图5-35(b)`所示的无向图
+
+1. 指出每个顶点的度。
+2. 画出邻接矩阵存储图。
+3. 画出邻接表存储图。
+4. 画出多重邻接表存储图。
+5. 指出连通分量个数并画出所有的连通分量。
+6. 写出一个深度优先遍历序列和对应的生成树或者森林。
+7. 写出一个广度优先遍历序列和对应的生成树或者森林。
+8. 画出一个最小代价生成树。
+
+```mermaid
+graph LR
+  A((A))--1---B((B))
+  A((A))--3---C((D))
+  A((A))--5---D((D))
+  B((B))--4---C((D))
+  B((B))--2---E((E))
+  C((C))--2---D((D))
+  D((D))--1---E((E))
+  D((D))--7---F((F))
+  E((E))--2---F((F))
+```
+
+> **注意**：如果上面的图中仍然是带有箭头的，这应该是`mermaid`渲染问题。
+
+<details>
+  <summary>答案</summary>
+
+5. 1 个连通分量，就是图本身。
+
+</details>
+ 
+#### 问题 3
+
+对上图`图5-35(b)`所示的无向图进行遍历，则下列选项中，不是广度优先遍历序列的是
+
+A. A,B,C,D,E,F
+B. C, B, A, D, E, F
+C. E, B, D, F, A, C
+D. B, A, C, D, E, F
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 4
+
+对于一个用邻接表表示的有向图，写出算法构建一个逆邻接表。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 5
+
+设计一个算法判断图中两点是否存在路径，其中图用邻接表的形式存储。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 6
+
+如果有向图用邻接表表示，试写出算法判断图中是否存在回路。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 7
+
+假设无向图用邻接表表示，试写一个函数，找出每个连通分量所含的顶点集合。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 8
+
+假设有向图用邻接矩阵表示，试写一个函数找出每个强连通分量所含的顶点集合。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 9
+
+设有向图$G=<V,E>$，顶点集$V=\{v_0,v_1,v_2,v_3\}$，边集$E=\{<v_0,v_1>,<v_0,v_2>,<v_0,v_3>,<v_1,v_3>,\}$。若从顶点$v_0$开始对图进行深度优先遍历，则可能得到的不同遍历序列个数是多少？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 10
+
+假设图用邻接矩阵存储，实现深度优先和广度优先遍历算法，并分析其时间复杂度。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 11
+
+对于下图`图5-36`所示的有向图，给出其一条拓扑排序序列。
+
+```mermaid
+graph RL
+A((A))-->B((B))
+A((A))-->D((D))
+B((B))-->C((C))
+B((B))-->F((F))
+C((C))-->D((D))
+C((C))-->E((E))
+D((D))-->E((E))
+F((F))-->C((C))
+G((G))-->F((F))
+G((G))-->H((H))
+H((H))-->F((F))
+H((H))-->J((J))
+J((J))-->I((I))
+```
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 12
+
+编程实现利用克鲁斯卡尔算法找出无向连通图的最小代价生成树，要求输出最小代价生成树的各条边及最小代价。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 13
+
+设计一个算法找出一个无向图的最大代价生成树。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 14
+
+假设一个 AOE 网用邻接表存储，编程实现函数求单源最短路径。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 15
+
+假设一个 AOE 网用邻接表存储，编程实现函数求关键路径。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 16 `**`
+
+设计算法，找出所有从指定顶点出发，长度为$K$的简单路径，并以邻接表为例，实现该算法。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
 
 ### PPT
 

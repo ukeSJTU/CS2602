@@ -67,6 +67,27 @@
   - [4.8 小结](#48-小结)
   - [4.9 习题](#49-习题)
     - [书本](#书本)
+      - [问题 1](#问题-1)
+      - [问题 2](#问题-2)
+      - [问题 3](#问题-3)
+      - [问题 4](#问题-4)
+      - [问题 5](#问题-5)
+      - [问题 6](#问题-6)
+      - [问题 7](#问题-7)
+      - [问题 8 `*`](#问题-8-)
+      - [问题 9 `*`](#问题-9-)
+      - [问题 10](#问题-10)
+      - [问题 11](#问题-11)
+      - [问题 12](#问题-12)
+      - [问题 13](#问题-13)
+      - [问题 14 `*`](#问题-14-)
+      - [问题 15](#问题-15)
+      - [问题 16](#问题-16)
+      - [问题 17](#问题-17)
+      - [问题 18](#问题-18)
+      - [问题 19](#问题-19)
+      - [问题 20](#问题-20)
+      - [问题 21](#问题-21)
     - [PPT](#ppt)
     - [ACM-OJ](#acm-oj)
       - [2444 二叉树的堂姐妹堂兄弟](#2444-二叉树的堂姐妹堂兄弟)
@@ -193,7 +214,7 @@ TODO：下面的内容位置需要调整
 
 ## 4.2 二叉树
 
-TODO: 可以通过一个猜数字的例子关联后面的折半查找。1-100 随机选一个数，然后让另一个人猜测，根据猜大了/猜小了，进一步二分。补充一个 mermaid 图片展示二叉树如何对应。
+TODO: 可以通过一个猜数字的例子关联后面第六章的折半查找。1-100 随机选一个数，然后让另一个人猜测，根据猜大了/猜小了，进一步二分。补充一个 mermaid 图片展示二叉树如何对应。
 
 ### 4.2.1 二叉树的定义
 
@@ -270,145 +291,7 @@ N=∑1\_(𝑖=1)^𝑘▒2^(𝑖−1) =2^𝑘−1
 设 i=k 时，其左子存在且编号为 2k、右子存在且编号为 2k+1，则编号为 k+1 的结点因 k+1≤2k 就一定存在。如果编号为 k+1 的结点有左子，左子一定紧挨着编号为 k 的结点的右子，下标即为 2k+1+1=2（k+1）；如果编号为 k+1 的结点又有右子则其编号为其左子编号加一，为 2(k+1)+1。在完全二叉树中，n 个结点是从 1 开始连续编号的，结点的编号最大为 n，当某个结点存在，其编号必 ≤n，如果计算出某结点编号大于 n,就说明该结点不存在。
 结合以上讨论，根据数学归纳法，性质 5(2)、（3）成立。
 
-下面补充一道题目，来自第一次限时作业：2498 乌萨奇想回家：
-
-TODO: 调整格式
-
-题目描述
-乌萨奇生活在一棵二叉树上，他现在需要从树上的节点
-a
-a 到节点
-b
-b。他只能沿着二叉树的边移动，且每次只能移动一步。现给定一个二叉树以及节点
-a
-a 和
-b
-b，请你计算乌萨奇从
-a
-a 到
-b
-b 至少需要移动多少步。
-
-保证该二叉树为满二叉树（即该二叉树上每一层节点的数量都达到了最大值）。
-
-节点到自己的距离为 0。
-
-输入格式
-第一行，一个整数
-n
-n，表示二叉树的节点个数；
-
-第二行，二叉树的层次遍历，由
-n
-n 个整数组成，用空格隔开，每个整数代表二叉树的一个节点的序号；
-
-第三行，两个整数
-a
-a 和
-b
-b。
-
-输出格式
-一个整数，表示从
-a
-a 到
-b
-b 需要移动的最少步数。
-
-样例
-输入
-
-7
-10 2 3 4 50 60 7
-50 60
-输出
-
-4
-10
-/ \
- 2 3
-/ \ / \
- 4 50 60 7
-解释：50->2->10->3->60
-
-TODO：性质 5 可以结合第一次限时作业的某一道题目讲解。
-
-我的程序：
-
-```cpp
-#include <iostream>
-
-#include "LinkList.h"
-
-using namespace datastructures;
-
-class MinStepsBinaryTree
-{
-   private:
-    int nodeCount;  // 节点总数
-
-    // 获取节点的父节点编号
-    int getParent(int node) { return node / 2; }
-
-   public:
-    MinStepsBinaryTree(int n) : nodeCount(n) {}
-
-    // 计算两节点间最短距离
-    int findMinSteps(int a, int b)
-    {
-        if (a == b) return 0;
-
-        int steps = 0;
-        int node1 = a;
-        int node2 = b;
-
-        // 同时向上移动直到找到公共祖先
-        while (node1 != node2) {
-            // 编号大的节点向上移动一层
-            if (node1 > node2) {
-                node1 = getParent(node1);
-                steps++;
-            } else {
-                node2 = getParent(node2);
-                steps++;
-            }
-        }
-
-        return steps;
-    }
-};
-
-int main()
-{
-    int n;
-    std::cin >> n;  // 节点数量
-
-    LinkList<int> nodeList;
-    nodeList.insert(0, 0);  // 根节点
-
-    // 读取层序遍历（由于是满二叉树且不需要构建树结构，可以直接跳过）
-    for (int i = 1; i <= n; i++) {
-        int value;
-        std::cin >> value;
-        nodeList.insert(i, value);
-    }
-
-    // 读取起点和终点
-    int a, b;
-    std::cin >> a >> b;
-
-    int a_idx = nodeList.find(a);
-    int b_idx = nodeList.find(b);
-
-    MinStepsBinaryTree tree(n);
-    std::cout << tree.findMinSteps(a_idx, b_idx) << std::endl;
-
-    return 0;
-}
-
-```
-
-TODO：这里不知道 PPT 上为什么突然有这么一页
+TODO：这里不知道 PPT 上为什么突然有这么一页，需要找到更加合适的位置放置这段内容。
 构造类：在内存中创建一棵二叉树
 属性类：判二叉树空、获取根结点、求以某结点为根的二叉树中的结点个数和高度。
 数据操纵类：对二叉树的整体删除。对于二叉树结点的插入、删除操作，因不知其具体意义和要求，将它放到有实际插入、删除意义的后续章节中讲解。
@@ -416,7 +299,7 @@ TODO：这里不知道 PPT 上为什么突然有这么一页
 
 ### 4.2.3 二叉树的存储和实现
 
-顺序存储：
+1. 顺序存储：
 
 用一组连续的空间即数组来存储二叉树中的结点。
 
@@ -424,15 +307,395 @@ TODO：这里不知道 PPT 上为什么突然有这么一页
 当一个结点没有孩子结点时，结点的 left、right 字段设置为-1；当一个结点没有父结点时，结点的 parent 字段设置为-1。
 结点在存储时，可以随意地按照任何顺序将它们存储在数组中，元素之间的关系全靠字段 left、right 和 parent 来维系。
 
+TODO：需用补充 mermaid 画一个普通的二叉树，然后 markdown 表格生成对应的数据关系：data, left, right, parent.
+
+如果二叉树是完全二叉树，那么用顺序结构存储更加简单了。将结点存储在下标和编号相同的数组位置上，然后每个结点的左孩子是`2*i+1`,右孩子是`2*i+2`，父结点是`(i-1)/2`取整。根节点的 i 是 0。
+
+TODO：补充 mermaid 的一个完全二叉树，同时添加两个 markdown 表格，分别是标准的数据表格以及利用上面的方法简化过后的表格。
+
+自然，如果一棵普通的二叉树和完全二叉树非常接近，你可以通过虚构缺少的结点的方式来将其补全为二叉树，虚构的结点不记录真是数据而是用`^`代替。
+
+TODO：同样的 mermaid 图片以及表格。
+
+2. 链式存储：
+
+有两种形式，标准形式和广义标准形式，先介绍标准形式。
+
+标准形式每个结点存储 data, left, right。二叉链表。非常直观
+
+这个存在的问题就是查询某个结点的父结点相对来说比较麻烦，因此提出广义标准形式，结点还存储 parent。
+
+本书先采用标准形式，因为向上查找父结点的频率不高，从节省空间的角度上我们采用标准形式。
+
+我们已经确认了二叉树的存储结构，下面就可以实现部分基本操作了，包括：创建一颗二叉树，求结点个数已经求树的高度，删除二叉树。
+
+下面是书本上的代码，我调整了代码格式以后的版本在这里[二叉树的实现](../include/BinaryTree.h)
+
+```cpp
+#ifndef BTREE_H_INCLUDED
+#define BTREE_H_INCLUDED
+
+#include <iostream>
+
+#include "seqQueue.h"
+#include "seqStack.h"
+
+using namespace std;
+
+// BTree类的前向说明
+template <class elemType>
+class BTree;
+
+template <class elemType>
+class Node
+{
+    friend class BTree<elemType>;
+
+   private:
+    elemType data;
+    Node *left, *right;
+
+   public:
+    Node()
+    {
+        left = NULL;
+        right = NULL;
+    };
+    Node(const elemType &e, Node *L = NULL, Node *R = NULL)
+    {
+        data = e;
+        left = L;
+        right = R;
+    };
+};
+
+template <class elemType>
+class BTree
+{
+   private:
+    Node<elemType> *root;
+
+    int Size(Node<elemType> *t);      // 求以t为根的二叉树的结点个数。
+    int Height(Node<elemType> *t);    // 求以t为根的二叉树的高度。
+    void DelTree(Node<elemType> *t);  // 删除以t为根的二叉树
+    // 按前序遍历输出以t为根的二叉树的结点的数据值
+    void PreOrder(Node<elemType> *t);
+    // 按中序遍历输出以t为根的二叉树的结点的数据值
+    void InOrder(Node<elemType> *t);
+    // 按后序遍历输出以t为根的二叉树的结点的数据值
+    void PostOrder(Node<elemType> *t);
+
+   public:
+    BTree() { root = NULL; }
+    void createTree(const elemType &stopFlag);  // 创建一棵二叉树
+    bool isEmpty() { return (root == NULL); }   // 二叉树为空返回true，否则返回false
+    Node<elemType> *GetRoot() { return root; }
+
+    int Size();         // 求二叉树的结点个数。
+    int Height();       // 求二叉树的高度。
+    void DelTree();     // 删除二叉树
+    void PreOrder();    // 按前序遍历输出二叉树的结点的数据值
+    void InOrder();     // 按中序遍历输出二叉树的结点的数据值
+    void PostOrder();   // 按后序遍历输出二叉树的结点的数据值
+    void LevelOrder();  // 按中序遍历输出二叉树的结点的数据值
+};
+
+// 创建一棵二叉树
+template <class elemType>
+void BTree<elemType>::createTree(const elemType &stopFlag)
+{
+    seqQueue<Node<elemType> *> que;
+    elemType e, el, er;
+    Node<elemType> *p, *pl, *pr;
+    cout << "Please input the value of the root: ";
+    cin >> e;
+    if (e == stopFlag) return;
+    p = new Node<elemType>(e);
+    root = p;  // 根结点为该新创建结点
+    que.enQueue(p);
+    while (!que.isEmpty()) {
+        p = que.front();  // 获得队首元素并出队
+        que.deQueue();
+        cout << "Please input the value of the left child and the right child of " << p->data
+             << " using " << stopFlag << " as no child: ";
+        cin >> el >> er;
+        if (el != stopFlag)  // 该结点有左孩子
+        {
+            pl = new Node<elemType>(el);
+            p->left = pl;
+            que.enQueue(pl);
+        }
+        if (er != stopFlag)  // 该结点有右孩子
+        {
+            pr = new Node<elemType>(er);
+            p->right = pr;
+            que.enQueue(pr);
+        }
+    }
+}
+
+template <class elemType>  // 公有
+int BTree<elemType>::Size()
+{
+    return Size(root);
+}
+
+// 得到以t为根二叉树结点个数，递归算法实现。
+template <class elemType>  // 私有
+int BTree<elemType>::Size(Node<elemType> *t)
+{
+    if (!t) return 0;
+    return 1 + Size(t->left) + Size(t->right);
+}
+
+template <class elemType>
+int BTree<elemType>::Height()
+{
+    return Height(root);
+}
+
+// 得到以t为根二叉树的高度，递归算法实现。
+template <class elemType>
+int BTree<elemType>::Height(Node<elemType> *t)
+{
+    int hl, hr;
+    if (!t) return 0;
+    hl = Height(t->left);
+    hr = Height(t->right);
+    if (hl >= hr) return 1 + hl;
+    return 1 + hr;
+}
+template <class elemType>
+void BTree<elemType>::DelTree()
+{
+    DelTree(root);
+    root = NULL;
+}
+
+// 删除以t为根的二叉树，递归算法实现 
+template <class elemType>
+void BTree<elemType>::DelTree(Node<elemType> *t)
+{
+    if (!t) return;
+    DelTree(t->left);
+    DelTree(t->right);
+    delete t;
+}
+
+#endif
+```
+
 ## 4.3 二叉树的遍历
 
 traversing binary tree 从根节点出发，按照某种次序一次访问二叉树中的所有节点，使得每个节点被访问并且仅被访问一次。
 
 ### 4.3.1 二叉树的遍历及实现
 
-层次遍历
+正如我们在第二章学习的遍历一样，顺序存储的遍历是很好实现的，但是对于树（二叉树）而言，链式存储结构更为通用，因此我们有必要研究链式次存储的条件下如何遍历一棵二叉树。
 
-前序/中序/后序遍历的递归/非递归实现
+如果你研究刚刚实现的`createTree`函数，你会发现我们用到了一个暂存结构。如果在遍历的时候我们也用一个暂存结构（下面讨论具体是哪种暂存结构），我们就可以让树的每个结点唯一的进入并且唯一的离开暂存结构，由此每个结点访问且只访问了一次的目的——也就是遍历。
+
+到目前为止，我们学习过队列和栈都可以作为暂存结构。事实上，如果我们用队列作为暂存结构的思路和创建一棵二叉树的`createTree`是类似的，得到的遍历序列叫做 **层次遍历**。如果用栈作为暂存结构，得到“前序遍历”，在此基础上稍加调整就会得到“中序遍历”和“后序遍历”。
+
+这四种遍历到底是怎样的？先简单看描述，后面会详细展开。
+
+层次遍历：如果二叉树为空，遍历操作为空。否则，从第一层开始，从上而下，逐层访问每一层结点。对同一层结点，自左向右逐一访问。
+
+前序遍历：如果二叉树为空，遍历操作为空。否则，先访问根结点，然后前序遍历根的左子树，再前序遍历根的右子树。可简记为：“根左右”。
+中序遍历：如果二叉树为空，遍历操作为空。否则，先中序遍历根的左子树，然后访问根结点，最后中序遍历根的右子树。可简记为：“左根右”。
+后序遍历：如果二叉树为空，遍历操作为空。否则，先后序遍历根的左子树，然后后序遍历根的右子树，最后访问根结点。可简记为：“左右根”。
+
+TODO：需要解释一下这里代码的编写和 ppt 的差异。ppt 上的代码就直接 copy 到这个 markdown 文件中了。我自己实现的 BInaryTree 均采用递归的算法，但是调整了代码格式，并且添加了一个可选的 result 参数，是链式队列对象，如果指定了这个参数那么遍历序列会存储在里面，否则和书本一样直接 cout 输出。而非递归的实现方式 ppt 上代码也粘贴在 markdown 文本中， 我在自己的二叉树实现的基础上，直接封化妆了独立的函数并且放在了 examples 文件中，这个思路算法都是一样的，但是可能看起来很不一样，因为更加的面向过程。
+
+1. 前序遍历
+
+TODO：需要更多文字说明
+
+递归算法
+
+中左右。
+
+```cpp
+// 前序遍历以t为根二叉树递归算法的实现。
+template <class elemType>
+void BTree<elemType>::PreOrder(Node<elemType> *t)
+{
+    if (!t) return;
+    cout << t->data;
+    PreOrder(t->left);
+    PreOrder(t->right);
+}
+```
+
+我修改的代码可以看[源代码](../include/BinaryTree.h)
+
+非递归算法
+
+TODO：需要更多文字说明
+
+```cpp
+// 前序遍历的非递归算法实现
+template <class elemType>
+void BTree<elemType>::PreOrder()
+{
+    if (!root) return;
+    Node<elemType> *p;
+    seqStack<Node<elemType> *> s;
+    s.push(root);
+
+    while (!s.isEmpty()) {
+        p = s.top();
+        s.pop();
+        cout << p->data;
+        if (p->right) s.push(p->right);
+        if (p->left) s.push(p->left);
+    }
+    cout << endl;
+}
+```
+
+2. 中序遍历
+
+TODO：需要更多文字说明
+
+递归算法
+
+左中右。
+
+```cpp
+// 中序遍历以t为根二叉树递归算法的实现。
+template <class elemType>
+void BTree<elemType>::InOrder(Node<elemType> *t)
+{
+    if (!t) return;
+    InOrder(t->left);
+    cout << t->data;
+    InOrder(t->right);
+}
+```
+
+我修改的代码可以看[源代码](../include/BinaryTree.h)
+
+非递归算法
+
+流程梳理：看栈顶的结点，如果该结点被我们标记成 0，也就是第一次入栈，那么先把它的左孩子入栈，同时新结点标记为 0，原本结点标记为 1；如果被我们标记为 1，也就是应被访问过一次了，进一步说明，它的左子结点已经被入栈过也出栈了（左），现在就可以访问（中），如果此时还存在右孩子那么就要入栈，标记为 0。
+
+相当于每个结点访问两次，总共 2n 次，时间复杂度 O(n)
+
+```cpp
+// 中序遍历的非递归算法实现。
+template <class elemType>
+void BTree<elemType>::InOrder()
+{
+    if (!root) return;
+    seqStack<Node<elemType> *> s1;
+    seqStack<int> s2;
+    Node<elemType> *p;
+    int flag;
+    int zero = 0, one = 1;
+    p = root;
+    s1.push(p);
+    s2.push(zero);
+    while (!s1.isEmpty()) {
+        flag = s2.top();
+        s2.pop();
+        p = s1.top();  // 读取栈顶元素
+        if (flag == 1) {
+            s1.pop();
+            cout << p->data;
+            if (!p->right) continue;
+            // 有右子压右子，没有进入下一轮循环
+            s1.push(p->right);
+            s2.push(zero);
+        } else {
+            s2.push(one);
+            if (p->left)  // 有左子压左子
+            {
+                s1.push(p->left);
+                s2.push(zero);
+            }
+        }
+    }
+    cout << endl;
+}
+```
+
+3. 后序遍历
+
+TODO：需要更多文字说明
+
+递归算法
+
+```cpp
+// 后序遍历以t为根二叉树递归算法的实现。
+template <class elemType>
+void BTree<elemType>::PostOrder(Node<elemType> *t)
+{
+    if (!t) return;
+    PostOrder(t->left);
+    PostOrder(t->right);
+    cout << t->data;
+}
+```
+
+非递归算法
+
+```cpp
+// 后序遍历的非递归算法实现。
+template <class elemType>
+void BTree<elemType>::PostOrder()
+{
+    if (!root) return;
+    Node<elemType> *p;
+    seqStack<Node<elemType> *> s1;
+    seqStack<int> s2;
+    int zero = 0, one = 1, two = 2;
+    int flag;
+    s1.push(root);
+    s2.push(zero);
+    while (!s1.isEmpty()) {
+        flag = s2.top();
+        s2.pop();
+        p = s1.top();
+        switch (flag) {
+            case 2:
+                s1.pop();
+                cout << p->data;
+                break;
+            case 1:
+                s2.push(two);
+                if (p->right) {
+                    s1.push(p->right);
+                    s2.push(zero);
+                }
+                break;
+            case 0:
+                s2.push(one);
+                if (p->left) {
+                    s1.push(p->left);
+                    s2.push(zero);
+                }
+                break;
+        };  // switch
+    }  // while
+}
+```
+
+0 表示结点首次进栈，1 表示结点出栈过一次（考虑过左孩子），2 表示出栈过两次（考虑过右孩子）。如果标志为 0，修改为 1 并再次入栈且带入左孩子，如果标志为 1，则修改为 2，并且带入右孩子（如果存在）；如果标志为 2，那么就可以访问数据了。
+
+相当于每个结点访问三次，总共 3n 次，时间复杂度$O(n)$
+
+4. 层次遍历
+
+TODO：需要更多文字说明
+
+递归算法
+
+非递归算法
+
+TODO：上面介绍了四种遍历方式，下面应该要简单总结，四种遍历方式的时间复杂度都是$O(n)$。
+
+TODO：我的思考：为什么非递归的中序和后序遍历与前序遍历不太一样？如何更好的理解？
 
 以及还有个拓展就是“遍历序列确定二叉树/二叉树的重构”：
 
@@ -451,6 +714,12 @@ TODO：补充之前的存储方法中会产生多少个空指针域的计算。
 我们把这种指向前驱和后继的指针称为线索 thread，加上线索的二叉链表称为线索链表，相应的二叉树就称为线索二叉树 Threaded Binary Tree.
 
 ## 4.4 表达式树
+
+以下是一些我的个人理解。我们生活中常用的是中缀表达式，但是这个对于计算机而言并不友好，前面第三章我们学到的逆波兰表达式就是为了消除表达式中的括号做出的一种改进，它的存储格式是字符串。那么在本章学习了二叉树后，我们会发现二元运算符正好和二叉树中的每个结点有两个孩子节点（当然也可能一个或者零个），下面这一节将要学习的表达式树就是另一种存储没有括号的表达式的形式。当你学习完如何建立表达式树后，你会发现当你对表达式树进行后序遍历，你得到的序列就是相应的逆波兰表达式。
+
+TODO：下面的具体内容还没有来得及整理
+
+TODO: 可以补充`dc`命令行工具计算逆波兰表达式。
 
 ### 4.4.1 基本概念
 
@@ -1112,22 +1381,22 @@ void DisjointSet::Union(int root1, int root2)
 
 ## 4.7 树和森林
 
-PPT 先开始讨论树和森林的存储方法：
 双亲表示法：顺序存储
+
 孩子兄弟法：二叉树存储
-TODO：下面一句话需要研究：常用孩子兄弟表示法，二叉树基本操作都可以利用上。
 
 ### 4.7.1 孩子兄弟表示法
 
 每个结点除了保存数据，还保存了该结点的最大孩子结点地址和最大弟弟结点的地址。
 
-data 字段保存了结点数据、firstchild 字段保存了最大孩子结点的地址、nextsibling 字段保存了最大弟弟结点的地址。
+data 字段保存了结点数据、`firstchild` 字段保存了最大孩子结点的地址、`nextsibling` 字段保存了最大弟弟结点的地址。
 
 > 注意：最大孩子和最大弟弟值得不是元素值最大，而是分别指众多孩子结点中最左侧的节点和同个父结点的众多兄弟结点中右侧最靠近的那个结点。
 
-以下为了方便，有时称 firstchild 为结点的左分支、左子或左手，称 nextsibling 为右分支、右子或右手。
+以下为了方便，有时称 `firstchild` 为结点的左分支、左子或左手，称 `nextsibling` 为右分支、右子或右手。
 
 TODO:回答以下问题：
+
 思考：
 
 树中每个结点都在这棵二叉树上吗？
@@ -1484,21 +1753,278 @@ TODO: 重新解决之前提到的银行多窗口排队问题。
 
 ## 4.8 小结
 
-TODO：下面的内容直接从 PPT 拷贝，需要调整
+- **树**是一种非线性数据结构，元素之间存在一对多的层次关系。
+- 树的存储难题：由于树的物理存储较复杂，通常转而研究结构更简单的二叉树。
+- 二叉树：
+  - 元素个数可以为零（空二叉树）。
+  - 每个节点最多有两个孩子（左孩子和右孩子）。
+  - 即使只有一个孩子，也必须明确是左孩子还是右孩子。
+  - 二叉树不等同于有序树，两者是不同的数据结构。
 
-树是讨论的第一种非线性结构。树中要求元素个数大于零，元素之间呈现出上下层之间一对多的层次关系。鉴于树物理存储上的一系列难题，转而讨论另外一种更简单的非线性结构：二叉树。
-二叉树中元素个数大于等于零，每个结点最多有两个孩子，且每个孩子都有明确的左右子之分。从元素的个数限制上也可以看出，当元素个数为零时，仍可看作是一棵二叉树，但它不是树。另外二叉树中某个结点即便只有一个儿子，也一定要明确它是左儿子还是右儿子，而不是像有序树一样说它是第一个孩子。综上两个原因，不能简单地说二叉树就是一棵有序树，它们是二种不同的数据结构。
+**二叉树的核心概念**
 
-本章详细介绍了二叉树的概念、性质，提出了两种特别的二叉树：满二叉树和完全二叉树。从满二叉树和完全二叉树上，可以看到一些有趣的性质和一些特殊的处理手段。
-在讨论二叉树的物理结构时，提出了最适合完全二叉树的顺序存储法以及适合普通二叉树的二叉链表存储法（标准形式）。
-在基本操作的实现上，详细讨论了标准形式存储的二叉树的递归和非递归算法。鉴于二叉树结构的递归定义，递归算法对于二叉树中的某些基本操作而言，逻辑上最直观、简单、不容易出错。而非递归算法相对于递归算法而言，是把堆栈的使用从幕后推到了台前，避免了次数众多的递归函数调用，降低了由于函数调用产生的额外时间和空间的开销，提高了算法运行效率。
+- 满二叉树：每个节点要么是叶子节点，要么有两个孩子节点。
+- 完全二叉树：节点在存储结构中尽可能地靠前排列，叶子节点集中在树的左侧。
 
-在众多二叉树的基本操作中，本章将遍历作为重点详细进行了算法设计讨论。事实上可以看出，遍历之外的绝大多数操作都可以在遍历算法的基础上实现。如这棵二叉树中有多少度为 2 的结点、某个结点在二叉树中的第几层、二叉树的高度是多少，等等。
-事实上，在现实生活中，能直观对应到二叉树结构的数据是极少的。它更多地可看作是一种和现实生活中无物对应、虚构出来的数据结构。但以它为工具，却可以解决很多实际数据的存储和处理问题。如本章中树和森林的孩子兄弟表示法、哈夫曼编码、优先级队列、表达式树、不相交集等，以及后续章节的二叉查找树、堆排序等都可以利用二叉树来解决。
+**存储结构**
+
+- 顺序存储法：适合完全二叉树，使用数组存储节点。
+- 链式存储法（二叉链表）：适合普通二叉树，每个节点包含数据域和两个指针域（指向左右孩子）。
+
+**基本操作**
+
+- 递归算法：逻辑简单，直观且易于实现，但可能导致栈调用开销较大。
+- 非递归算法：显式地使用堆栈，减少递归调用带来的时间和空间开销，提升效率。
+
+**常见应用**
+
+- 哈夫曼编码
+- 优先级队列
+- 表达式树
+- 不相交集
+- 二叉查找树
+- 堆排序
 
 ## 4.9 习题
 
 ### 书本
+
+#### 问题 1
+
+讨论为什么会将结点个数为`0`的情况也归到二叉树的定义中，这样做有什么好处？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 2
+
+设计新的非递归算法实现标准形式表示的二叉树的中序、后序遍历。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+ 
+#### 问题 3
+
+编写非递归程序计算标准形式表示的二叉树中每个结点的度、结点的个数。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 4
+
+编写非递归程序计算标准形式表示的二叉树中每个结点所在的层次、二叉树的高度。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 5
+
+编写非递归程序计算标准形式表示的二叉树中第 i 层有多少结点。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 6
+
+设计算法对标准形式表示的二叉树，写出元素值为 × 的结点所有的祖先结点。祖先的显示顺序请按照父、祖父、曾祖父……的顺序。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 7
+
+已知一棵二叉树的中序遍历序列为：`BICAGKDH`，后序遍历序列为：`ICBKGHDA`，请画出这棵二叉树。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 8 `*`
+
+先序序列为`a，b，c，d`的不同二叉树的个数是多少？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 9 `*`
+
+已知一棵二叉树的先序、中序遍历序列，编写程序在内存中以标准形式建立这棵二叉树。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 10
+
+对图 4-17 中的二叉树，画出用非递归算法完成后序遍历时栈中数据的变化情况。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 11
+
+已知一棵二叉树的前序遍历序列为：`ABCIDGKH`，层次遍历序列为：`ABDCGHIK`，能否唯一确定一棵二叉树，为什么？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 12
+
+已知一棵二叉树的中序遍历序列为：`BICAGKDH`，层次遍历序列为：`ABDCGHIK`，能否唯一确定一棵二叉树，为什么？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 13
+
+给定两棵二叉树，想象当你将它们中的一个覆盖到另一个上时，两棵二叉树的一些结点便会重叠。请设计程序，实现将上述两棵二叉树合并为一棵新的二叉树。合并的规则是如果两个结点重叠，那么将它们的值相加作为结点合并后的新值，否则不为 NULL 的结点将直接作为新二又树的结点。注意：合并后的二叉树中结点允许直接使用这两个二叉树上的结点。
+
+输入两棵二叉树：
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 14 `*`
+
+试证明 4.4.1 节定理 4-1 和定理 4-2。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 15
+
+下列选项给出的是从根分别到达两个叶结点路径上的权值序列，能属于同一棵哈夫曼材的是（）。
+A. 24, 10,5 和 24,10,7
+B. 24,10,5 和 24，12,7
+C.24,10,10 和 24,14,11
+D. 24,10,5 和 24,14,6
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 16
+
+编写算法计算孩子兄弟表示的一棵树中，每个结点的度、层次分别是多少？树的高度是多少？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 17
+
+编写算法，计算用孩子兄弟表示法存储的森林中树的个数。
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 18
+
+若森林 F 有 15 条边、25 个结点，则 F 包含树的个数是多少？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 19
+
+为什么树的先根遍历一定和树对应的二叉树的先序遍历一致？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 20
+
+已知一棵树的先根遍历序列和后根遍历序列，问能否唯一确定这棵树，为什么？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
+
+#### 问题 21
+
+已知一片森林的先序適历序列和中序遍历序列，问能否唯一确定这个森林，另什么？
+
+<details>
+  <summary>答案</summary>
+
+Lorem Ipsum
+
+</details>
 
 ### PPT
 
