@@ -429,6 +429,45 @@ examples_Chapter4_4-7_wasm/fast:
 .PHONY : examples_Chapter4_4-7_wasm/fast
 
 #=============================================================================
+# Target rules for targets named examples_Chapter5_5-2_wasm
+
+# Build rule for target.
+examples_Chapter5_5-2_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter5_5-2_wasm
+.PHONY : examples_Chapter5_5-2_wasm
+
+# fast build rule for target.
+examples_Chapter5_5-2_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-2_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-2_wasm.dir/build
+.PHONY : examples_Chapter5_5-2_wasm/fast
+
+#=============================================================================
+# Target rules for targets named examples_Chapter5_5-4_wasm
+
+# Build rule for target.
+examples_Chapter5_5-4_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter5_5-4_wasm
+.PHONY : examples_Chapter5_5-4_wasm
+
+# fast build rule for target.
+examples_Chapter5_5-4_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-4_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-4_wasm.dir/build
+.PHONY : examples_Chapter5_5-4_wasm/fast
+
+#=============================================================================
+# Target rules for targets named examples_Chapter5_5-5_wasm
+
+# Build rule for target.
+examples_Chapter5_5-5_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter5_5-5_wasm
+.PHONY : examples_Chapter5_5-5_wasm
+
+# fast build rule for target.
+examples_Chapter5_5-5_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-5_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-5_wasm.dir/build
+.PHONY : examples_Chapter5_5-5_wasm/fast
+
+#=============================================================================
 # Target rules for targets named examples_Chapter7_7-1_wasm
 
 # Build rule for target.
@@ -1459,6 +1498,78 @@ src/examples/Chapter4/4-7/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter4_4-7_wasm.dir/build.make CMakeFiles/examples_Chapter4_4-7_wasm.dir/src/examples/Chapter4/4-7/main.cpp.s
 .PHONY : src/examples/Chapter4/4-7/main.cpp.s
 
+src/examples/Chapter5/5-2/main.o: src/examples/Chapter5/5-2/main.cpp.o
+.PHONY : src/examples/Chapter5/5-2/main.o
+
+# target to build an object file
+src/examples/Chapter5/5-2/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-2_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-2_wasm.dir/src/examples/Chapter5/5-2/main.cpp.o
+.PHONY : src/examples/Chapter5/5-2/main.cpp.o
+
+src/examples/Chapter5/5-2/main.i: src/examples/Chapter5/5-2/main.cpp.i
+.PHONY : src/examples/Chapter5/5-2/main.i
+
+# target to preprocess a source file
+src/examples/Chapter5/5-2/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-2_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-2_wasm.dir/src/examples/Chapter5/5-2/main.cpp.i
+.PHONY : src/examples/Chapter5/5-2/main.cpp.i
+
+src/examples/Chapter5/5-2/main.s: src/examples/Chapter5/5-2/main.cpp.s
+.PHONY : src/examples/Chapter5/5-2/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter5/5-2/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-2_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-2_wasm.dir/src/examples/Chapter5/5-2/main.cpp.s
+.PHONY : src/examples/Chapter5/5-2/main.cpp.s
+
+src/examples/Chapter5/5-4/main.o: src/examples/Chapter5/5-4/main.cpp.o
+.PHONY : src/examples/Chapter5/5-4/main.o
+
+# target to build an object file
+src/examples/Chapter5/5-4/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-4_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-4_wasm.dir/src/examples/Chapter5/5-4/main.cpp.o
+.PHONY : src/examples/Chapter5/5-4/main.cpp.o
+
+src/examples/Chapter5/5-4/main.i: src/examples/Chapter5/5-4/main.cpp.i
+.PHONY : src/examples/Chapter5/5-4/main.i
+
+# target to preprocess a source file
+src/examples/Chapter5/5-4/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-4_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-4_wasm.dir/src/examples/Chapter5/5-4/main.cpp.i
+.PHONY : src/examples/Chapter5/5-4/main.cpp.i
+
+src/examples/Chapter5/5-4/main.s: src/examples/Chapter5/5-4/main.cpp.s
+.PHONY : src/examples/Chapter5/5-4/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter5/5-4/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-4_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-4_wasm.dir/src/examples/Chapter5/5-4/main.cpp.s
+.PHONY : src/examples/Chapter5/5-4/main.cpp.s
+
+src/examples/Chapter5/5-5/main.o: src/examples/Chapter5/5-5/main.cpp.o
+.PHONY : src/examples/Chapter5/5-5/main.o
+
+# target to build an object file
+src/examples/Chapter5/5-5/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-5_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-5_wasm.dir/src/examples/Chapter5/5-5/main.cpp.o
+.PHONY : src/examples/Chapter5/5-5/main.cpp.o
+
+src/examples/Chapter5/5-5/main.i: src/examples/Chapter5/5-5/main.cpp.i
+.PHONY : src/examples/Chapter5/5-5/main.i
+
+# target to preprocess a source file
+src/examples/Chapter5/5-5/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-5_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-5_wasm.dir/src/examples/Chapter5/5-5/main.cpp.i
+.PHONY : src/examples/Chapter5/5-5/main.cpp.i
+
+src/examples/Chapter5/5-5/main.s: src/examples/Chapter5/5-5/main.cpp.s
+.PHONY : src/examples/Chapter5/5-5/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter5/5-5/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter5_5-5_wasm.dir/build.make CMakeFiles/examples_Chapter5_5-5_wasm.dir/src/examples/Chapter5/5-5/main.cpp.s
+.PHONY : src/examples/Chapter5/5-5/main.cpp.s
+
 src/examples/Chapter7/7-1/main.o: src/examples/Chapter7/7-1/main.cpp.o
 .PHONY : src/examples/Chapter7/7-1/main.o
 
@@ -2331,6 +2442,9 @@ help:
 	@echo "... examples_Chapter4_4-3_wasm"
 	@echo "... examples_Chapter4_4-5_wasm"
 	@echo "... examples_Chapter4_4-7_wasm"
+	@echo "... examples_Chapter5_5-2_wasm"
+	@echo "... examples_Chapter5_5-4_wasm"
+	@echo "... examples_Chapter5_5-5_wasm"
 	@echo "... examples_Chapter7_7-1_wasm"
 	@echo "... examples_Chapter7_7-2_wasm"
 	@echo "... examples_Chapter7_7-4_wasm"
@@ -2438,6 +2552,15 @@ help:
 	@echo "... src/examples/Chapter4/4-7/main.o"
 	@echo "... src/examples/Chapter4/4-7/main.i"
 	@echo "... src/examples/Chapter4/4-7/main.s"
+	@echo "... src/examples/Chapter5/5-2/main.o"
+	@echo "... src/examples/Chapter5/5-2/main.i"
+	@echo "... src/examples/Chapter5/5-2/main.s"
+	@echo "... src/examples/Chapter5/5-4/main.o"
+	@echo "... src/examples/Chapter5/5-4/main.i"
+	@echo "... src/examples/Chapter5/5-4/main.s"
+	@echo "... src/examples/Chapter5/5-5/main.o"
+	@echo "... src/examples/Chapter5/5-5/main.i"
+	@echo "... src/examples/Chapter5/5-5/main.s"
 	@echo "... src/examples/Chapter7/7-1/main.o"
 	@echo "... src/examples/Chapter7/7-1/main.i"
 	@echo "... src/examples/Chapter7/7-1/main.s"

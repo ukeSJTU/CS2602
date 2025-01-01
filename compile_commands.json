@@ -145,6 +145,24 @@
 },
 {
   "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter5_5-2_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter5_5-2_wasm.dir/src/examples/Chapter5/5-2/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter5/5-2/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter5/5-2/main.cpp",
+  "output": "CMakeFiles/examples_Chapter5_5-2_wasm.dir/src/examples/Chapter5/5-2/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter5_5-4_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter5_5-4_wasm.dir/src/examples/Chapter5/5-4/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter5/5-4/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter5/5-4/main.cpp",
+  "output": "CMakeFiles/examples_Chapter5_5-4_wasm.dir/src/examples/Chapter5/5-4/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
+  "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter5_5-5_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter5_5-5_wasm.dir/src/examples/Chapter5/5-5/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter5/5-5/main.cpp",
+  "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter5/5-5/main.cpp",
+  "output": "CMakeFiles/examples_Chapter5_5-5_wasm.dir/src/examples/Chapter5/5-5/main.cpp.o"
+},
+{
+  "directory": "/home/runner/work/CS2602/CS2602/build",
   "command": "/home/runner/work/CS2602/CS2602/emsdk/upstream/emscripten/em++  @CMakeFiles/examples_Chapter7_7-1_wasm.dir/includes_CXX.rsp -std=gnu++14 -o CMakeFiles/examples_Chapter7_7-1_wasm.dir/src/examples/Chapter7/7-1/main.cpp.o -c /home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-1/main.cpp",
   "file": "/home/runner/work/CS2602/CS2602/src/examples/Chapter7/7-1/main.cpp",
   "output": "CMakeFiles/examples_Chapter7_7-1_wasm.dir/src/examples/Chapter7/7-1/main.cpp.o"
