@@ -9,5 +9,6 @@
     ],
     "clangd.fallbackFlags": ["-std=c++11"],  // Specify fallback flags for Clangd
     "C_Cpp.intelliSenseCacheSize": 100000,  // Increase the IntelliSense cache size if necessary
-    "editor.formatOnSave": true,  // Enable auto-formatting when saving files
+    "editor.formatOnSave": true,
+    "prettier.configPath": "./.prettierrc", // Enable auto-formatting when saving files
 }
