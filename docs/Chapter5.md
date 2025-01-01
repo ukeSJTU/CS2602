@@ -132,47 +132,6 @@
 - 最短路径
 - 关键路径
 
-PPT 上的代码如下：
-
-```cpp
-#define DefaultNumVertex 20
-class outOfBound
-{
-};
-template <class verType, class edgeType>
-class Graph
-{
-   private:                 // 7个属性
-    int verts, edges;       // 图的实际顶点数和实际边数
-    int maxVertex;          // 图顶点的最大可能数量
-    verType *verList;       // 保存顶点数据的一维数组
-    edgeType **edgeMatrix;  // 保存邻接矩阵内容的二维数组
-    edgeType noEdge;        // 无边的标志，一般图为0， 网为无穷大MAXNUM
-    bool directed;          // 有向图为1，无向图为0
-   public:
-    // 初始化图结构g，direct为是否有向图标志，e为无边数据
-    Graph(bool direct, edgeType e);
-    ~Graph();
-    int numberOfVertex() const { return verts; };  // 返回图当前顶点数
-    int numberOfEdge() const { return edges; };    // 返回图当前边数
-    // 返回顶点为vertex值的元素在顶点表中的下标，无则-1。
-    int getVertex(verType vertex) const;
-    ;
-    // 判断某两个顶点间是否有边
-    bool existEdge(verType vertex1, verType vertex2) const;
-    void insertVertex(verType vertex);                                 // 插入顶点
-    void insertEdge(verType vertex1, verType vertex2, edgeType edge);  // 插入边
-    void removeVertex(verType vertex);                                 // 删除顶点
-    void removeEdge(verType vertex1, verType vertex2);                 // 删除边
-
-    // 返回顶点vertex的第一个邻接点,如果无邻接点返回-1
-    int getFirstNeighbor(verType vertex) const;
-    // 返回顶点vertex1相对vertex2的下一个邻接点，如果无下一个邻接点返回-1
-    int getNextNeighbor(verType vertex1, verType vertex2) const;
-    void disp() const;  // 显示邻接矩阵的值
-};
-```
-
 ## 5.2 图的存储表示
 
 ### 5.2.1 邻接矩阵和加权邻接矩阵
@@ -195,102 +154,7 @@ TODO：添加示例,图解
 
 而对于邻接矩阵的$A[i][i]$的取值有两种看法：一种认为是权值为$0$，另外一种观点认为顶点到自身没有边，用$\inf$表示。两种方法都可以，本书采用第一种方案。
 
-```cpp
-// 初始化图结构g，direct为是否有向图标志，e为无边数据
-template <class verType, class edgeType>
-Graph<verType, edgeType>::Graph(bool direct, edgeType e)
-{
-    int i, j;
-    // 初始化属性
-    directed = direct;
-    noEdge = e;
-    verts = 0;
-    edges = 0;
-    maxVertex = DefaultNumVertex;
-    // 为存顶点的一维数组和存边的二维数组创建空间
-    verList = new verType[maxVertex];
-    edgeMatrix = new edgeType *[maxVertex];
-    // 初始化图结构g，direct为是否有向图标志，e为无边数据
-    for (i = 0; i < maxVertex; i++) edgeMatrix[i] = new edgeType[maxVertex];
-
-    // 初始化二维数组，边的个数为0
-    for (i = 0; i < maxVertex; i++)
-        for (j = 0; j < maxVertex; j++)
-            if (i == j)
-                edgeMatrix[i][j] = 0;  // 对角线元素
-            else
-                edgeMatrix[i][j] = noEdge;  // 无边
-}
-
-template <class verType, class edgeType>
-Graph<verType, edgeType>::~Graph()
-{
-    int i;
-    delete[] verList;
-    for (i = 0; i < maxVertex; i++) delete[] edgeMatrix[i];
-    delete[] edgeMatrix;
-}
-
-// 返回顶点为vertex值的元素在顶点表中的下标
-template <class verType, class edgeType>
-int Graph<verType, edgeType>::getVertex(verType vertex) const
-{
-    int i;
-    for (i = 0; i < verts; i++)
-        if (verList[i] == vertex) return i;
-    return -1;
-}
-
-// 判断某两个顶点是否有边
-template <class verType, class edgeType>
-bool Graph<verType, edgeType>::existEdge(verType vertex1, verType vertex2) const
-{
-    int i, j;
-    // 找到vertex1和vertex2的下标
-    i = getVertex(vertex1);
-    j = getVertex(vertex2);
-
-    // 无此顶点
-    if ((i == -1) || (j == -1)) return false;
-    if (i == j) return false;
-
-    if (edgeMatrix[i][j] == noEdge) return false;
-    return true;
-}
-
-// 删除顶点
-template <class verType, class edgeType>
-void Graph<verType, edgeType>::removeVertex(verType vertex)
-// 删除顶点
-{
-    int i, j, k;
-    // 找到该顶点在顶点表中的下标
-    i = getVertex(vertex);
-    // 无此顶点
-    if (i == -1) return;
-
-    // 在顶点表中删除顶点
-    verList[i] = verList[verts - 1];
-
-    // 计数删除顶点射出的边,边数减少
-    for (j = 0; j < verts; j++)
-        if ((j != i) && (edgeMatrix[i][j] != noEdge)) edges--;
-
-    // 如果是有向图，计数删除顶点射入的边,边数减少
-    if (directed) {
-        for (k = 0; k < verts; k++)
-            if (((k != i) && edgeMatrix[k][i] != noEdge)) edges--;
-    }
-    // 最后一行移到第i行
-    for (k = 0; k < verts; k++) edgeMatrix[i][k] = edgeMatrix[verts - 1][k];
-
-    // 最后一列移到第i列
-    for (k = 0; k < verts; k++) edgeMatrix[k][i] = edgeMatrix[k][verts - 1];
-    verts--;
-}
-```
-
-完整的代码实现以及相应的测试代码请参考[程序 5-2](../src/examples/Chapter5/5-2/main.cpp)
+用邻接矩阵的方式存储的图结构[代码实现](../src/examples/Chapter5/5-1/adjacency-matrix.cpp)，相应的测试代码请参考[程序 5-2](../src/examples/Chapter5/5-2/main.cpp)
 
 ### 5.2.2 邻接表
 
@@ -306,25 +170,19 @@ TODO：添加示例,图解
 
 邻接表计算入度很不方便，需要遍历所有的边表，时间复杂度为$O(n+e)$。于是提出**逆邻接表**，也就是保存该顶点的入边形成的单链表首指针。那么自然逆邻接表在查询顶点的出度不方便。后序我们会学习**十字链表**兼顾二者。
 
-无向图的边结点会重复，后序学习**多重邻接表**来解决这个问题
+无向图的边结点会重复，后序学习[**多重邻接表**](#523-邻接多重表)来解决这个问题
 
 如果图是加权图，那么边结点存储`weight`字段即可。
 
 顶点表也可以用单链表，而不是一维数组，相应地边结点`dest`字段存储需要修改。原本的顶点表采用一维数组实现，我们在边表结点的`dest`字段存储的是边终点（邻接表）或者边起点（逆邻接表）的顶点在顶点表中的下标。现在顶点表采用链表实现的话，`dest`字段就应该存储指向每个顶点的指针。
 
-完整的代码实现以及相应的测试代码请参考[程序 5-3](../src/examples/Chapter5/5-3/main.cpp)
+用邻接表的方式存储的图结构[代码实现](../src/examples/Chapter5/5-3/adjancency-list.cpp)。
 
 ### 5.2.3 邻接多重表
 
-TODO：调整文字格式,表述；添加示例,图解
+TODO：添加示例,图解
 
-邻接表表示无向图时每条边用了两个边结点，同一条边被存储了两次。
-这样做，1）空间浪费、2）在某些应用中，因重复而不方便。
-多重邻接表中每条边仅使用一个结点来表示，即只存储一次，但这个边结点同时要在它邻接的两个顶点的边表中被链接。
-为了方便两个边表同时链接，每个边结点不再像邻接表中那样只存储边的一个顶点，而是存储两个顶点。
-每个边结点用 ver1、ver2 存储边的两个顶点，为了方便起见，不妨设`ver1<ver2`。
-
-无向图用邻接多重表表示时，如果要计算某个顶点的度，只需要顺着这个顶点的 adj，然后一路观察其下标在 ver1 还是 ver2 中，如果在 ver1 中继续沿着 link1 数，如果在 ver2 中继续沿着 link2 数，直到遇到空指针结束。
+多重邻接表是一种改进的无向图表示结构，旨在解决传统邻接表中边存储重复和边遍历冗余的问题。在这种结构中，每条边只存储一次，但同时出现在其两个关联顶点的边表中。每个边结点包含两个顶点 `ver1` 和`ver2`（约定 `ver1` <`ver2`），并有两个指针`link1`和`link2`，分别指向与 `ver1` 和`ver2` 顶点相关的下一条边。这种设计使得在计算某个顶点的度时，只需沿着该顶点的 adj 指针开始，判断当前边的顶点在 `ver1` 还是`ver2` 中，并分别沿着`link1`或`link2`继续遍历，直到链表结束，累积计数即可得到该顶点的度。这种结构不仅减少了存储冗余，还使得图的遍历更加高效，特别适合在稠密图中进行复杂操作。
 
 ### 5.2.4 十字链表
 
@@ -340,11 +198,12 @@ TODO： 完成自行练习：输出结点 V1 邻接到的所有顶点。
 
 ## 5.3 图的遍历和连通性
 
-- 对有向图和无向图进行遍历是按照某种方式逐个访问图中的所有顶点，并且每个顶点只能被访问一次。
-- 依照前面存储方式的讨论，无论是邻接矩阵还是邻接表存储，顶点都用一个顶点表存储，因此最简单的方式是沿着顶点表循环访问一遍，就达到了遍历的目标。这种方式，完全没有借用边的信息。
-- 另外有两种借助边信息实现遍历的算法：
-  - 深度优先遍历
-  - 广度优先遍历。
+对有向图和无向图进行遍历是按照某种方式逐个访问图中的所有顶点，并且每个顶点只能被访问一次。
+
+依照前面存储方式的讨论，无论是邻接矩阵还是邻接表存储，顶点都用一个顶点表存储，因此最简单的方式是沿着顶点表循环访问一遍，就达到了遍历的目标。这种方式，完全没有借用边的信息。但是我们遍历图，并不只是为了访问所有的顶点，实际上我们在遍历之后还想要检查从某个顶点出发是否能够到达另一个顶点，以及图本身是否联通等等信息。这些都需要我们边信息来实现遍历，于是就有以下将要学习的算法：
+
+- 深度优先遍历(DFS, Depth First Search)
+- 广度优先遍历(BFS, Breadth First Search)
 
 ### 5.3.1 深度优先遍历
 
@@ -354,11 +213,10 @@ DFS depth first search
 
 1. 选中第一个未被访问过的顶点。
 2. 访问、对顶点加已访问标志。
-3. 依次从顶点的所有未被访问过的第一个、第二个、第三个…… 邻接顶点出发，依次进行深度优先搜索。即转向 2。
-4. 如果还有顶点未被访问过，选中其中一个作为起始顶点，转向 2。
-   如果所有的顶点都被访问到，结束。
+3. 依次从顶点的所有未被访问过的第一个、第二个、第三个…… 邻接顶点出发，依次进行深度优先搜索。即转向(2)。
+4. 如果还有顶点未被访问过，选中其中一个作为起始顶点，转向(2)。如果所有的顶点都被访问到，结束。
 
-同一个图的深度优先遍历结果并不唯一
+> 注意：同一个图的深度优先遍历结果并不唯一
 
 ```mermaid
 flowchart LR
@@ -391,21 +249,107 @@ flowchart TB
 - 图可能不连通，从一个顶点开始做深度优先遍历可能只能访问到部分顶点，此时需要重新选择尚未访问的顶点，从它开始再次开始深度优先遍历。
 - 一个顶点可能和其他多个顶点邻接，故以它为起始顶点做深度优先遍历前需检查是否已经访问过。如果未访问过，遍历才能进行。
 
+我们研究递归和非递归两种实现方式，先是递归：
+
+```cpp
+template <class verType, class edgeType>
+void Graph<verType, edgeType>::DFS() const
+{
+    bool *visited;
+    int i;
+
+    // 为visited创建动态数组空间，并设置初始访问标志为false
+    visited = new bool[verts];
+    if (!visited) {
+        throw illegalSize();
+    }
+    for (i = 0; i < verts; i++) visited[i] = false;
+
+    for (i = 0; i < verts; i++) {
+        if (!visited[i]) {
+            DFS(i, visited);
+        }
+        cout << endl;
+    }
+}
+
+template <class verType, class edgeType>
+void Graph<verType, edgeType>::DFS(int start, bool visited[]) const
+{
+    edgeNode<edgeTpe> *p;
+
+    cout << verList[start].data << "\t";
+    visited[start] = true;
+
+    p = verList[start].adj;
+    while (p) {
+        if (!visited[p->dest]) {
+            DFS(p->dest, visited);
+        }
+        p = p->link;
+    }
+}
+```
+
+非递归的实现方法：
+
+```cpp
+template <class verType, class edgeType>
+void Graph<verType, edgeType>::DFS() const
+{
+    seqStack<int> s;
+    edgeNode<edgeType> *p;
+    bool *visited;
+    int i, start;
+
+    // 为visited创建动态数组空间，并设置初始访问标志为false
+    visited = new bool[verts];
+    if (!visited) {
+        throw illegalSize();
+    }
+    for (i = 0; i < verts; i++) visited[i] = false;
+
+    // 逐一找到未被访问过的顶点，做深度优先遍历
+    for (i = 0; i < verts; i++) {
+        if (visited[i]) continue;
+        s.push(i);
+
+        while (!s.isEmpty()) {
+            start = s.top();
+            s.pop();
+            if (visited[start]) continue;
+
+            cout << verList[start].data << "\t";
+            visited[start] = true;
+
+            p = verList[start].adj;
+            while (p) {
+                if (!visited[p->dest]) {
+                    s.push(p->dest);
+                }
+                p = p->link;
+            }
+        }
+        cout << endl;
+    }
+}
+```
+
 ### 5.3.2 广度优先遍历
 
 - 基本思想：类似于二叉树的层次遍历
 - 实现步骤：
-  1. 访问起始顶点 v
-  2. 访问 v 的所有未访问邻接点
+  1. 访问起始顶点`v`
+  2. 访问`v`的所有未访问邻接点
   3. 依次访问这些邻接点的未访问邻接点
   4. 重复直到所有顶点被访问
 - 需要借助队列存储待访问顶点
-- 时间复杂度：O(|V|+|E|)
+- 时间复杂度：$O(|V|+|E|)$
 
 ### 5.3.3 图的连通性
 
 - 连通分量的识别：
-  1. DFS 或 BFS 遍历可以找出一个连通分量
+  1. `DFS`或`BFS`遍历可以找出一个连通分量
   2. 重复遍历直到所有顶点被访问
 - 强连通分量的识别：
   1. Kosaraju 算法
@@ -526,7 +470,58 @@ graph LR
 <details>
   <summary>答案</summary>
 
-6. 4 个强连通分量，分别是`{B}`,`{C}`,`{D}`,`{E}`.
+1. 见下面表格：
+
+| 顶点符号 | 出度 | 入度 |
+| -------- | ---- | ---- |
+| A        | 3    | 0    |
+| B        | 2    | 1    |
+| C        | 1    | 2    |
+| D        | 2    | 2    |
+| E        | 1    | 2    |
+| F        | 0    | 2    |
+
+2.
+
+顶点数组：
+
+| 0   | 1   | 2   | 3   | 4   | 5   |
+| --- | --- | --- | --- | --- | --- |
+| A   | B   | C   | D   | E   | F   |
+
+邻接矩阵：
+
+| 顶点\顶点 | 0   | 1   | 2   | 3   | 4   | 5   |
+| --------- | --- | --- | --- | --- | --- | --- |
+| 0         | 0   | 1   | 3   | 5   | 0   | 0   |
+| 1         | 0   | 0   | 4   | 0   | 2   | 0   |
+| 2         | 0   | 0   | 0   | 2   | 0   | 0   |
+| 3         | 0   | 0   | 0   | 0   | 1   | 7   |
+| 4         | 0   | 0   | 0   | 0   | 0   | 2   |
+| 5         | 0   | 0   | 0   | 0   | 0   | 0   |
+
+7. 深度优先搜索序列：`ABEFCD`
+
+相应的生成树：
+
+```mermaid
+flowchart TD
+  A((A))--->B((B))
+  B((B))--->C((D))
+  B((B))--->E((E))
+  C((C))--->D((D))
+  E((E))--->F((F))
+```
+
+8. TODO
+9. TODO
+10. TODO
+11. 4 个强连通分量，分别是`{B}`,`{C}`,`{D}`,`{E}`.
+12. TODO
+13. TODO
+14. TODO
+15. TODO
+16. TODO
 
 </details>
 
@@ -561,7 +556,42 @@ graph LR
 <details>
   <summary>答案</summary>
 
+1. 见下面表格：
+
+| 顶点符号 | 度  |
+| -------- | --- |
+| A        | 3   |
+| B        | 3   |
+| C        | 3   |
+| D        | 4   |
+| E        | 3   |
+| F        | 2   |
+
+2. TODO
+
+顶点数组：
+
+| 0   | 1   | 2   | 3   | 4   | 5   |
+| --- | --- | --- | --- | --- | --- |
+| A   | B   | C   | D   | E   | F   |
+
+邻接矩阵：
+
+| 顶点\顶点 | 0   | 1   | 2   | 3   | 4   | 5   |
+| --------- | --- | --- | --- | --- | --- | --- |
+| 0         | 0   | 1   | 3   | 5   | 0   | 0   |
+| 1         | 1   | 0   | 4   | 0   | 2   | 0   |
+| 2         | 3   | 4   | 0   | 2   | 0   | 0   |
+| 3         | 5   | 0   | 2   | 0   | 1   | 7   |
+| 4         | 0   | 2   | 0   | 1   | 0   | 2   |
+| 5         | 0   | 0   | 0   | 7   | 2   | 0   |
+
+3. TODO
+4. TODO
 5. 1 个连通分量，就是图本身。
+6. TODO
+7. TODO
+8. TODO
 
 </details>
  
