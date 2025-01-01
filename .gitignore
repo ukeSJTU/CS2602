@@ -1,3 +1,7 @@
+# ignore system files
+.DS_Store
+Thumbs.db
+
 # Ignore merged.cpp files because they automatically generated 
 merged.cpp
 
