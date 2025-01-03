@@ -20,6 +20,9 @@ TODO: 可以添加 manim 动画在一个模拟的表格中分别标记以上概�
   - [6.2 二叉查找树](#62-二叉查找树)
     - [6.2.1 二叉查找树的定义](#621-二叉查找树的定义)
     - [6.2.2 基本操作实现](#622-基本操作实现)
+      - [查找操作](#查找操作)
+      - [插入操作](#插入操作)
+      - [删除操作](#删除操作)
     - [6.2.3 顺序统计](#623-顺序统计)
   - [6.3 平衡二叉查找树](#63-平衡二叉查找树)
     - [6.3.0 查找操作](#630-查找操作)
@@ -136,26 +139,454 @@ TODO: 下面的公式修改成 latex
 
 ### 6.2.1 二叉查找树的定义
 
-- 定义：左子树所有节点值小于根节点，右子树所有节点值大于根节点
+- 定义：左子树**所有**结点值小于根结点，右子树**所有**结点值大于根结点
 - 特点：中序遍历得到有序序列
-- 查找效率：与树的平衡性有关，最好 O(logn)，最坏 O(n)
+- 查找效率：与树的平衡性有关，最好$O(\log n)$，最坏$O(n)$
+
+请注意是**所有的**结点，也就是说下面这种是错误的：
+
+```mermaid
+graph TD
+  n00((80))-->n10((40))
+  n00((80))-->n11((150))
+  n10((40))-->n20((30))
+  n10((40))-->n21((90))
+  n11((150))-->n22((10))
+  n11((150))-->n23((200))
+```
+
+第二层的第二个结点`90`比根结点`80`大，这是不允许的。
+
+下面是正确的二叉查找树：
+
+```mermaid
+graph TD
+  n00((80))-->n10((40))
+  n00((80))-->n11((150))
+  n10((40))-->n20((30))
+  n10((40))-->n21((50))
+  n11((150))-->n22((90))
+  n11((150))-->n23((200))
+```
+
+作为一种动态的查找结构，二叉查找树的基本操作有：
+
+- 查找：比较结点值，小则左子树，大则右子树
+- 插入：找到合适位置插入叶结点
+- 删除：
+  1. 叶结点：直接删除
+  2. 单子树：子树替代
+  3. 双子树：找后继结点替代
+
+代码上来看：
+
+```cpp
+#ifndef BINARYSEARCHTREE_H_INCLUDED
+#define BINARYSEARCHTREE_H_INCLUDED
+
+#include <iostream>
+
+#include "seqQueue.h"
+
+using namespace std;
+
+template <class elemType>
+class binarySearchTree;
+
+template <class elemType>
+class Node
+{
+    friend class binarySearchTree<elemType>;
+
+   private:
+    elemType data;
+    Node *left, *right;
+    int factor;  // 平衡因子
+   public:
+    Node()
+    {
+        left = NULL;
+        right = NULL;
+    }
+    Node(const elemType &x, Node *l = NULL, Node *r = NULL)
+    {
+        data = x;
+        left = l;
+        right = r;
+    }
+};
+
+template <class elemType>
+class binarySearchTree
+{
+   private:
+    Node<elemType> *root;
+    bool search(const elemType &x, Node<elemType> *t) const;
+    void insert(const elemType &x, Node<elemType> *&t);
+    void remove(const elemType &x, Node<elemType> *&t);
+
+   public:
+    binarySearchTree() { root = NULL; }
+    bool search(const elemType &x) const;
+    void insert(const elemType &x);
+    void remove(const elemType &x);
+    void levelTravese() const;  // 层次遍历,用于验证插入、删除操作
+    ~binarySearchTree();
+};
+#endif  // BINARYSEARCHTREE_H_INCLUDED
+```
 
 ### 6.2.2 基本操作实现
 
-- 查找：比较节点值，小则左子树，大则右子树
-- 插入：找到合适位置插入叶节点
-- 删除：
-  1. 叶节点：直接删除
-  2. 单子树：子树替代
-  3. 双子树：找后继节点替代
+#### 查找操作
+
+**递归方法：**
+
+1. 根为空，查找失败。
+2. 和根结点值比较，相同则查找成功；
+3. 和根结点值比较，不相同但比根结点值小，在以其左子为根的二叉查找树中继续查找，查找结果即整棵查找树的查找结果；
+4. 和根结点值比较，不相同但比根结点值大，在以其右子为根的二叉查找树中继续查找，查找结果即整棵查找树的查找结果。
+
+核心代码如下：
+
+```cpp
+template <class elemType>
+bool binarySearchTree<elemType>::search(const elemType &x, Node<elemType> *t) const
+{
+    if (!t) {
+        return false;
+    }
+    if (x == t->data) {
+        return true;
+    }
+    if (x < t->data) {
+        return search(x, t->left);
+    } else {
+        return search(x, t->right);
+    }
+}
+```
+
+**非递归方法：**
+
+1. 以根为当前结点。
+2. 如果当前结点为空，查找失败。
+3. 如果当前结点不为空，待查结点和当前结点比较，如果值相等则查找成功；
+4. 如果比当前结点值小，设其左子为当前结点；
+5. 如果比当前结点值大，设其右子为当前结点；
+6. 反复如此，直到当前结点为空。
+
+```cpp
+template <class elemType>
+bool binarySearchTree<elemType>::search(const elemType &x) const
+{
+    Node<elemType> *p;
+    p = root;
+    while (p) {
+        if (x == p->data) return true;
+        if (x < p->data)
+            p = p->left;
+        else
+            p = p->right;
+    }
+    return false;
+}
+```
+
+无论递归还是非递归，查找操作的时间复杂度都是$O(h)$，`h`为树高。如果是完全二叉树，那么树高为$\log_2n$，查找操作的时间复杂度为$O(\log_2n)$。但是如果是一棵斜树，那么树高为`n`，查找操作的时间复杂度为$O(n)$。
+
+#### 插入操作
+
+插入就是查找失败后，将待插入结点插入到查找路径上的最后一个结点的左子或者右子。沿查找路径先查找，可以看出：插入总在叶子上。
+
+**递归方法：**
+
+1. 根为空，直接插入。
+2. 否则和根结点值比较，相同则无需插入；
+3. 不相同但比根结点值小，在以其左子为根的二叉查找树中继续插入；
+4. 不相同但比根结点值大，在以其右子为根的二叉查找树中继续插入。
+
+核心代码如下：
+
+```cpp
+template <class elemType>  // 递归算法实现
+void binarySearchTree<elemType>::insert(const elemType &x, Node<elemType> *&t)
+{
+    if (!t) {
+        t = new Node<elemType>(x);
+        return;
+    }
+    if (x == t->data) return;  // 已存在，结束插入
+    if (x < t->data)
+        insert(x, t->left);
+    else
+        insert(x, t->right);
+}
+template <class elemType>
+void binarySearchTree<elemType>::insert(const elemType &x)
+{
+    insert(x, root);
+}
+```
+
+**非递归方法一：**
+
+1. 如果根为空，创建新结点作为根结点。
+2. 如果根不为空，设置当前结点为根结点。
+3. 将待插入元素和当前结点比较，值相等则无需插入。
+4. 若值小于当前结点，且当前结点无左子，创建新结点作为其左子，否则将其左子作为当前结点，继续比较；
+5. 若值大于当前结点，且当前结点无右子，创建新结点作为其右子，否则将其右子作为当前结点，继续比较。
+
+核心代码如下：
+
+```cpp
+template <class elemType>  // 非递归算法实现
+void binarySearchTree<elemType>::insert(const elemType &x)
+{
+    Node<elemType> *p;
+    if (!root)  // 如果查找树的根为空，直接建立一个结点并作为根结点
+    {
+        root = new Node<elemType>(x);
+        return;
+    }
+    p = root;
+
+    while (p) {
+        if (x == p->data) return;  // 已经在二叉树中
+        if (x < p->data) {
+            if (!p->left)  // 左子为空，插入位置即此地
+            {
+                p->left = new Node<elemType>(x);
+                return;
+            }
+            p = p->left;
+        } else {
+            if (!p->right)  // 右子为空，插入位置即此地
+            {
+                p->right = new Node<elemType>(x);
+                return;
+            }
+            p = p->right;
+        }  // if
+    }  // while
+}
+```
+
+**非递归方法二：**
+
+设置一个父结点指针，设根为当前结点，父结点指针为空。反复进行以下操作，直到当前结点为空：
+
+1. 待插入元素和当前结点比较，值相等则无需插入；
+2. 若值小于当前结点，父结点设为当前结点，当前结点改为其左子；
+3. 若值大于当前结点，父结点设为当前结点，当前结点改为其右子；
+
+核心代码如下：
+
+```cpp
+template <class elemType>  // 非递归算法实现
+void binarySearchTree<elemType>::insert(const elemType &x)
+{
+    Node<elemType> *p, *tmp, *parent = NULL;
+
+    p = root;
+    while (p) {
+        if (x == p->data) return;  // 已存在，无需插入
+
+        parent = p;
+        if (x < p->data)
+            p = p->left;  // p为其父parent的左子
+        else
+            p = p->right;  // p为其父parent的右子
+    }
+
+    tmp = new Node<elemType>(x);
+    if (!parent) {
+        root = tmp;
+        return;
+    }  // parent为空，表示二叉树为空
+    if (x < parent->data)
+        parent->left = tmp;
+    else
+        parent->right = tmp;
+}
+```
+
+#### 删除操作
+
+删除操作可以根据待删除结点的位置分成三种情况考虑：
+
+1. 如果待删除结点是叶子结点，直接删除；
+2. 如果待删除结点只有一个叶子结点，用叶子结点替代待删除结点；
+3. 如果待删除结点有两个叶子结点，在待删除结点的左子树或右子树中找到合适的替身结点替代待删除结点，删除替身结点。
+
+如何找到**替身结点**呢？
+
+- 在待删除结点的左子树中找到最大的结点，或者在右子树中找到最小的结点，就是替身结点。
+- 用这个替身结点替代待删除结点。
+- 删除这个替身结点。
+
+下面结合代码具体分析递归与非递归的代码该怎么写。
+
+**递归方法：**
+
+1. 根为空，删除结束。
+2. 否则和根结点值比较，相同则实施三种删除(具体删除操作看下面)；
+3. 不相同但比根结点值小，在以其左子为根的二叉查找树中继续删除；
+4. 不相同但比根结点值大，在以其右子为根的二叉查找树中继续删除。
+
+三种删除：
+
+- 第一种：待删除结点为叶子。释放待删除结点空间，父子链置为空。
+- 第二种：待删除结点有唯一孩子。用唯一孩子替代待删除结点位置，释放待删除结点空间。
+- 第三种：待删除结点有两个孩子。在右子树中找到最左侧结点，即右子树中的最小结点，作为替身。用替身的元素替换待删除结点的元素，将问题转为在其右子树中删除替身结点（无左子）。
+
+核心代码如下：
+
+```cpp
+template <class elemType>  // 递归算法实现
+void binarySearchTree<elemType>::remove(const elemType &x, Node<elemType> *&t)
+{
+    if (!t) return;
+    if (x < t->data)
+        remove(x, t->left);
+    else if (x > t->data)
+        remove(x, t->right);
+    else {
+        if (!t->left && !t->right)  // 待删除结点是叶子结点
+        {
+            delete t;  // 释放待删除结点
+            t = NULL;  // 父结点和叶子结点的链接为空
+            return;
+        }
+
+        if (!t->left || !t->right)  // 待删除结点只有一个孩子
+        {
+            Node<elemType> *tmp;
+            tmp = t;
+            t = (t->left) ? t->left : t->right;  // 父结点链接其唯一孩子结点
+            delete tmp;                          // 释放待删除结点
+            return;
+        }
+        // 待删除结点有两个孩子的情况
+        Node<elemType> *p, *substitute;
+        p = t->right;
+        while (p->left) p = p->left;
+        substitute = p;
+        t->data = substitute->data;
+        remove(substitute->data, t->right);
+    }
+}
+```
+
+**非递归方法：**
+
+1. 由根向下查找，每层有一个结点参与。
+2. 用`p`指向当前结点，`parent`指向其父结点。父一路跟随其子下行。
+3. 根据`parent`完成对父结点孩子字段的修改任务。
+
+核心代码如下：
+
+```cpp
+template <class elemtype>
+void binarySearchTree<elemType>::remove(const elemType &x)
+{
+    if (!root) return;
+
+    Node<elemtype> *p, *parent;
+    p = root;
+    parent = NULL;
+
+    while (p) {
+        if (x < p->data) {
+            parent = p;
+            p = p->left;
+            continue;
+        }
+        if (x > p->data) {
+            parent = p;
+            p = p->right;
+            continue;
+        }
+
+        // 删除开始
+        if (!p->left && !p->right)  // 叶子结点
+        {
+            delete p;
+
+            // 待删除结点为根，且根为叶子结点
+            if (!parent) {
+                root = NULL;
+                return;
+            }
+
+            // 待删除结点为父结点的左子
+            if (parent->left == p)
+                parent->left = NULL;
+            else
+                parent->right = NULL;
+        }
+
+        if (!p->left || !p->right)  // 待删除结点仅有一个孩子结点
+        {
+            Node<elemtype> *tmp;
+            tmp = p;
+
+            if (!parent)  // 待删除结点为根
+
+                root = (p->left) ? p->left : p->right;
+            else {
+                if (x < parent->data)
+                    parent->left = (p->left) ? p->left : p->right;
+                else
+                    parent->right = (p->left) ? p->left : p->right;
+            }
+
+            delete tmp;
+            return;
+        }
+
+        // 待删除结点有两个孩子结点
+        Node<elemType> *q, *substitute;
+        parent = p;
+        q = p->left;
+        while (q->right) {
+            parent = q;
+            q = q->right;
+        }
+        substitute = q;
+
+        // 交换待删除的结点和替身的元素值
+        p->data = substitute->data;
+        substitue->data = x;
+
+        p = substitute;  // 待删除的结点指针变成替身，继续回到循环
+    }
+}
+```
 
 ### 6.2.3 顺序统计
 
-- 定义：查找第 k 小的元素
-- 实现方法：
-  1. 中序遍历到第 k 个元素
-  2. 在节点中维护子树大小信息
-- 时间复杂度：O(h)，h 为树高
+顺序统计的核心操作是在集合中查找第`i`个顺序统计量（集合中第`i`大或第`i`小的元素），以下假定找第`i`小元素。
+
+在前面的学习过程中，静态表我们一般用顺序存储，三种解决办法：
+
+1. 对`n`个元素从小到大排序，然后在下标`i-1`处找到目标元素，时间花费为数组排序的时间。如使用插入排序或者冒泡排序，时间复杂度为$O(n^2)$。
+2. 第二种方法，将前 i 个元素进行从小到大排序，最后一个元素即当前的第 i 小元素，后续元素逐个和第 i 个元素比较，比它大，丢弃；比它小，插入到前面的某个位置，原来的第 i-1 小元素成为新的第 i 小元素。
+3. 第三种方法，可以对数据依然采用冒泡的思想，从后往前冒小泡，即一趟两两比较过后，第一个元素为最小值。当进行 i 趟后，第 i 个元素即第 i 小元素。比较次数为(n-1)+(n-2)+﹍+(n-i)=i*n-i(i+1)/2, 当 i 远远小于 n 时，时间复杂度为 O(i*n)。
+
+而对于动态表，常用**二叉查找树**存储。在二叉查找树中可用以下求解方法：
+
+- 如果查找第 1 小元素，顺着根一路左子下去，找到最左侧结点即为最小结点，时间复杂度是二叉树的高度；
+- 如果查找第 n 小元素即最大元素，顺着根一路右子下去，找到最右侧结点即最大结点，时间复杂度也是树的高度。
+- 一个更一般的查找第 i（非 1）小元素的简单方法：
+  对每个结点增加一个 size 字段，size 记录了以该结点为根的二叉查找树中结点的个数。
+  查找具体方法为：首先和根比较。
+  如果根的 size 小于 i 则无第 i 小结点，查找结束；
+  如果根的 size 值等于 i，则最大结点即第 i 小结点；
+  如果根的 size 值大于 i，观察其左子：
+  若左子的 size 小于 i, 且 i-左子 size=1, 则左子父结点即根为第 i 小结点；否则在根的右子树中找第 i-左子的 size 值-1（根）小的结点；
+  若左子的 size 大于或者等于 i,在以左子为根的二叉查找树中重复以上操作去找第 i 小结点。
+  可以看出，每层最多检查两个结点，时间消耗最大为树高的两倍。
 
 ## 6.3 平衡二叉查找树
 
@@ -167,7 +598,7 @@ TODO: 下面的公式修改成 latex
 
 平衡二叉查找树并不能直接和树高最矮划等号，但平衡二叉查找树已经接近于最矮了。
 
-这里补充三张 mermaid 图片：
+TODO:这里补充三张 mermaid 图片：
 
 1. 非平衡二叉树
 2. 平衡二叉树但非最矮
@@ -437,7 +868,7 @@ TODO：算法实现的讨论：
 ### 6.3.3 最大高度
 
 - 平衡因子：左右子树高度差不超过 1
-- 最小节点数：F(h) = F(h-1) + F(h-2) + 1
+- 最小结点数：F(h) = F(h-1) + F(h-2) + 1
 - 最大高度：约为 1.44log₂(n+1)
 
 ## 6.4 红黑树
@@ -445,22 +876,22 @@ TODO：算法实现的讨论：
 ### 6.4.1 插入操作
 
 - 插入规则：
-  1. 新节点着红色
+  1. 新结点着红色
   2. 自底向上调整
   3. 保持 5 条性质
 - 调整情况：
-  1. 叔节点红色：变色
-  2. 叔节点黑色：旋转+变色
+  1. 叔结点红色：变色
+  2. 叔结点黑色：旋转+变色
 
 ### 6.4.2 删除操作
 
 - 删除规则：
-  1. 找替代节点
-  2. 调整双黑节点
+  1. 找替代结点
+  2. 调整双黑结点
   3. 保持 5 条性质
 - 调整情况：
   1. 兄弟红色
-  2. 兄弟黑色，子节点黑色
+  2. 兄弟黑色，子结点黑色
   3. 兄弟黑色，至少一子红色
 
 ## 6.5 B 树和 B+树
@@ -469,13 +900,13 @@ TODO：算法实现的讨论：
 
 - 定义：m 阶 B 树的性质
   1. 根至少 2 个子女
-  2. 非根内部节点至少⌈m/2⌉个子女
-  3. 所有叶节点在同一层
+  2. 非根内部结点至少⌈m/2⌉个子女
+  3. 所有叶结点在同一层
 
 ### 6.5.2 B 树的查找
 
 - 过程：
-  1. 在节点内查找
+  1. 在结点内查找
   2. 确定子树区间
   3. 递归向下
 - 时间复杂度：O(logₘn)
@@ -485,7 +916,7 @@ TODO：算法实现的讨论：
 - 基本步骤：
   1. 查找插入位置
   2. 插入关键字
-  3. 节点分裂（如需要）
+  3. 结点分裂（如需要）
 - 特点：自底向上生长
 
 ### 6.5.4 B 树的删除
@@ -493,15 +924,15 @@ TODO：算法实现的讨论：
 - 基本步骤：
   1. 查找删除位置
   2. 删除关键字
-  3. 调整节点（借或并）
+  3. 调整结点（借或并）
 - 特点：保持最小度数要求
 
 ### 6.5.5 B+树
 
 - 特点：
-  1. 叶节点包含所有关键字
-  2. 叶节点链表相连
-  3. 非叶节点仅索引
+  1. 叶结点包含所有关键字
+  2. 叶结点链表相连
+  3. 非叶结点仅索引
 - 优势：
   1. 范围查询效率高
   2. 查找更稳定
@@ -559,30 +990,51 @@ TODO：算法实现的讨论：
 
 #### 问题 1
 
-已知一个有序序列为 15、23、45、50、80、88、93、100，分别写出用二分法直找 23、
-66 的过程中都比较过哪些元素。
+已知一个有序序列为`15、23、45、50、80、88、93、100`，分别写出用二分法直找`23`、`66`的过程中都比较过哪些元素。
 
 <details>
   <summary>答案</summary>
+
+查找`23`的过程：
+
+0. `low=0`，`high=7`
+1. `mid=3`，`a[mid]=50`，`23<50`，`high=mid-1=2`
+2. `mid=1`，`a[mid]=23`，`23=23`，查找成功
+
+查找`66`的过程：
+
+0. `low=0`，`high=7`
+1. `mid=3`，`a[mid]=50`，`66>50`，`low=mid+1=4`
+2. `mid=5`，`a[mid]=88`，`66<88`，`high=mid-1=4`
+3. `low=4`，`high=4`，查找失败
 
 </details>
 
 #### 问题 2
 
 下列选项中，不能构成折半查找中关键字比较序列的是：
+
 A. 500, 200, 450, 180
+
 B. 500, 450, 200, 180
+
 C. 180, 500, 200, 450
+
 D. 180, 200, 500, 450
 
 <details>
   <summary>答案</summary>
 
+答案是`A`。第一次比较 500，然后第二次去比较 200，说明元素小于 500.第三次去比较 450，说明元素大于 200。考虑到第二次已经和 200 进行过比较了，下一次不可能和比 200 小的元素(180)比较，所以不能构成折半查找中关键字比较序列的。
+
+要进行折半查找的前提是原序列是有序的。
+
 </details>
 
 #### 问题 3
 
-设包含 4 个数据元素的集合 S=｛"do"，"for"，" repeat”，"while"｝，各元素的查找概率依次为：p1=0.35,p2=0.15,p3=0.15，P4=0.35。将 S 保存在一个长度为 4 的顺序表中，采用折半查找法，查找成功时的平均查找长度为 2.2。请回答：
+设包含 4 个数据元素的集合 S=｛"do","for"," repeat"," while"｝，各元素的查找概率依次为：`p1=0.35`,`p2=0.15`,`p3=0.15`,`p4=0.35`。将`S`保存在一个长度为 4 的顺序表中，采用折半查找法，查找成功时的平均查找长度为`2.2`。请回答：
+
 （1）若采用顺序存储结构保存 S，且要求平均查找长度更短，则元素应如何排列？应使用何种查找方法？查找成功时的平均查找长度是多少？
 （2） 若采用链式存储结构保存 S，且要求平均查找长度更短，则元素应如何排列？应使用何
 种查找方法？查找成功时的平均查找长度是多少？
@@ -651,8 +1103,8 @@ D. 仅 2、4
 #### 问题 9
 
 现有一棵无重复关键字的平衡二叉树（AVL 树），对其进行中序遍历可得到一个降序序列。下列关于该平衡二叉树的叙述中，正确的是：
-A. 根节点的度一定为 2
-B. 树中最小元素一定是叶节点
+A. 根结点的度一定为 2
+B. 树中最小元素一定是叶结点
 C. 最后插入的元素一定是叶结点
 D. 树中最大元素一定无左子树
 
@@ -897,7 +1349,7 @@ int main()
             step_cnt++;
             int elem = list.get(j);
             if (elem == t) {
-                // 把找到的指定节点移动到链表的第一个位置
+                // 把找到的指定结点移动到链表的第一个位置
                 // 删除，然后在最一开始添加
                 int tmp;
                 list.remove(j, tmp);
