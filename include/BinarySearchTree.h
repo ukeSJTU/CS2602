@@ -11,20 +11,18 @@ namespace datastructures
  * @tparam elemType 数据类型
  */
 template <class elemType>
-class BSTNode : public BaseNode<elemType>
+class BSTNode : public BaseNode<elemType, BSTNode<elemType>>
 {
    public:
-    using BaseNode<elemType>::left;
-    using BaseNode<elemType>::right;
-    using BaseNode<elemType>::data;
-
-    int factor;  ///< 平衡因子
+    using BaseNode<elemType, BSTNode<elemType>>::left;
+    using BaseNode<elemType, BSTNode<elemType>>::right;
+    using BaseNode<elemType, BSTNode<elemType>>::data;
 
     /**
      * @brief 构造函数
      * @param data 节点数据
      */
-    BSTNode(const elemType& d) : BaseNode<elemType>(d), factor(0) {}
+    BSTNode(const elemType& d) : BaseNode<elemType, BSTNode<elemType>>(d) {}
 };
 
 /**

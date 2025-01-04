@@ -23,7 +23,7 @@ class BTree;
  * @tparam elemType 节点数据的类型
  */
 template <class elemType>
-class TreeNode : public BaseNode<elemType>
+class TreeNode : public BaseNode<elemType, TreeNode<elemType>>
 {
     friend class BTree<elemType, TreeNode<elemType>>;
 
@@ -32,20 +32,20 @@ class TreeNode : public BaseNode<elemType>
     int rightFlag;  ///< 表示右指针类型，0表示右子节点，1表示后继线索
 
    public:
-    using BaseNode<elemType>::left;
-    using BaseNode<elemType>::right;
-    using BaseNode<elemType>::data;
+    using BaseNode<elemType, TreeNode<elemType>>::left;
+    using BaseNode<elemType, TreeNode<elemType>>::right;
+    using BaseNode<elemType, TreeNode<elemType>>::data;
 
     /**
      * @brief 默认构造函数
      */
-    TreeNode() : BaseNode<elemType>(elemType()), leftFlag(0), rightFlag(0) {}
+    TreeNode() : BaseNode<elemType, TreeNode<elemType>>(elemType()), leftFlag(0), rightFlag(0) {}
 
     /**
      * @brief 带初值的构造函数
      */
     TreeNode(const elemType& e, TreeNode<elemType>* l = nullptr, TreeNode<elemType>* r = nullptr)
-        : BaseNode<elemType>(e), leftFlag(0), rightFlag(0)
+        : BaseNode<elemType, TreeNode<elemType>>(e), leftFlag(0), rightFlag(0)
     {
         this->left = l;
         this->right = r;
@@ -62,16 +62,22 @@ class BTree
 {
    private:
     int size(nodeType* t);
-    int height(nodeType* t);
     void delTree(nodeType* t);
     void preOrder(nodeType* t, LinkQueue<elemType>* result = nullptr);
     void inOrder(nodeType* t, LinkQueue<elemType>* result = nullptr);
     void postOrder(nodeType* t, LinkQueue<elemType>* result = nullptr);
+    int height(nodeType* t);
 
    protected:
     nodeType* root;  ///< 二叉树根节点指针
 
    public:
+    /**
+     * @brief Get the height of the tree
+     * @return The height of the tree, 0 if empty
+     */
+    int height() { return height(root); }
+
     BTree() : root(nullptr) {}
 
     BTree(LinkQueue<elemType>& dataQueue, const elemType& flag);
@@ -83,7 +89,6 @@ class BTree
     bool isEmpty() const { return root == nullptr; }
     nodeType* getRoot() const { return root; }
     int size() { return size(root); }
-    int height() { return height(root); }
     void delTree()
     {
         delTree(root);

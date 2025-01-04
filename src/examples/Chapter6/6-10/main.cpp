@@ -10,17 +10,17 @@ template <class elemType>
 class binarySearchTree;
 
 template <class elemType>
-class Node
+class AVLNode
 {
     friend class binarySearchTree<elemType>;
 
    private:
     elemType data;
-    Node *left, *right;
+    AVLNode *left, *right;
 
    public:
-    Node() : left(NULL), right(NULL) {}
-    Node(const elemType &x, Node *l = NULL, Node *r = NULL) : data(x), left(l), right(r) {}
+    AVLNode() : left(NULL), right(NULL) {}
+    AVLNode(const elemType &x, AVLNode *l = NULL, AVLNode *r = NULL) : data(x), left(l), right(r) {}
 };
 
 // ======================
@@ -30,10 +30,10 @@ template <class elemType>
 class binarySearchTree
 {
    private:
-    Node<elemType> *root;
-    bool search(const elemType &x, Node<elemType> *t) const;
-    void insert(const elemType &x, Node<elemType> *&t);
-    void remove(const elemType &x, Node<elemType> *&t);
+    AVLNode<elemType> *root;
+    bool search(const elemType &x, AVLNode<elemType> *t) const;
+    void insert(const elemType &x, AVLNode<elemType> *&t);
+    void remove(const elemType &x, AVLNode<elemType> *&t);
 
    public:
     binarySearchTree() : root(NULL) {}
@@ -50,7 +50,7 @@ class binarySearchTree
 
 // 搜索元素
 template <class elemType>
-bool binarySearchTree<elemType>::search(const elemType &x, Node<elemType> *t) const
+bool binarySearchTree<elemType>::search(const elemType &x, AVLNode<elemType> *t) const
 {
     if (!t) {
         return false;
@@ -73,10 +73,10 @@ bool binarySearchTree<elemType>::search(const elemType &x) const
 
 // 插入元素
 template <class elemType>
-void binarySearchTree<elemType>::insert(const elemType &x, Node<elemType> *&t)
+void binarySearchTree<elemType>::insert(const elemType &x, AVLNode<elemType> *&t)
 {
     if (!t) {
-        t = new Node<elemType>(x);
+        t = new AVLNode<elemType>(x);
         return;
     }
     if (x == t->data) return;  // 已存在，结束插入
@@ -97,10 +97,10 @@ template <class elemType>
 void binarySearchTree<elemType>::levelTraverse() const
 {
     if (!root) return;
-    queue<Node<elemType> *> q;
+    queue<AVLNode<elemType> *> q;
     q.push(root);
     while (!q.empty()) {
-        Node<elemType> *current = q.front();
+        AVLNode<elemType> *current = q.front();
         q.pop();
         cout << current->data << " ";
         if (current->left) q.push(current->left);
@@ -111,7 +111,7 @@ void binarySearchTree<elemType>::levelTraverse() const
 
 // 删除元素
 template <class elemType>
-void binarySearchTree<elemType>::remove(const elemType &x, Node<elemType> *&t)
+void binarySearchTree<elemType>::remove(const elemType &x, AVLNode<elemType> *&t)
 {
     if (!t) return;
     if (x < t->data)
@@ -126,13 +126,13 @@ void binarySearchTree<elemType>::remove(const elemType &x, Node<elemType> *&t)
         }
 
         if (!t->left || !t->right) {
-            Node<elemType> *tmp = t;
+            AVLNode<elemType> *tmp = t;
             t = (t->left) ? t->left : t->right;
             delete tmp;
             return;
         }
 
-        Node<elemType> *p = t->right;
+        AVLNode<elemType> *p = t->right;
         while (p->left) p = p->left;
         t->data = p->data;
         remove(p->data, t->right);
@@ -149,12 +149,12 @@ void binarySearchTree<elemType>::remove(const elemType &x)
 template <class elemType>
 binarySearchTree<elemType>::~binarySearchTree()
 {
-    queue<Node<elemType> *> nodes;
+    queue<AVLNode<elemType> *> nodes;
     if (root) {
         nodes.push(root);
     }
     while (!nodes.empty()) {
-        Node<elemType> *current = nodes.front();
+        AVLNode<elemType> *current = nodes.front();
         nodes.pop();
         if (current->left) {
             nodes.push(current->left);

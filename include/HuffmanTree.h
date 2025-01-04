@@ -16,7 +16,7 @@ namespace datastructures
  * @tparam ElementType 节点数据的类型
  */
 template <class ElementType>
-class HuffmanTreeNode : public BaseNode<ElementType>
+class HuffmanTreeNode : public BaseNode<ElementType, HuffmanTreeNode<ElementType>>
 {
    public:
     double weight;                         ///< 节点权重
@@ -121,7 +121,7 @@ class HuffmanTree : public BTree<ElementType, HuffmanTreeNode<ElementType>>
 
 template <class ElementType>
 HuffmanTreeNode<ElementType>::HuffmanTreeNode()
-    : BaseNode<ElementType>(ElementType()),
+    : BaseNode<ElementType, HuffmanTreeNode<ElementType>>(ElementType()),
       weight(0),
       index(-1),
       parent(nullptr),
@@ -135,7 +135,12 @@ HuffmanTreeNode<ElementType>::HuffmanTreeNode(const ElementType& data, double w,
                                               HuffmanTreeNode<ElementType>* l,
                                               HuffmanTreeNode<ElementType>* r,
                                               HuffmanTreeNode<ElementType>* p)
-    : BaseNode<ElementType>(data), weight(w), index(idx), parent(p), left(l), right(r)
+    : BaseNode<ElementType, HuffmanTreeNode<ElementType>>(data),
+      weight(w),
+      index(idx),
+      parent(p),
+      left(l),
+      right(r)
 {
 }
 

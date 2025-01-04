@@ -8,13 +8,13 @@ namespace datastructures
  * @brief 抽象基类：树节点
  * @tparam elemType 节点数据类型
  */
-template <class elemType>
+template <class elemType, class nodeType>
 class BaseNode
 {
    public:
-    elemType data;              ///< 节点数据
-    BaseNode<elemType>* left;   ///< 左子节点
-    BaseNode<elemType>* right;  ///< 右子节点
+    elemType data;    ///< 节点数据
+    nodeType* left;   ///< 左子节点
+    nodeType* right;  ///< 右子节点
 
     BaseNode(const elemType& d) : data(d), left(nullptr), right(nullptr) {}
 
