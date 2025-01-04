@@ -507,6 +507,32 @@ examples_Chapter6_6-1_wasm/fast:
 .PHONY : examples_Chapter6_6-1_wasm/fast
 
 #=============================================================================
+# Target rules for targets named examples_Chapter6_6-10_wasm
+
+# Build rule for target.
+examples_Chapter6_6-10_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter6_6-10_wasm
+.PHONY : examples_Chapter6_6-10_wasm
+
+# fast build rule for target.
+examples_Chapter6_6-10_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-10_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-10_wasm.dir/build
+.PHONY : examples_Chapter6_6-10_wasm/fast
+
+#=============================================================================
+# Target rules for targets named examples_Chapter6_6-x_wasm
+
+# Build rule for target.
+examples_Chapter6_6-x_wasm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples_Chapter6_6-x_wasm
+.PHONY : examples_Chapter6_6-x_wasm
+
+# fast build rule for target.
+examples_Chapter6_6-x_wasm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-x_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-x_wasm.dir/build
+.PHONY : examples_Chapter6_6-x_wasm/fast
+
+#=============================================================================
 # Target rules for targets named examples_Chapter7_7-1_wasm
 
 # Build rule for target.
@@ -1707,6 +1733,54 @@ src/examples/Chapter6/6-1/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-1_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-1_wasm.dir/src/examples/Chapter6/6-1/main.cpp.s
 .PHONY : src/examples/Chapter6/6-1/main.cpp.s
 
+src/examples/Chapter6/6-10/main.o: src/examples/Chapter6/6-10/main.cpp.o
+.PHONY : src/examples/Chapter6/6-10/main.o
+
+# target to build an object file
+src/examples/Chapter6/6-10/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-10_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-10_wasm.dir/src/examples/Chapter6/6-10/main.cpp.o
+.PHONY : src/examples/Chapter6/6-10/main.cpp.o
+
+src/examples/Chapter6/6-10/main.i: src/examples/Chapter6/6-10/main.cpp.i
+.PHONY : src/examples/Chapter6/6-10/main.i
+
+# target to preprocess a source file
+src/examples/Chapter6/6-10/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-10_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-10_wasm.dir/src/examples/Chapter6/6-10/main.cpp.i
+.PHONY : src/examples/Chapter6/6-10/main.cpp.i
+
+src/examples/Chapter6/6-10/main.s: src/examples/Chapter6/6-10/main.cpp.s
+.PHONY : src/examples/Chapter6/6-10/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter6/6-10/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-10_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-10_wasm.dir/src/examples/Chapter6/6-10/main.cpp.s
+.PHONY : src/examples/Chapter6/6-10/main.cpp.s
+
+src/examples/Chapter6/6-x/main.o: src/examples/Chapter6/6-x/main.cpp.o
+.PHONY : src/examples/Chapter6/6-x/main.o
+
+# target to build an object file
+src/examples/Chapter6/6-x/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-x_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-x_wasm.dir/src/examples/Chapter6/6-x/main.cpp.o
+.PHONY : src/examples/Chapter6/6-x/main.cpp.o
+
+src/examples/Chapter6/6-x/main.i: src/examples/Chapter6/6-x/main.cpp.i
+.PHONY : src/examples/Chapter6/6-x/main.i
+
+# target to preprocess a source file
+src/examples/Chapter6/6-x/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-x_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-x_wasm.dir/src/examples/Chapter6/6-x/main.cpp.i
+.PHONY : src/examples/Chapter6/6-x/main.cpp.i
+
+src/examples/Chapter6/6-x/main.s: src/examples/Chapter6/6-x/main.cpp.s
+.PHONY : src/examples/Chapter6/6-x/main.s
+
+# target to generate assembly for a file
+src/examples/Chapter6/6-x/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/examples_Chapter6_6-x_wasm.dir/build.make CMakeFiles/examples_Chapter6_6-x_wasm.dir/src/examples/Chapter6/6-x/main.cpp.s
+.PHONY : src/examples/Chapter6/6-x/main.cpp.s
+
 src/examples/Chapter7/7-1/main.o: src/examples/Chapter7/7-1/main.cpp.o
 .PHONY : src/examples/Chapter7/7-1/main.o
 
@@ -2632,7 +2706,9 @@ help:
 	@echo "... examples_Chapter5_5-4_wasm"
 	@echo "... examples_Chapter5_5-5_wasm"
 	@echo "... examples_Chapter5_5-6_wasm"
+	@echo "... examples_Chapter6_6-10_wasm"
 	@echo "... examples_Chapter6_6-1_wasm"
+	@echo "... examples_Chapter6_6-x_wasm"
 	@echo "... examples_Chapter7_7-1_wasm"
 	@echo "... examples_Chapter7_7-2_wasm"
 	@echo "... examples_Chapter7_7-4_wasm"
@@ -2760,6 +2836,12 @@ help:
 	@echo "... src/examples/Chapter6/6-1/main.o"
 	@echo "... src/examples/Chapter6/6-1/main.i"
 	@echo "... src/examples/Chapter6/6-1/main.s"
+	@echo "... src/examples/Chapter6/6-10/main.o"
+	@echo "... src/examples/Chapter6/6-10/main.i"
+	@echo "... src/examples/Chapter6/6-10/main.s"
+	@echo "... src/examples/Chapter6/6-x/main.o"
+	@echo "... src/examples/Chapter6/6-x/main.i"
+	@echo "... src/examples/Chapter6/6-x/main.s"
 	@echo "... src/examples/Chapter7/7-1/main.o"
 	@echo "... src/examples/Chapter7/7-1/main.i"
 	@echo "... src/examples/Chapter7/7-1/main.s"

@@ -88,6 +88,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/examples_Chapter5_5-5_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter5_5-6_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter6_6-1_wasm.dir/DependInfo.cmake"
+  "CMakeFiles/examples_Chapter6_6-10_wasm.dir/DependInfo.cmake"
+  "CMakeFiles/examples_Chapter6_6-x_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter7_7-1_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter7_7-2_wasm.dir/DependInfo.cmake"
   "CMakeFiles/examples_Chapter7_7-4_wasm.dir/DependInfo.cmake"
