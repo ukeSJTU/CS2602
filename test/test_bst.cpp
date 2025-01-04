@@ -139,5 +139,5 @@ TEST_F(BinarySearchTreeTest, Traversal)
     EXPECT_TRUE(result.isEmpty());
 
     // Test level order traversal
-    bst.levelTraverse();  // This just tests that it doesn't crash
+    bst.levelOrder();  // This just tests that it doesn't crash
 }

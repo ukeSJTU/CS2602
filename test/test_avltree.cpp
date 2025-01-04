@@ -49,10 +49,14 @@ TEST_F(AVLTreeTest, Search)
 
 TEST_F(AVLTreeTest, InsertAndBalance)
 {
-    // Test LL rotation
-    avl.insertValue(0);  // Should trigger rotation
+    avl.insertValue(0);  // Should not trigger rotation
     EXPECT_TRUE(avl.searchValue(0));
-    EXPECT_EQ(avl.height(), 3);  // Height should remain balanced
+    EXPECT_EQ(avl.height(), 4);  // Height should increase by 1
+
+    // Test LL rotation
+    avl.insertValue(-1);
+    EXPECT_TRUE(avl.searchValue(-1));
+    EXPECT_EQ(avl.height(), 4);
 
     // Test RR rotation
     avl.insertValue(8);
@@ -78,8 +82,8 @@ TEST_F(AVLTreeTest, InsertAndBalance)
     LinkQueue<int> result;
     avl.inOrder(&result);
 
-    int expected[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    for (int i = 0; i < 10; i++) {
+    int expected[] = {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    for (int i = 0; i < 11; i++) {
         EXPECT_EQ(result.front(), expected[i]);
         result.deQueue();
     }

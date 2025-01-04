@@ -4,35 +4,46 @@
 
 using namespace datastructures;
 
-class BinaryTreeTest : public ::testing::Test
+TEST(BTreeTest, Construction)
 {
-   protected:
-    BTree<int> tree;
+    // 构造一个队列, 准备二叉树数据
     LinkQueue<int> queue;
+    queue.enQueue(1);  // root
+    queue.enQueue(2);  // left child
+    queue.enQueue(3);  // right child
+    queue.enQueue(4);  // left child of 2
+    queue.enQueue(0);  // right child of 2 (0 as flag)
+    queue.enQueue(0);  // left child of 3 (0 as flag)
+    queue.enQueue(5);  // right child of 3
 
-    void SetUp() override
-    {
-        // Setup a simple binary tree using queue
-        queue.enQueue(1);  // root
-        queue.enQueue(2);  // left child
-        queue.enQueue(3);  // right child
-        queue.enQueue(4);  // left child of 2
-        queue.enQueue(0);  // right child of 2 (0 as flag)
-        queue.enQueue(0);  // left child of 3 (0 as flag)
-        queue.enQueue(5);  // right child of 3
-        tree = BTree<int>(queue, 0);
-    }
-};
+    BTree<int> tree(queue, 0);
 
-TEST_F(BinaryTreeTest, Construction)
-{
+    // 做断言
     EXPECT_FALSE(tree.isEmpty());
+    EXPECT_EQ(tree.getRoot()->data, 1);
+    EXPECT_EQ(tree.getRoot()->left->data, 2);
+    EXPECT_EQ(tree.getRoot()->right->data, 3);
+    EXPECT_EQ(tree.getRoot()->left->left->data, 4);
+    EXPECT_EQ(tree.getRoot()->right->right->data, 5);
+
     EXPECT_EQ(tree.size(), 5);
     EXPECT_EQ(tree.height(), 3);
 }
 
-TEST_F(BinaryTreeTest, Traversal)
+TEST(BTreeTest, Traversal)
 {
+    // 构造一个队列, 准备二叉树数据
+    LinkQueue<int> queue;
+    queue.enQueue(1);  // root
+    queue.enQueue(2);  // left child
+    queue.enQueue(3);  // right child
+    queue.enQueue(4);  // left child of 2
+    queue.enQueue(0);  // right child of 2 (0 as flag)
+    queue.enQueue(0);  // left child of 3 (0 as flag)
+    queue.enQueue(5);  // right child of 3
+
+    BTree<int> tree(queue, 0);
+
     LinkQueue<int> result;
 
     // Test preorder traversal
@@ -92,7 +103,7 @@ TEST_F(BinaryTreeTest, Traversal)
     EXPECT_TRUE(result.isEmpty());
 }
 
-TEST_F(BinaryTreeTest, EmptyTree)
+TEST(BTreeTest, EmptyTree)
 {
     BTree<int> emptyTree;
     EXPECT_TRUE(emptyTree.isEmpty());

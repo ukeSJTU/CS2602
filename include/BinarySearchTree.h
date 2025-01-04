@@ -82,11 +82,6 @@ class BinarySearchTree : public BTree<elemType, BSTNode<elemType>>
      * @param x 删除的数据
      */
     void remove(const elemType& x) { remove(x, root); }
-
-    /**
-     * @brief 层次遍历二叉搜索树
-     */
-    void levelTraverse() const { this->levelOrder(); }
 };
 
 template <class elemType>
