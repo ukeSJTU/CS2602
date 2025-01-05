@@ -526,6 +526,150 @@ bool Graph<verType, edgeType>::connected() const  // 广度优先遍历
 
 #### 欧拉回路
 
+欧拉回路问题的由来：
+
+格尼斯堡七桥问题
+18 世纪东普鲁士的格尼斯堡，有一条河流穿城而过，城市除被一分为二外，还包含了河中的两个小岛，河上有七座桥把这些陆地和岛屿联系了起来。
+有人提出了一个问题：可否从一个陆地或岛屿出发，
+一次经过全部的七座桥且每座桥只走一遍，
+最后还能回到出发点？
+
+欧拉的研究：
+
+1736 年，29 岁的数学家欧拉获悉了这个难题，
+在随后的思考中，他把每个陆地和岛屿用点表示，而桥梁用点之间的边表示，于是七桥问题就抽象为图结构。
+七桥问题由此转化为从图中任意一个点出发是否存在一条路径，它能经过每条边一次且仅经过一次后回到原点。
+
+欧拉定理：
+
+相关概念：
+如果图中一条路径经过了每条边一次且仅一次，这条路径称欧拉路径。如果一条欧拉路径的起点和终点相同，是一个回路，称欧拉回路，
+具有欧拉回路的图称欧拉图(简称 E 图)。
+具有欧拉路径但不具有欧拉回路的图称半欧拉图。
+欧拉回路及一笔画问题。
+
+欧拉定理：
+
+1. 一个无向连通图中，如果度为奇数的顶点超过了 2 个，则欧拉路径是不存在的。
+2. 一个无向连通图中，如果除了两个顶点的度是奇数而其他顶点的度都是偶数，则从一个度为奇数的顶点出发一定能找到一条经过每条边一次且仅一次的路径回到另外一个度为奇数的顶点。
+3. 一个无向连通图中，如果顶点的度都是偶数，则从任意一个顶点出发都能经过每条边一次且仅一次并回到原来的顶点。
+
+求欧拉回路的算法：
+
+1. 任选一个顶点 v，从该顶点出发开始深度优先搜索，搜索路径上都是由未访问过的边构成，搜索中访问这些边，最后直到回到顶点 v 且 v 没有尚未被访问的边，此时便得到了一个回路，此回路为当前结果回路。
+2. 在搜索路径上另外找一个尚有未访问边的顶点，继续如上操作，找到另外一个回路，将该回路拼接在当前结果回路上，形成一个大的、新的结果回路。
+3. 如果在新的结果回路中，还有中间某结点有尚未访问的边，回到 2）；如果没有任何中间顶点尚余未访问的边，访问结束，当前结果回路即欧拉回路。
+
+求欧拉回路的算法实现：
+
+```cpp
+struct EulerNode {
+    int NodeNum;
+    EulerNode *next;
+    EulerNode(int ver)
+    {
+        NodeNum = ver;
+        next = NULL;
+    }
+};
+
+template <class verType, class edgeType>
+verNode<verType, edgeType> *Graph<verType, edgeType>::clone()
+{
+    verNode<verType, edgeType> *tmp = new verNode[Vers];
+    edgeNode<edgeType> *p;
+
+    for (int i = 0; i < Vers; ++i) {
+        tmp[i].ver = verList[i].ver;
+        p = verList[i].adj;
+        while (p) {
+            tmp[i].adj = new edgeNode(p->dest, p->weight, tmp[i].adj);
+            p = p->link;
+        }  // while
+    }  // for
+    return tmp;
+}
+
+template <class verType, class edgeType>
+EulerNode *Graph<verType, edgeType>::EulerCircuit(int start, EulerNode *&end)
+{
+    EulerNode *beg;
+    int nextNode;
+    beg = end = new EulerNode(start);
+    while (verList[start].adj != NULL) {
+        nextNode = verList[start].adj->dest;
+        remove(start, nextNode);
+        remove(nextNode, start);
+        start = nextNode;
+        end->next = new EulerNode(start);
+        end = end->next;
+    }
+    return beg;
+}
+
+template <class verType, class edgeType>
+void Graph<verType, edgeType>::EulerCircuit(verType start)
+{
+    EulerNode *beg, *end, *p, *q, *tBeg, *tEnd;
+    int numOfDegree;
+    edgeNode<edgeType> *r;
+    verNode<verType, edgeType> *tmp;
+
+    // 检查是否存在欧拉回路
+    for (int i = 0; i < Vers; ++i) {
+        numOfDegree = 0;
+        r = verList[i].adj;
+        while (r != NULL) {
+            ++numOfDegree;
+            r = r->link;
+        }
+        if (numOfDegree == 0 || numOfDegree % 2) {
+            cout << "不存在欧拉回路" << endl;
+            return;
+        }
+    }  // for
+
+    // 寻找起始结点的编号
+    i = getVertex(start);
+    if (i == -1) return;
+
+    // 创建一份邻接表的拷贝
+    tmp = clone();
+
+    // 寻找从i出发的路径，路径的起点和终点地址分别是beg和end
+    beg = EulerCircuit(i, end);
+    while (true) {
+        p = beg;
+        while (p->next != NULL)
+            if (verList[p->next->NodeNum].adj != NULL)
+                break;
+            else
+                p = p->next;
+        if (p->next == NULL) break;  // 全部边都访问过，消失了
+        q = p->next;
+
+        tBeg = EulerCircuit(q->NodeNum, tEnd);
+        tEnd->next = q->next;
+        p->next = tBeg;
+        delete q;
+    }
+
+    // 恢复原图
+    delete[] verList;
+    verList = tmp;
+
+    // 显示得到的欧拉回路
+    cout << "欧拉回路是：" << endl;
+    while (beg != NULL) {
+        cout << verList[beg->NodeNum].ver << '\t';
+        p = beg;
+        beg = beg->next;
+        delete p;
+    }
+    cout << endl;
+}
+```
+
 #### 六度空间理论
 
 ## 5.4 最小代价生成树
